@@ -6,9 +6,10 @@ import java.util.List;
 public class Table {
 	private List<GridManager> sudoku;
 	private int size;
-	public Table(int size, GridManager table) {
-		sudoku = new ArrayList<GridManager>();
+	
+	public Table(int size) {
 		this.size = size;
+		sudoku = new ArrayList<GridManager>();
 		// size 3 or 4.
 	}
 
@@ -43,57 +44,102 @@ public class Table {
 		return true;
 	}
 
-	public boolean duplicateRow(int numberGrid, int row, int target) {
-		// numbergrid 0-8
+//	public boolean duplicateRow(int numberGrid, int row, int target) {
+//		// numberGrid 0-8
+//		// row 0-8
+//		// target 1-9
+//		int position = numberGrid % size;
+//		if(position == 0) return true;
+//		int rowGrid = row / size;
+//		int rowBox = row % size;
+//		List<Integer> check = new ArrayList<Integer>();
+//		for (int times = 0; times < position; times++) {
+//			for (int box = 0; box <= (size - 1); box++) {
+//				check.add(sudoku.get(size * rowGrid + times).getList().get(size * rowBox + box).getNumber());
+//				
+//				if(numberGrid!=0) {
+//					System.out.println(sudoku.get(size * rowGrid + times).getList().get(size * rowBox + box).getNumber());
+//				}
+//				
+//			}
+//		}
+//		if(numberGrid!=0) {
+//			System.out.println("Before out the loop : "+check.indexOf(target));
+//		}
+//		if (check.indexOf(target) >= 0) {
+//			return false;
+//		}
+//		return true;
+//	}
+	
+	public List<Integer> duplicateRow(int numberGrid, int row) {
+		// numberGrid 0-8
 		// row 0-8
 		// target 1-9
 		int position = numberGrid % size;
 		int rowGrid = row / size;
 		int rowBox = row % size;
 		List<Integer> check = new ArrayList<Integer>();
+		if(position == 0) return check;//???
 		for (int times = 0; times < position; times++) {
 			for (int box = 0; box <= (size - 1); box++) {
 				check.add(sudoku.get(size * rowGrid + times).getList().get(size * rowBox + box).getNumber());
 			}
 		}
-		if (check.indexOf(target) < 0) {
-			return false;
-		}
-		return true;
+		return check;
 	}
 
-	public boolean duplicateColumn(int numberGrid, int column, int target) {
-		// numbergrid 0-8
+	public List<Integer> duplicateColumn(int numberGrid, int column) {
+		// numberGrid 0-8
 		// column 0-8
 		// target 1-9
 		int position = numberGrid / size;
 		int columnGrid = column / size;
 		int columnBox = column % size;
 		List<Integer> check = new ArrayList<Integer>();
+		if(position == 0) return check;//???
 		for (int times = 0; times < position; times++) {
 			for (int box = 0; box <= (size - 1); box++) {
 				check.add(sudoku.get(columnGrid + (size * times)).getList().get(size * box + columnBox).getNumber());
 			}
 		}
-		if (check.indexOf(target) < 0) {
-			return false;
-		}
-		return true;
-	}
-
-	public boolean add() {
-		
-		return true;
+		return check;
 	}
 	
-	public boolean insert() {
-		// // if the purse is already full then can't insert anything.
-		// if (isFull() || value.getValue() <= 0) {
-		// return false;
-		// } else {
-		// money.add(value);
-		// return true;
-		// }
+//	public boolean duplicateColumn(int numberGrid, int column, int target) {
+//		// numberGrid 0-8
+//		// column 0-8
+//		// target 1-9
+//		int position = numberGrid / size;
+//		if(position == 0) return true;
+//		int columnGrid = column / size;
+//		int columnBox = column % size;
+//		List<Integer> check = new ArrayList<Integer>();
+//		for (int times = 0; times < position; times++) {
+//			for (int box = 0; box <= (size - 1); box++) {
+//				check.add(sudoku.get(columnGrid + (size * times)).getList().get(size * box + columnBox).getNumber());
+//			}
+//		}
+//		if (check.indexOf(target) >= 0) {
+//			return false;
+//		}
+//		return true;
+//	}
+
+	public boolean insert(int numberGrid,int column,int row,int target) {
+		if(duplicateColumn(numberGrid,column,target) && duplicateRow(numberGrid,row,target)) {
+//					sudoku.add(new GridManager(0, true));
+			sudoku.get(numberGrid).getList().add(new BoxManager(target,true,true));
+			return true;
+		}
 		return false;
+	}
+	
+	public int getSize() {
+		return size;
+	}
+	
+	public List<GridManager> getList() {
+		return sudoku;
 	}
 }
