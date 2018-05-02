@@ -13,7 +13,7 @@ public class Table {
 		// size 3 or 4.
 	}
 
-	public boolean duplicateGrid(int number) {
+//	public boolean duplicateGrid(int number) {
 		// int x = table.getPoint();
 		// int times = capacity/x;
 		// int remainder = x%capacity;
@@ -41,8 +41,8 @@ public class Table {
 		// for(Integer y : oneGrid.getNumber()) {
 		//
 		// }
-		return true;
-	}
+//		return true;
+//	}
 
 //	public boolean duplicateRow(int numberGrid, int row, int target) {
 //		// numberGrid 0-8

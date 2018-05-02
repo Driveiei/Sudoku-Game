@@ -198,6 +198,8 @@ public class RandomNumber implements Runnable {
 //		}
 //	}
 	
+	
+	//Good
 	public void createRandomSet(List<Integer> setOfNumber, int numberGrid) {
 		int size = table.getSize()*table.getSize()-1;//8
 		int realSize = table.getSize();//3
@@ -227,15 +229,29 @@ public class RandomNumber implements Runnable {
 					countOut++;
 				}
 			}
+			
+			System.out.print("ForDeleteColumn");
+			for(Integer x : forDeleteColumn) {
+				System.out.print(x+" ");
+			}
+			System.out.println();
+			System.out.println("ForDeleteRow");
+			for(Integer x : forDeleteRow) {
+				System.out.print(x+" ");
+				System.out.println();
+			}
+			System.out.println();
+
+			
 			int number = setOfNumber.size();
 			int cursor = rand.nextInt(number); // random 0-8 position
-			if(i==0) {
-				System.out.println("cursor is : "+cursor);
-				System.out.println("Set of Number is ");
-				for(Integer y : setOfNumber) {
-					System.out.println(y);
-				}
-			}
+//									if(i==0) {
+											System.out.println("cursor is : "+cursor);
+											System.out.println("Set of Number is ");
+											for(Integer y : setOfNumber) {
+												System.out.println(y);
+											}
+//									}
 			int target = setOfNumber.get(cursor);
 			table.getList().get(numberGrid).getList().add(new BoxManager(target,true,true));
 			
@@ -249,6 +265,79 @@ public class RandomNumber implements Runnable {
 		
 	}
 	
+//Drive	
+//	public void createRandomSet(List<Integer> setOfNumber, int numberGrid) {
+//		int size = table.getSize()*table.getSize()-1;//8
+//		int realSize = table.getSize();//3
+//		int help1 = numberGrid%3;
+//		int help2 = numberGrid/3;
+//		List<Integer> collecting = new ArrayList<Integer>();
+//		List<Integer> forDeleteColumn = new ArrayList<Integer>();
+//		List<Integer> forDeleteRow = new ArrayList<Integer>();
+//		int countOut = 0;
+//		for(int i = 0; i <= size; i++) {
+////			column = run % 3;
+////			row = run / 3;
+//			forDeleteColumn.addAll(table.duplicateColumn(numberGrid, realSize*help1+i%3));
+//			forDeleteRow.addAll(table.duplicateRow(numberGrid, realSize*help2+i/3));
+//			//			run++;
+//			for(Integer out : forDeleteColumn) {
+//				if(setOfNumber.contains(out)) {
+//					setOfNumber.remove(setOfNumber.indexOf(out));
+//					collecting.add(out);
+//					countOut++;
+//				}
+//			}
+//			for(Integer out : forDeleteRow) {
+//				if(setOfNumber.contains(out)) {
+//					setOfNumber.remove(setOfNumber.indexOf(out));
+//					collecting.add(out);
+//					countOut++;
+//				}
+//			}
+//			
+//			System.out.print("ForDeleteColumn");
+//			for(Integer x : forDeleteColumn) {
+//				System.out.print(x+" ");
+//			}
+//			System.out.println();
+//			System.out.println("ForDeleteRow");
+//			for(Integer x : forDeleteRow) {
+//				System.out.print(x+" ");
+//				System.out.println();
+//			}
+//			System.out.println();
+//
+//			
+//			int number = setOfNumber.size();
+//			int cursor = 0;
+//			int target = 0;
+//			try {
+//			cursor = rand.nextInt(number); // random 0-8 position
+//			target = setOfNumber.get(cursor);
+//			table.getList().get(numberGrid).getList().add(new BoxManager(target,true,true));
+//			setOfNumber.remove(setOfNumber.indexOf(target));
+//			setOfNumber.addAll(collecting);
+//			} catch(IllegalArgumentException ex) {
+//				table.getList().get(numberGrid).getList().clear();
+//				table.getList().get(numberGrid-1).getList().clear();
+//				i = i-2;
+//			}
+//			//									if(i==0) {
+//											System.out.println("cursor is : "+cursor);
+//											System.out.println("Set of Number is ");
+//											for(Integer y : setOfNumber) {
+//												System.out.println(y);
+//											}
+//
+//			//									}
+//			collecting.clear();
+//			forDeleteColumn.clear();
+//			forDeleteRow.clear();
+//			countOut = 0;
+//		}
+//		
+//	}
 	
 
 	public List<Integer> createNumberSet(int size) {
