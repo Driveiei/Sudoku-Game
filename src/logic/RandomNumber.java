@@ -34,6 +34,17 @@ public class RandomNumber implements Runnable {
 				System.out.println(table.getList().get(i).getList().get(y).getNumber());
 			}
 		}
+		
+		
+		
+		System.out.println("Fuck========================================ADsaDA");
+		for(int i = 0; i<= 8; i++) {
+			System.out.println("Block "+i);
+			for(int y = 0; y<=8;y++) {
+				System.out.println(table.getList().get(i).getList().get(y).getNumber());
+			}
+		}
+		
 		// for(int maxSize = size+1; maxSize>0; maxSize--) {
 		// int cursor = rand.nextInt(maxSize);
 		// System.out.println("position : "+cursor);
@@ -200,6 +211,72 @@ public class RandomNumber implements Runnable {
 	
 	
 	//Good
+//	public void createRandomSet(List<Integer> setOfNumber, int numberGrid) {
+//		int size = table.getSize()*table.getSize()-1;//8
+//		int realSize = table.getSize();//3
+//		int help1 = numberGrid%3;
+//		int help2 = numberGrid/3;
+//		List<Integer> collecting = new ArrayList<Integer>();
+//		List<Integer> forDeleteColumn = new ArrayList<Integer>();
+//		List<Integer> forDeleteRow = new ArrayList<Integer>();
+//		int countOut = 0;
+//		for(int i = 0; i <= size; i++) {
+////			column = run % 3;
+////			row = run / 3;
+//			forDeleteColumn.addAll(table.duplicateColumn(numberGrid, realSize*help1+i%3));
+//			forDeleteRow.addAll(table.duplicateRow(numberGrid, realSize*help2+i/3));
+////			run++;
+//			for(Integer out : forDeleteColumn) {
+//				if(setOfNumber.contains(out)) {
+//					setOfNumber.remove(setOfNumber.indexOf(out));
+//					collecting.add(out);
+//					countOut++;
+//				}
+//			}
+//			for(Integer out : forDeleteRow) {
+//				if(setOfNumber.contains(out)) {
+//					setOfNumber.remove(setOfNumber.indexOf(out));
+//					collecting.add(out);
+//					countOut++;
+//				}
+//			}
+//			
+////			System.out.print("ForDeleteColumn");
+////			for(Integer x : forDeleteColumn) {
+////				System.out.print(x+" ");
+////			}
+////			System.out.println();
+////			System.out.println("ForDeleteRow");
+////			for(Integer x : forDeleteRow) {
+////				System.out.print(x+" ");
+////				System.out.println();
+////			}
+////			System.out.println();
+//
+//			
+//			int number = setOfNumber.size();
+//			System.out.println("number is" + number);
+//			int cursor = rand.nextInt(number); // random 0-8 position
+////									if(i==0) {
+//											System.out.println("cursor is : "+cursor);
+//											System.out.println("Set of Number is ");
+//											for(Integer y : setOfNumber) {
+//												System.out.println(y);
+//											}
+////									}
+//			int target = setOfNumber.get(cursor);
+//			table.getList().get(numberGrid).getList().add(new BoxManager(target,true,true));
+//			
+//			setOfNumber.remove(setOfNumber.indexOf(target));
+//			setOfNumber.addAll(collecting);
+//			collecting.clear();
+//			forDeleteColumn.clear();
+//			forDeleteRow.clear();
+//			countOut = 0;
+//		}
+//		
+//	}
+	
 	public void createRandomSet(List<Integer> setOfNumber, int numberGrid) {
 		int size = table.getSize()*table.getSize()-1;//8
 		int realSize = table.getSize();//3
@@ -208,13 +285,14 @@ public class RandomNumber implements Runnable {
 		List<Integer> collecting = new ArrayList<Integer>();
 		List<Integer> forDeleteColumn = new ArrayList<Integer>();
 		List<Integer> forDeleteRow = new ArrayList<Integer>();
+		
+		List<Integer> copy = new ArrayList<Integer>();
+		copy.addAll(setOfNumber);		
 		int countOut = 0;
 		for(int i = 0; i <= size; i++) {
-//			column = run % 3;
-//			row = run / 3;
 			forDeleteColumn.addAll(table.duplicateColumn(numberGrid, realSize*help1+i%3));
 			forDeleteRow.addAll(table.duplicateRow(numberGrid, realSize*help2+i/3));
-//			run++;
+			
 			for(Integer out : forDeleteColumn) {
 				if(setOfNumber.contains(out)) {
 					setOfNumber.remove(setOfNumber.indexOf(out));
@@ -229,34 +307,34 @@ public class RandomNumber implements Runnable {
 					countOut++;
 				}
 			}
-			
-			System.out.print("ForDeleteColumn");
-			for(Integer x : forDeleteColumn) {
-				System.out.print(x+" ");
+			try {
+				int number = setOfNumber.size();			
+				int cursor = rand.nextInt(number); // random 0-8 position
+				int target = setOfNumber.get(cursor);
+				table.getList().get(numberGrid).getList().add(new BoxManager(target,true,true));
+				setOfNumber.remove(setOfNumber.indexOf(target));
+				setOfNumber.addAll(collecting);
+			} catch (IllegalArgumentException ex) {
+				List<BoxManager> r = new ArrayList<BoxManager>();
+				r.addAll(table.getList().get(numberGrid).getList());
+				for(BoxManager t : r) {
+					System.out.println(t.getNumber());
+				}
+				i = -1;				
+				setOfNumber.clear();
+				setOfNumber.addAll(copy);
+				table.getList().get(numberGrid).getList().clear();
+				if(numberGrid %3 == 1) {
+					table.getList().get(numberGrid-1).getList().clear();
+					createRandomSet(createNumberSet(9), numberGrid-1); // create grid 0 1 2 3 4 5 6 7 8
+				}
+				if(numberGrid %3 == 2) {
+					table.getList().get(numberGrid-2).getList().clear();
+					table.getList().get(numberGrid-1).getList().clear();
+					createRandomSet(createNumberSet(9), numberGrid-2); 
+					createRandomSet(createNumberSet(9), numberGrid-1); 
+				}
 			}
-			System.out.println();
-			System.out.println("ForDeleteRow");
-			for(Integer x : forDeleteRow) {
-				System.out.print(x+" ");
-				System.out.println();
-			}
-			System.out.println();
-
-			
-			int number = setOfNumber.size();
-			int cursor = rand.nextInt(number); // random 0-8 position
-//									if(i==0) {
-											System.out.println("cursor is : "+cursor);
-											System.out.println("Set of Number is ");
-											for(Integer y : setOfNumber) {
-												System.out.println(y);
-											}
-//									}
-			int target = setOfNumber.get(cursor);
-			table.getList().get(numberGrid).getList().add(new BoxManager(target,true,true));
-			
-			setOfNumber.remove(setOfNumber.indexOf(target));
-			setOfNumber.addAll(collecting);
 			collecting.clear();
 			forDeleteColumn.clear();
 			forDeleteRow.clear();
