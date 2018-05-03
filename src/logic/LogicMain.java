@@ -1,8 +1,5 @@
 package logic;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class LogicMain {
 
 	public static void main(String[] args) {
