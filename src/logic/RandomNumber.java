@@ -1,7 +1,6 @@
 package logic;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
@@ -41,6 +40,18 @@ public class RandomNumber implements Runnable {
 		return merge;
 	}
 
+	public List<Integer> mergeDuplicateList(int numberGrid,int column,int row){
+		List<Integer> merge = new ArrayList<Integer>();
+		merge.addAll(table.duplicateColumn(numberGrid, column));
+		List<Integer> secondList = new ArrayList<Integer>();
+		secondList.addAll(table.duplicateRow(numberGrid, row));
+		for(Integer number : secondList) {
+			if (!merge.contains(number))
+				merge.add(number);
+		}
+		return merge;
+	}
+	
 	public void createRandomSet(List<Integer> setOfNumber, int numberGrid, int size) {
 		int realSize = table.getSize();// 3
 		int column;
@@ -49,28 +60,25 @@ public class RandomNumber implements Runnable {
 		List<Integer> collecting = new ArrayList<Integer>();
 		for (int box = 0; box < size; box++) {
 
-			column = realSize * (numberGrid % realSize) + box % realSize;
-			row = realSize * (numberGrid / realSize) + box / realSize;
-
-			duplicateSet.addAll(
-					mergeDuplicateList(table.duplicateColumn(numberGrid, column), table.duplicateRow(numberGrid, row)));
-
+			column = identifyColumn(realSize,numberGrid,box);
+			row = identifyRow(realSize,numberGrid,box);
+			duplicateSet.addAll(mergeDuplicateList(numberGrid,column,row));
+			
 			for (Integer out : duplicateSet) {
 				if (setOfNumber.contains(out)) {
 					setOfNumber.remove(setOfNumber.indexOf(out));
 					collecting.add(out);
 				}
 			}
-
+			
 			try {
-				int cursor = rand.nextInt(setOfNumber.size()); // random 0-8 position
-				int target = setOfNumber.get(cursor);
-				table.getList().get(numberGrid).getList().add(new BoxManager(target, true, true));
+				int target = randomNumber(setOfNumber);
+				table.insert(numberGrid, target);
 				setOfNumber.remove(setOfNumber.indexOf(target));
 				setOfNumber.addAll(collecting);
 			} catch (IllegalArgumentException ex) {
 				box = undoCreateGrid(numberGrid, size, realSize);
-				table.getList().get(numberGrid).getList().clear();
+				table.clear(numberGrid);
 				setOfNumber.clear();
 				setOfNumber.addAll(createNumberSet(size));
 			}
@@ -79,15 +87,29 @@ public class RandomNumber implements Runnable {
 		}
 	}
 
+	public int identifyRow(int realSize,int numberGrid,int box) {
+		return realSize * (numberGrid / realSize) + box / realSize;
+	}
+	
+	public int identifyColumn(int realSize,int numberGrid,int box) {
+		return realSize * (numberGrid % realSize) + box % realSize;
+	}
+	
+	public int randomNumber(List<Integer> setOfNumber) {
+		int cursor = rand.nextInt(setOfNumber.size());
+		int target = setOfNumber.get(cursor);
+		return target;
+	}
+	
 	public int undoCreateGrid(int numberGrid, int size, int realSize) {
 		int remainder = numberGrid % realSize;
 		if (remainder == 1) {
-			table.getList().get(numberGrid - remainder).getList().clear();
+			table.clear(numberGrid - remainder);
 			createRandomSet(createNumberSet(size), numberGrid - remainder, size);
 		}
-		if (numberGrid % realSize == 2) {
-			table.getList().get(numberGrid - remainder).getList().clear();
-			table.getList().get(numberGrid - (remainder - 1)).getList().clear();
+		if (remainder == 2) {
+			table.clear(numberGrid - remainder);
+			table.clear(numberGrid - (remainder - 1));
 			createRandomSet(createNumberSet(size), numberGrid - remainder, size);
 			createRandomSet(createNumberSet(size), numberGrid - (remainder - 1), size);
 		}
