@@ -288,7 +288,6 @@ public class RandomNumber implements Runnable {
 		
 		List<Integer> copy = new ArrayList<Integer>();
 		copy.addAll(setOfNumber);		
-		int countOut = 0;
 		for(int i = 0; i <= size; i++) {
 			forDeleteColumn.addAll(table.duplicateColumn(numberGrid, realSize*help1+i%3));
 			forDeleteRow.addAll(table.duplicateRow(numberGrid, realSize*help2+i/3));
@@ -297,14 +296,12 @@ public class RandomNumber implements Runnable {
 				if(setOfNumber.contains(out)) {
 					setOfNumber.remove(setOfNumber.indexOf(out));
 					collecting.add(out);
-					countOut++;
 				}
 			}
 			for(Integer out : forDeleteRow) {
 				if(setOfNumber.contains(out)) {
 					setOfNumber.remove(setOfNumber.indexOf(out));
 					collecting.add(out);
-					countOut++;
 				}
 			}
 			try {
@@ -338,7 +335,6 @@ public class RandomNumber implements Runnable {
 			collecting.clear();
 			forDeleteColumn.clear();
 			forDeleteRow.clear();
-			countOut = 0;
 		}
 		
 	}
