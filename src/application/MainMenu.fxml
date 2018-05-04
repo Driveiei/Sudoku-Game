@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <top>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleStart" text="Start" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets top="200.0" />
+               </BorderPane.margin>
+            </Button>
+         </top>
+         <center>
+            <Button mnemonicParsing="false" text="About" BorderPane.alignment="CENTER" />
+         </center>
+         <bottom>
+            <Button mnemonicParsing="false" text="Scoreboard" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="200.0" />
+               </BorderPane.margin>
+            </Button>
+         </bottom>
+      </BorderPane>
+   </center>
+   <top>
+      <Label text="SUDOKU GAME" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets top="100.0" />
+         </BorderPane.margin>
+         <font>
+            <Font size="47.0" />
+         </font>
+      </Label>
+   </top>
+</BorderPane>

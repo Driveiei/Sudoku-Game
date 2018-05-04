@@ -11,30 +11,30 @@ import logic.RandomNumber;
 import logic.Table;
 
 public class Grid {
-	
+
 	private Table table;
 	private RandomNumber random;
-	
-	private Grid grid;
+
 	private GridPane gridA;
 	private List<GridPane> gridB;
 	private List<Label> listText = new ArrayList<Label>();
-	private final int BASE = 50;
-	
+	private final int BASE = 75;
+
 	public Grid(int num) {
 		table = new Table(num);
 		random = new RandomNumber(table);
 		random.run();
-		
+
 		create();
 
 	}
+
 	public void create() {
 		gridA = createGridA();
 		gridB = createGridB();
 		listText = addLabel();
 		createGridC();
-		
+
 		int pointer = 0;
 		for (int a = 0; a < table.getSize(); a++) {
 			for (int b = 0; b < table.getSize(); b++) {
@@ -44,23 +44,24 @@ public class Grid {
 		}
 		addNumber();
 	}
-	
+
 	public Table getTable() {
 		return table;
 	}
-	
+
 	public GridPane getGridMain() {
 		return gridA;
 	}
-	
-	public List<GridPane> getGridMinor(){
+
+	public List<GridPane> getGridMinor() {
 		return gridB;
 	}
-	public List<Label> getLabel(){
+
+	public List<Label> getLabel() {
 		return listText;
-		
+
 	}
-	
+
 	public void emtyGrid(GridPane pane, int size) {
 		for (int i = 0; i < table.getSize(); i++) {
 			ColumnConstraints column = new ColumnConstraints(size);
@@ -76,7 +77,7 @@ public class Grid {
 		emtyGrid(pane, BASE * table.getSize());
 		return pane;
 	}
-	
+
 	public List<GridPane> createGridB() {
 		List<GridPane> listGrid = new ArrayList<GridPane>();
 		for (int i = 0; i < table.getList().size(); i++) {
@@ -84,7 +85,7 @@ public class Grid {
 		}
 		return listGrid;
 	}
-	
+
 	public void createGridC() {
 		for (int i = 0; i < table.getList().size(); i++) {
 			emtyGrid(gridB.get(i), BASE);
@@ -109,17 +110,12 @@ public class Grid {
 		for (int a = 0; a < tableSize; a++) {
 			for (int b = 0; b < tableSize; b++) {
 				for (int i = 0; i < table.getList().size(); i++) {
-					System.out.println("Number is " + table.getList().size());
 					gridB.get((tableSize * a) + b).add(listText.get(pointer), (i % tableSize), (i / tableSize));
-					System.out.println("Number is " + (tableSize * a) + b);
 					pointer++;
 				}
 
 			}
 		}
 	}
-	
-	
-	
-	
+
 }
