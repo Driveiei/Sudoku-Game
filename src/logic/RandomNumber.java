@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import jdk.management.resource.internal.inst.SocketOutputStreamRMHooks;
+
 public class RandomNumber implements Runnable {
 
 	private Table table;
@@ -21,12 +23,24 @@ public class RandomNumber implements Runnable {
 			table.getList().add(new GridManager(grid, true));// create 9 grids.
 			createRandomSet(createNumberSet(size), grid, size); // create grid 0 1 2 3 4 5 6 7 8
 		}
-
-		for (int i = 0; i < size; i++) {
-			System.out.println("Block " + i);
-			for (int y = 0; y < size; y++) {
-				System.out.println(table.getList().get(i).getList().get(y).getNumber());
+		print(table.getSize());
+		
+	}
+	
+	public void print(int number) {
+		for(int i = 0; i< number; i++) {
+			for(int j = 0; j < number; j++) {
+				for(int k =0; k<number; k++) {
+					for(int l = 0; l< number;l++) {
+						System.out.printf("%2s",table.getList().get(number*i+k).getList().get(number*j+l).getNumber());
+						System.out.print(" ");
+					}
+					System.out.print("| ");
+				}
+				System.out.println();
 			}
+			if(number == 4) System.out.print("----------------------------------");
+			System.out.println("---------------------");
 		}
 	}
 
@@ -112,6 +126,14 @@ public class RandomNumber implements Runnable {
 			table.clear(numberGrid - (remainder - 1));
 			createRandomSet(createNumberSet(size), numberGrid - remainder, size);
 			createRandomSet(createNumberSet(size), numberGrid - (remainder - 1), size);
+		}
+		if (remainder == 3) {
+			table.clear(numberGrid - remainder);
+			table.clear(numberGrid - (remainder - 1));
+			table.clear(numberGrid - (remainder - 2));
+			createRandomSet(createNumberSet(size), numberGrid - remainder, size);
+			createRandomSet(createNumberSet(size), numberGrid - (remainder - 1), size);
+			createRandomSet(createNumberSet(size), numberGrid - (remainder - 2), size);
 		}
 		return -1;
 	}

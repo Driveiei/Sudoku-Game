@@ -87,12 +87,6 @@ public class Table {
 		for (int times = 0; times < position; times++) {
 			for (int box = 0; box <= (size - 1); box++) {
 				check.add(sudoku.get(size * rowGrid + times).getList().get(size * rowBox + box).getNumber());
-
-				System.out.println("Print");
-				for (Integer u : check) {
-					System.out.println(u);
-				}
-
 			}
 		}
 		return check;
