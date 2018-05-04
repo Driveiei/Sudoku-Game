@@ -20,8 +20,9 @@ public class GridController {
 	private Table table;
 	private RandomNumber random;
 	private GridPane gridA;
-	List<GridPane> gridB = new ArrayList<GridPane>();
-	List<Label> labelList = new ArrayList<Label>();
+	private List<GridPane> gridB;
+	private List<Label> listText = new ArrayList<Label>();
+	private final int BASE = 50;
 
 	@FXML
 	public void initialize() {
@@ -29,67 +30,81 @@ public class GridController {
 		random = new RandomNumber(table);
 		random.run();
 
-		gridA = createGridA(3);
+		gridA = createGridA();
+		gridB = addGridB();
 		pane.setCenter(gridA);
-		listOfGridB(3);
+		listText = addLabel();
+		createGridB();
+
 	}
 
-	public GridPane createGridA(int num) {
-		GridPane pane = new GridPane();
-		for (int i = 0; i < num; i++) {
-			ColumnConstraints column = new ColumnConstraints(225);
+	public void emtyGrid(GridPane pane, int size) {
+		for (int i = 0; i < table.getSize(); i++) {
+			ColumnConstraints column = new ColumnConstraints(size);
 			pane.getColumnConstraints().add(column);
-			RowConstraints rows = new RowConstraints(225);
+			RowConstraints rows = new RowConstraints(size);
 			pane.getRowConstraints().add(rows);
 		}
 		pane.setGridLinesVisible(true);
+	}
+
+	public GridPane createGridA() {
+		GridPane pane = new GridPane();
+		emtyGrid(pane, BASE * table.getSize());
 		return pane;
 	}
 
-	public void listOfGridB(int num) {
+	public void createGridB() {
 		for (int i = 0; i < table.getList().size(); i++) {
-			gridB.add(new GridPane());
+			emtyGrid(gridB.get(i), BASE);
 		}
 
-		for (int i = 0; i < table.getList().size(); i++) {
-			GridPane x = gridB.get(i);
-			for (int a = 0; a < num; a++) {
-				ColumnConstraints column = new ColumnConstraints(75);
-				x.getColumnConstraints().add(column);
-				RowConstraints rows = new RowConstraints(75);
-				x.getRowConstraints().add(rows);
-			}
-			x.setGridLinesVisible(true);
-		}
+	}
 
+	public List<GridPane> addGridB() {
+		List<GridPane> listGrid = new ArrayList<GridPane>();
+		for (int i = 0; i < table.getList().size(); i++) {
+			listGrid.add(new GridPane());
+		}
+		return listGrid;
+
+	}
+
+	public List<Label> addLabel() {
+		List<Label> listLabel = new ArrayList<Label>();
 		for (int i = 0; i < table.getList().size(); i++) {
 			for (int j = 0; j < table.getList().size(); j++) {
 				int number = table.getList().get(i).getList().get(j).getNumber();
-				labelList.add(new Label(Integer.toString(number)));
+				listLabel.add(new Label(Integer.toString(number)));
 			}
 		}
+		return listLabel;
+	}
 
-		int fuck = 0;
-		for (int a = 0; a < table.getSize(); a++) {
-			for (int b = 0; b < table.getSize(); b++) {
-				for (int i = 0; i < 9; i++) {
-					gridB.get((3 * a) + b).add(labelList.get(fuck), (i % 3), (i / 3));
-					fuck++;
+	public void addNumber() {
+		int pointer = 0;
+		int tableSize = table.getSize();
+		for (int a = 0; a < tableSize; a++) {
+			for (int b = 0; b < tableSize; b++) {
+				for (int i = 0; i < table.getList().size(); i++) {
+					System.out.println("Number is " + table.getList().size());
+					gridB.get((tableSize * a) + b).add(listText.get(pointer), (i % tableSize), (i / tableSize));
+					System.out.println("Number is " + (tableSize * a) + b);
+					pointer++;
 				}
 
 			}
 		}
-
 	}
 
-	public void handleSomething(ActionEvent ac) {
-		int fuck = 0;
+	public void handleShow(ActionEvent ac) {
+		int pointer = 0;
 		for (int a = 0; a < table.getSize(); a++) {
 			for (int b = 0; b < table.getSize(); b++) {
-				gridA.add(gridB.get(fuck), b, a);
-				fuck++;
+				gridA.add(gridB.get(pointer), b, a);
+				pointer++;
 			}
 		}
+		addNumber();
 	}
-
 }
