@@ -18,9 +18,12 @@ public class Grid {
 	private GridPane gridA;
 	private List<GridPane> gridB;
 	private List<Label> listText = new ArrayList<Label>();
-	private final int BASE = 75;
+	private int BASE = 50;
 
 	public Grid(int num) {
+		if(num == 4) {
+			this.BASE = 30;
+		}
 		table = new Table(num);
 		random = new RandomNumber(table);
 		random.run();

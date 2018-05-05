@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -7,36 +8,45 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
-   <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <top>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleStart" text="Start" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets top="200.0" />
-               </BorderPane.margin>
-            </Button>
-         </top>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+   <children>
+      <ImageView fitHeight="735.0" fitWidth="731.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../source/Main.png" />
+         </image>
+      </ImageView>
+      <BorderPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0">
          <center>
-            <Button mnemonicParsing="false" text="About" BorderPane.alignment="CENTER" />
+            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <bottom>
+                  <Button mnemonicParsing="false" onAction="#handleScoreboard" text="Scoreboard" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets bottom="200.0" />
+                     </BorderPane.margin>
+                  </Button>
+               </bottom>
+               <center>
+                  <Button fx:id="about" mnemonicParsing="false" onAction="#handleAbout" text="About" BorderPane.alignment="CENTER" />
+               </center>
+               <top>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleStart" text="Start" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets top="200.0" />
+                     </BorderPane.margin>
+                  </Button>
+               </top>
+            </BorderPane>
          </center>
-         <bottom>
-            <Button mnemonicParsing="false" text="Scoreboard" BorderPane.alignment="CENTER">
+         <top>
+            <Label text="SUDOKU GAME" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="47.0" />
+               </font>
                <BorderPane.margin>
-                  <Insets bottom="200.0" />
+                  <Insets top="100.0" />
                </BorderPane.margin>
-            </Button>
-         </bottom>
+            </Label>
+         </top>
       </BorderPane>
-   </center>
-   <top>
-      <Label text="SUDOKU GAME" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets top="100.0" />
-         </BorderPane.margin>
-         <font>
-            <Font size="47.0" />
-         </font>
-      </Label>
-   </top>
-</BorderPane>
+   </children>
+</AnchorPane>

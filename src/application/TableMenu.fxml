@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TableController">
+   <children>
+      <Label layoutX="223.0" layoutY="186.0" text="Your Table">
+         <font>
+            <Font name="Comic Sans MS" size="50.0" />
+         </font>
+      </Label>
+      <Button layoutX="181.0" layoutY="388.0" mnemonicParsing="false" onAction="#handleThree" text="3X3">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Button>
+      <Button layoutX="435.0" layoutY="388.0" mnemonicParsing="false" onAction="#handleFour" text="4X4">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

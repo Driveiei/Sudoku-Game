@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ModeController">
+   <children>
+      <Label layoutX="217.0" layoutY="124.0" text="Select Mode">
+         <font>
+            <Font name="Comic Sans MS" size="45.0" />
+         </font>
+      </Label>
+      <Button layoutX="115.0" layoutY="366.0" mnemonicParsing="false" onAction="#handleNext" text="Basic-Sudoku">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Button>
+      <Button layoutX="372.0" layoutY="366.0" mnemonicParsing="false" onAction="#handleNext" text="Greter Than Sudoku">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -7,7 +9,14 @@
 
 <BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GridController">
    <top>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="509.0" layoutY="26.0" text="Time 00:00">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children></Pane>
    </top>
    <left>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
@@ -16,6 +25,27 @@
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </right>
    <bottom>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <BorderPane layoutX="63.0" layoutY="29.0" prefHeight="153.0" prefWidth="582.0">
+               <left>
+                  <Button mnemonicParsing="false" text="Hint" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets left="50.0" />
+                     </BorderPane.margin>
+                  </Button>
+               </left>
+               <center>
+                  <Button mnemonicParsing="false" onAction="#handleDone" text="Done" BorderPane.alignment="CENTER" />
+               </center>
+               <right>
+                  <Button mnemonicParsing="false" text="ลืมปุ่มไร" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets right="50.0" />
+                     </BorderPane.margin>
+                  </Button>
+               </right>
+            </BorderPane>
+         </children></Pane>
    </bottom>
 </BorderPane>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NameContoller">
+   <children>
+      <BorderPane prefHeight="700.0" prefWidth="700.0">
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="221.0" layoutY="221.0" text="YOUR NAME">
+                     <font>
+                        <Font name="Comic Sans MS" size="42.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="text" alignment="CENTER" layoutX="202.0" layoutY="338.0" onAction="#handleName" prefHeight="38.0" prefWidth="310.0">
+                     <font>
+                        <Font name="Segoe UI Light Italic" size="28.0" />
+                     </font>
+                  </TextField>
+                  <Button layoutX="41.0" layoutY="617.0" mnemonicParsing="false" onAction="#handleBack" text="Back">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
