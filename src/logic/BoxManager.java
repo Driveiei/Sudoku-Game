@@ -22,4 +22,8 @@ public class BoxManager {
 	public boolean getLock() {
 		return lock;
 	}
+	
+	public void setLock(boolean lock) {
+		this.lock = lock;
+	}
 }

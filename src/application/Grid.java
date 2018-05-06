@@ -3,12 +3,16 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
+import logic.GridManager;
 import logic.RandomNumber;
 import logic.Table;
+import strategy.ModeFactory;
 
 public class Grid {
 
@@ -17,19 +21,28 @@ public class Grid {
 
 	private GridPane gridA;
 	private List<GridPane> gridB;
-	private List<Label> listText = new ArrayList<Label>();
+	private List<Label> listText;
 	private int BASE = 50;
+	private ModeFactory mode;
 
 	public Grid(int num) {
 		if(num == 4) {
 			this.BASE = 30;
 		}
+		
 		table = new Table(num);
 		random = new RandomNumber(table);
 		random.run();
-
+		
+		String x = "easy";
+		ModeFactory.setFactory(x);
+		mode = ModeFactory.getInstance(); 
+		mode.setPuzzle();
+		mode.randomInvisible();
+		
 		create();
 
+		
 	}
 
 	public void create() {
@@ -100,8 +113,12 @@ public class Grid {
 		List<Label> listLabel = new ArrayList<Label>();
 		for (int i = 0; i < table.getList().size(); i++) {
 			for (int j = 0; j < table.getList().size(); j++) {
-				int number = table.getList().get(i).getList().get(j).getNumber();
-				listLabel.add(new Label(Integer.toString(number)));
+				if(table.getList().get(i).getList().get(j).getLock()) {
+					int number = table.getList().get(i).getList().get(j).getNumber();
+					listLabel.add(new Label(Integer.toString(number)));
+				} else {
+					listLabel.add(new Label(""));
+				}
 			}
 		}
 		return listLabel;
