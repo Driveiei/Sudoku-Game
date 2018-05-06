@@ -6,19 +6,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ModeController">
+<AnchorPane prefHeight="900.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ModeController">
    <children>
-      <Label layoutX="217.0" layoutY="124.0" text="Select Mode">
+      <Label layoutX="343.0" layoutY="146.0" text="Select Mode">
          <font>
             <Font name="Comic Sans MS" size="45.0" />
          </font>
       </Label>
-      <Button layoutX="115.0" layoutY="366.0" mnemonicParsing="false" onAction="#handleNext" text="Basic-Sudoku">
+      <Button layoutX="121.0" layoutY="498.0" mnemonicParsing="false" onAction="#handleNext" text="Basic-Sudoku">
          <font>
             <Font size="28.0" />
          </font>
       </Button>
-      <Button layoutX="372.0" layoutY="366.0" mnemonicParsing="false" onAction="#handleNext" text="Greter Than Sudoku">
+      <Button layoutX="527.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleNext" text="Greter Than Sudoku">
          <font>
             <Font size="28.0" />
          </font>

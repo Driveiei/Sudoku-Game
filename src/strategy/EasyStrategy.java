@@ -32,8 +32,8 @@ public class EasyStrategy extends ModeFactory {
 
 	@Override
 	public void randomInvisible() {
-		for (int j = 0; j < Math.sqrt(list.size()); j++) {
-			for (int i = 0; i < Math.sqrt(list.size()); i++) {
+		for (int j = 0; j < 9; j++) {
+			for (int i = 0; i < 9; i++) {
 				int x = rand.nextInt(100);
 				if (x <= 30) {
 					table.getList().get(j).getList().get(i).setLock(true);

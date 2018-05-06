@@ -8,44 +8,52 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
    <children>
-      <ImageView fitHeight="735.0" fitWidth="731.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="900.0" fitWidth="923.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../source/Main.png" />
          </image>
       </ImageView>
-      <BorderPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0">
+      <BorderPane layoutX="10.0" layoutY="3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="913.0" prefWidth="919.0">
          <center>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <bottom>
-                  <Button mnemonicParsing="false" onAction="#handleScoreboard" text="Scoreboard" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets bottom="200.0" />
-                     </BorderPane.margin>
-                  </Button>
-               </bottom>
+            <BorderPane prefHeight="546.0" prefWidth="870.0" BorderPane.alignment="CENTER">
                <center>
-                  <Button fx:id="about" mnemonicParsing="false" onAction="#handleAbout" text="About" BorderPane.alignment="CENTER" />
+                  <VBox alignment="CENTER" prefHeight="333.0" prefWidth="753.0" spacing="50.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleStart" text="Start" textAlignment="CENTER" />
+                        <Button fx:id="about" mnemonicParsing="false" onAction="#handleAbout" text="About" />
+                        <Button mnemonicParsing="false" onAction="#handleScoreboard" text="Scoreboard" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="50.0" top="50.0" />
+                     </padding>
+                     <BorderPane.margin>
+                        <Insets bottom="50.0" top="50.0" />
+                     </BorderPane.margin>
+                  </VBox>
                </center>
                <top>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleStart" text="Start" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets top="200.0" />
-                     </BorderPane.margin>
-                  </Button>
+                  <Pane prefHeight="153.0" prefWidth="869.0" BorderPane.alignment="CENTER" />
                </top>
             </BorderPane>
          </center>
+         <bottom>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </bottom>
          <top>
-            <Label text="SUDOKU GAME" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="47.0" />
-               </font>
-               <BorderPane.margin>
-                  <Insets top="100.0" />
-               </BorderPane.margin>
-            </Label>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="294.0" layoutY="100.0" text="SUDOKU GAME" textAlignment="CENTER">
+                     <font>
+                        <Font size="47.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
          </top>
       </BorderPane>
    </children>

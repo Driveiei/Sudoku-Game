@@ -1,90 +1,99 @@
 package application;
 
-
-import java.io.IOException;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
-import javafx.stage.Stage;
 import logic.RandomNumber;
 import logic.Table;
 import strategy.ModeFactory;
 
 public class GridController {
-//	@FXML
-//	BorderPane pane;
-	
+	// @FXML
+	// BorderPane pane;
+
 	@FXML
-	GridPane mainGrid;
-//
-//	private Grid grid;
-//	private Save save;
-	
+	BorderPane borderPane;
+
+	//
+	// private Grid grid;
+	// private Save save;
+	private GridPane mainGrid;
 	private GridPane[][] subGrid;
 	private Pane[][] pane;
 	private Label[][] label;
-	
+
 	private Table table;
 	private RandomNumber random;
 	private ModeFactory mode;
-	
-	private final int BASE = 100;
-	
+
+	private final int BASE = 75;
+
 	@FXML
 	public void initialize() {
-//		grid = new Grid(save.getNum());
-//		pane.setCenter(grid.getGridMain());
+
 		table = new Table(3);
 		random = new RandomNumber(table);
 		random.run();
-		
+
+		mainGrid = new GridPane();
+		seperateMainGrid();
+		borderPane.setCenter(mainGrid);
+		mainGrid.setAlignment(Pos.CENTER);
+
 		subGrid = new GridPane[3][3];// create
-		createSubGrid();
-		modifySubGrid(); 
-		addSubGrid();//add sub to main
-		
 		pane = new Pane[9][9];
 		label = new Label[9][9];
-		createPaneAndLabel();
-		addLabelToPane();
-		
+
+		createSubGrid();
+		modifySubGrid();
+		addSubGrid();// add sub to main
+
 		String x = "easy";
-		ModeFactory.setFactory(x,table);
-		mode = ModeFactory.getInstance(table); 
+		ModeFactory.setFactory(x, table);
+		mode = ModeFactory.getInstance(table);
 		mode.setPuzzle();
-		mode.randomInvisible();	
+		mode.randomInvisible();
+
+		createPaneAndLabel();
+		addNumberToLabel();
+		addLabelToPane();
+		addPaneToSubGrid();
+
 	}
-	
+
+	public void seperateMainGrid() {
+		for (int row = 0; row < table.getSize(); row++) {
+			mainGrid.getColumnConstraints().add(new ColumnConstraints(BASE * 3));
+			mainGrid.getRowConstraints().add(new RowConstraints(BASE * 3));
+		}
+		mainGrid.setGridLinesVisible(true);
+	}
+
 	public void createSubGrid() {
-		for(int row = 0; row < table.getSize(); row++) {
-			for(int column =0; column < table.getSize(); column ++) {
+		for (int row = 0; row < table.getSize(); row++) {
+			for (int column = 0; column < table.getSize(); column++) {
 				subGrid[column][row] = new GridPane();
 			}
 		}
 	}
-	
+
 	public void modifySubGrid() {
 		for (int row = 0; row < table.getSize(); row++) {
 			for (int column = 0; column < table.getSize(); column++) {
-				ColumnConstraints oneColumn = new ColumnConstraints(BASE);
-				subGrid[column][row].getColumnConstraints().add(oneColumn);
-				RowConstraints oneRow = new RowConstraints(BASE);
-				subGrid[column][row].getRowConstraints().add(oneRow);
+				for (int times = 0; times < table.getSize(); times++) {
+					subGrid[column][row].getColumnConstraints().add(new ColumnConstraints(BASE));
+					subGrid[column][row].getRowConstraints().add(new RowConstraints(BASE));
+				}
 				subGrid[column][row].setGridLinesVisible(true);
 			}
 		}
 	}
-	
+
 	public void addSubGrid() {
 		for (int row = 0; row < table.getSize(); row++) {
 			for (int column = 0; column < table.getSize(); column++) {
@@ -92,51 +101,55 @@ public class GridController {
 			}
 		}
 	}
-	
+
 	public void createPaneAndLabel() {
-		for (int row = 0; row < table.getSize()*table.getSize(); row++) {
-			for (int column = 0; column < table.getSize()*table.getSize(); column++) {
+		for (int row = 0; row < table.getSize() * table.getSize(); row++) {
+			for (int column = 0; column < table.getSize() * table.getSize(); column++) {
 				pane[column][row] = new Pane();
-				pane[column][row].setPrefSize(BASE,BASE);
-				pane[column][row]
-				
+				pane[column][row].setPrefSize(BASE, BASE);
 				label[column][row] = new Label();
 				label[column][row].setPrefSize(BASE, BASE);
-				
 			}
 		}
 	}
-	
+
 	public void addLabelToPane() {
-		for (int row = 0; row < table.getSize()*table.getSize(); row++) {
-			for (int column = 0; column < table.getSize()*table.getSize(); column++) {
+		for (int row = 0; row < table.getSize() * table.getSize(); row++) {
+			for (int column = 0; column < table.getSize() * table.getSize(); column++) {
 				pane[column][row].getChildren().add(label[column][row]);
 			}
 		}
 	}
-	
+
 	public void addNumberToLabel() {
 		int number;
-		for (int row = 0; row < table.getSize()*table.getSize(); row++) {
-			for (int column = 0; column < table.getSize()*table.getSize(); column++) {
-				number = mode.getPuzzle().get(row).getList().get(column).getNumber();
-				label[column][row].setText(Integer.toString(number));
+		boolean show;
+		for (int row = 0; row < table.getSize() * table.getSize(); row++) {
+			for (int column = 0; column < table.getSize() * table.getSize(); column++) {
+				 number = mode.getPuzzle().get(row).getList().get(column).getNumber();
+				 show = mode.getPuzzle().get(row).getList().get(column).getLock();
+				 if(show) {
+					 label[column%3+(row%3)*3][column/3 + (row/3)*3].setText(Integer.toString(number));
+					 label[column%3+(row%3)*3][column/3 + (row/3)*3].setAlignment(Pos.CENTER);
+				 } else {
+					 label[column%3+(row%3)*3][column/3 + (row/3)*3].setText("");
+					 label[column%3+(row%3)*3][column/3 + (row/3)*3].setAlignment(Pos.CENTER);
+				 }
+			}
+		}
+		
+	}
+
+	public void addPaneToSubGrid() {
+		for (int rowGrid = 0; rowGrid < table.getSize(); rowGrid++) {
+			for (int columnGrid = 0; columnGrid < table.getSize(); columnGrid++) {//a
+				for (int rowPane = 0; rowPane < table.getSize(); rowPane++) {//b
+					for (int columnPane = 0; columnPane < table.getSize(); columnPane++) {//c
+						subGrid[columnGrid][rowGrid].add(pane[(columnGrid*3)+columnPane][rowPane+(rowGrid*3)],
+								columnPane, rowPane);
+					}
+				}
 			}
 		}
 	}
-	
-	
-
-//	public void handleDone(ActionEvent ac) {
-//		try {
-//			Parent pane = FXMLLoader.load(getClass().getResource("Scoreboard.fxml"));
-//			Scene scene = new Scene(pane);
-//			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
-//			stage.setScene(scene);
-//			stage.setResizable(false);
-//			stage.show();
-//		} catch (IOException e) {
-//			System.err.println(e.getMessage());
-//		}
-//	}
 }
