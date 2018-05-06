@@ -15,14 +15,16 @@ public class EasyStrategy extends ModeFactory {
 	private RandomNumber random;
 	private Random rand;
 
-	public EasyStrategy() {
-		table = new Table(4); // 3 or 4
+	public EasyStrategy(Table table) {
+		this.table = table;
+//		this.table = table; // 3 or 4
 //		random = new RandomNumber(table);
 //		random.run(); // list
 		list = new ArrayList<>();
 		rand = new Random();
 	}
 
+	
 	@Override
 	public void setPuzzle() {
 		list.addAll(table.getList());
@@ -41,6 +43,12 @@ public class EasyStrategy extends ModeFactory {
 				}
 			}
 		}
+	}
+
+
+	@Override
+	public List<GridManager> getPuzzle() {
+		return list;
 	}
 
 }

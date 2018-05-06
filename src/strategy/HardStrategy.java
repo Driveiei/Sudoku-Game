@@ -15,10 +15,10 @@ public class HardStrategy extends ModeFactory {
 	private RandomNumber random;
 	private Random rand;
 
-	public HardStrategy() {
-		table = new Table(4); // 3 or 4
-		random = new RandomNumber(table);
-		random.run(); // list
+	public HardStrategy(Table table) {
+		this.table = table; // 3 or 4
+//		random = new RandomNumber(table);
+//		random.run(); // list
 		list = new ArrayList<>();
 		rand = new Random();
 	}
@@ -40,6 +40,11 @@ public class HardStrategy extends ModeFactory {
 				}
 			}
 		}
+	}
+
+	@Override
+	public List<GridManager> getPuzzle() {
+		return list;
 	}
 
 }
