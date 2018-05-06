@@ -12,6 +12,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
+
 import java.awt.Point;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
@@ -38,6 +40,11 @@ public class GridController {
 	private GridPane[][] subGrid;
 	private Pane[][] pane;
 	private Label[][] label;
+	
+	private int input = 0;
+
+	
+	private List<Button> buttonList ;
 
 	private Table table;
 	private RandomNumber random;
@@ -62,6 +69,7 @@ public class GridController {
 		subGrid = new GridPane[3][3];// create
 		pane = new Pane[9][9];
 		label = new Label[9][9];
+		buttonList = new ArrayList<Button>();
 
 		createSubGrid();
 		modifySubGrid();
@@ -135,6 +143,53 @@ public class GridController {
 		}
 	}
 
+	public void selectionButton(int column,int row) {
+		label[changeColumnScale(column,row)][changeRowScale(column,row)].setOnMousePressed(event -> {
+			Pane miniPane = new Pane();
+			miniPane.setPrefSize(BASE * table.getSize(), BASE * table.getSize());
+			GridPane grid = new GridPane();
+			miniPane.setTranslateX( event.getSceneX()-miniPane.getPrefWidth()/2);
+			miniPane.setTranslateY( event.getSceneY()-miniPane.getPrefHeight()/2);
+			setMiniGrid();
+			miniPane.getChildren().add(grid);
+			borderPane.getChildren().add(miniPane);
+			miniPane.setVisible(true);
+			// create 3*3 on gridpane
+			grid.setPrefSize(BASE, BASE);
+			for (int i = 0; i < table.getSize(); i++) {
+				grid.getColumnConstraints().add(new ColumnConstraints(BASE));
+				grid.getRowConstraints().add(new RowConstraints(BASE));
+				grid.setGridLinesVisible(true);
+			}
+			
+			
+			// add button to grid
+			for (int i = 0; i < table.getSize(); i++) {
+				for (int j = 0; j < table.getSize(); j++) {
+					grid.add(buttonList.get((table.getSize() * i) + j), j, i);
+					buttonList.get((table.getSize() * i) + j).setMaxSize(BASE, BASE);
+
+					buttonList.get((table.getSize() * i) + j).setOnMouseClicked(event2 -> {
+
+						Button button = (Button) event2.getSource();
+						((Labeled) event.getSource()).setText(button.getText());
+						((Labeled) event.getSource()).setStyle("-fx-text-fill: #483d8b");
+						try {
+							borderPane.getChildren().remove(miniPane);
+						} catch(IndexOutOfBoundsException ex) {
+							
+						}
+					});
+				}
+			}
+			
+			miniPane.setOnMouseExited(z -> {
+				borderPane.getChildren().remove(miniPane);
+			});
+			
+		});
+	}
+	
 	public void addNumberToLabel() {
 		int number;
 		boolean show;
@@ -143,62 +198,29 @@ public class GridController {
 				number = mode.getPuzzle().get(row).getList().get(column).getNumber();
 				show = mode.getPuzzle().get(row).getList().get(column).getLock();
 				if (show) {
-					label[column % 3 + (row % 3) * 3][column / 3 + (row / 3) * 3].setText(Integer.toString(number));
-					label[column % 3 + (row % 3) * 3][column / 3 + (row / 3) * 3].setAlignment(Pos.CENTER);
+					label[changeColumnScale(column,row)][changeRowScale(column,row)].setText(Integer.toString(number));
 				} else {
-					label[column % 3 + (row % 3) * 3][column / 3 + (row / 3) * 3].setText("");
-					label[column % 3 + (row % 3) * 3][column / 3 + (row / 3) * 3].setAlignment(Pos.CENTER);
-
-					// Create selection
-					label[column % 3 + (row % 3) * 3][column / 3 + (row / 3) * 3].setOnMousePressed(e -> {
-						Pane a = new Pane();
-						a.setPrefSize(BASE * table.getSize(), BASE * table.getSize());
-						GridPane grid = new GridPane();
-						
-						a.setTranslateX( e.getSceneX()-a.getPrefWidth()/2);
-						a.setTranslateY( e.getSceneY()-a.getPrefHeight()/2);
-
-						// button list
-						List<Button> button = new ArrayList<Button>();
-						for (int size = 0; size < table.getSize() * table.getSize(); size++) {
-							button.add(new Button());
-							button.get(size).setText(Integer.toString(size + 1));
-						}
-						a.getChildren().add(grid);
-						borderPane.getChildren().add(a);
-						a.setVisible(true);
-						// create 3*3 on gridpane
-						grid.setPrefSize(BASE, BASE);
-						for (int i = 0; i < table.getSize(); i++) {
-
-							grid.getColumnConstraints().add(new ColumnConstraints(BASE));
-							grid.getRowConstraints().add(new RowConstraints(BASE));
-							grid.setGridLinesVisible(true);
-						}
-						
-						
-						// add button to grid
-						for (int i = 0; i < table.getSize(); i++) {
-							for (int j = 0; j < table.getSize(); j++) {
-								grid.add(button.get((table.getSize() * i) + j), j, i);
-								button.get((table.getSize() * i) + j).setMaxSize(BASE, BASE);
-
-								button.get((table.getSize() * i) + j).setOnMouseClicked(c -> {
-									
-									borderPane.getChildren().remove(a);
-
-								});
-							}
-						}
-						
-						a.setOnMouseExited(z -> {
-							borderPane.getChildren().remove(a);				});
-
-					});
+					label[changeColumnScale(column,row)][changeRowScale(column,row)].setText("");
+					selectionButton(column,row);
 				}
-
+				label[changeColumnScale(column,row)][changeRowScale(column,row)].setAlignment(Pos.CENTER);
 			}
 
+		}
+	}
+	
+	public int changeColumnScale(int column,int row) {
+		return column % 3 + (row % 3) * 3;
+	}
+	
+	public int changeRowScale(int column,int row) {
+		return column / 3 + (row / 3) * 3;
+	}
+	
+	public void setMiniGrid() {
+		for (int size = 0; size < table.getSize() * table.getSize(); size++) {
+			buttonList.add(new Button());
+			buttonList.get(size).setText(Integer.toString(size + 1));
 		}
 	}
 

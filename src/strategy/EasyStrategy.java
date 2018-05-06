@@ -11,8 +11,7 @@ import logic.Table;
 public class EasyStrategy extends ModeFactory {
 
 	private List<GridManager> list;
-	private Table table; // <<--- list
-	private RandomNumber random;
+	private Table table;
 	private Random rand;
 
 	public EasyStrategy(Table table) {
@@ -35,7 +34,7 @@ public class EasyStrategy extends ModeFactory {
 		for (int j = 0; j < 9; j++) {
 			for (int i = 0; i < 9; i++) {
 				int x = rand.nextInt(100);
-				if (x <= 30) {
+				if (x <= 40) {
 					table.getList().get(j).getList().get(i).setLock(true);
 				} else {
 //					list.get(j).getList().get(i).setLock(false);

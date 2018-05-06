@@ -12,7 +12,6 @@ public class HardStrategy extends ModeFactory {
 
 	private List<GridManager> list;
 	private Table table; // <<--- list
-	private RandomNumber random;
 	private Random rand;
 
 	public HardStrategy(Table table) {
@@ -33,7 +32,7 @@ public class HardStrategy extends ModeFactory {
 		for (int j = 0; j < Math.sqrt(list.size()); j++) {
 			for (int i = 0; i < Math.sqrt(list.size()); i++) {
 				int x = rand.nextInt(100);
-				if (x <= 20) {
+				if (x <= 30) {
 					list.get(j).getList().get(i).setLock(true);
 				} else {
 					list.get(j).getList().get(i).setLock(false);
