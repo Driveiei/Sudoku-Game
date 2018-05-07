@@ -3,52 +3,68 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
-import logic.GridManager;
-import logic.RandomNumber;
 import logic.Table;
 import strategy.ModeFactory;
 
 public class Grid {
-	@FXML
-	GridPane mainGrid;
 
+	private BorderPane borderPane;
+
+	private Pane supportPane;
+	private GridPane mainGrid;
 	private GridPane[][] subGrid;
 	private Pane[][] pane;
 	private Label[][] label;
 
+	private List<Button> buttonList;
+
 	private Table table;
-	private RandomNumber random;
 	private ModeFactory mode;
 
-	private final int BASE = 50;
+	private final int BASE = 75;
 
-	public Grid() {
-		table = new Table(3);
-		random = new RandomNumber(table);
+	public Grid(BorderPane borderPane, Table table, ModeFactory mode) {
+		this.borderPane = borderPane;
+		this.table = table;
+		this.mode = mode;
+
+		mainGrid = new GridPane();
+		seperateMainGrid();
+		supportPane = new Pane();
+		supportPane.getChildren().add(mainGrid);
+		borderPane.setCenter(supportPane);
+		mainGrid.setAlignment(Pos.CENTER);
 
 		subGrid = new GridPane[3][3];// create
+		pane = new Pane[9][9];
+		label = new Label[9][9];
+		buttonList = new ArrayList<Button>();
+
+		createSubGrid();
 		modifySubGrid();
 		addSubGrid();// add sub to main
 
-		pane = new Pane[9][9];
-		label = new Label[9][9];
 		createPaneAndLabel();
-		addPaneToSubGrid();
-		addLabelToPane();
 		addNumberToLabel();
+		addLabelToPane();
+		addPaneToSubGrid();
+	}
 
-		String x = "easy";
-		ModeFactory.setFactory(x, table);
-		mode = ModeFactory.getInstance(table);
-		mode.setPuzzle();
-		mode.randomInvisible();
+	public void seperateMainGrid() {
+		for (int row = 0; row < table.getSize(); row++) {
+			mainGrid.getColumnConstraints().add(new ColumnConstraints(BASE * 3));
+			mainGrid.getRowConstraints().add(new RowConstraints(BASE * 3));
+		}
+		mainGrid.setGridLinesVisible(true);
 	}
 
 	public void createSubGrid() {
@@ -62,7 +78,7 @@ public class Grid {
 	public void modifySubGrid() {
 		for (int row = 0; row < table.getSize(); row++) {
 			for (int column = 0; column < table.getSize(); column++) {
-				for(int times = 0; times < table.getSize(); times++) {
+				for (int times = 0; times < table.getSize(); times++) {
 					subGrid[column][row].getColumnConstraints().add(new ColumnConstraints(BASE));
 					subGrid[column][row].getRowConstraints().add(new RowConstraints(BASE));
 				}
@@ -84,10 +100,8 @@ public class Grid {
 			for (int column = 0; column < table.getSize() * table.getSize(); column++) {
 				pane[column][row] = new Pane();
 				pane[column][row].setPrefSize(BASE, BASE);
-//				pane[column][row].setVisible(true);
 				label[column][row] = new Label();
 				label[column][row].setPrefSize(BASE, BASE);
-
 			}
 		}
 	}
@@ -100,165 +114,99 @@ public class Grid {
 		}
 	}
 
+	public void selectionButton(int column, int row) {
+		label[changeColumnScale(column, row)][changeRowScale(column, row)].setOnMousePressed(event -> {
+			Pane miniPane = new Pane();
+			miniPane.setPrefSize(BASE * table.getSize(), BASE * table.getSize());
+			GridPane grid = new GridPane();
+			miniPane.setTranslateX(event.getSceneX() - miniPane.getPrefWidth() / 2);
+			miniPane.setTranslateY(event.getSceneY() - miniPane.getPrefHeight() / 2);
+			setMiniGrid();
+			miniPane.getChildren().add(grid);
+			borderPane.getChildren().add(miniPane);
+			miniPane.setVisible(true);
+			// create 3*3 on gridpane
+			grid.setPrefSize(BASE, BASE);
+			for (int i = 0; i < table.getSize(); i++) {
+				grid.getColumnConstraints().add(new ColumnConstraints(BASE));
+				grid.getRowConstraints().add(new RowConstraints(BASE));
+				grid.setGridLinesVisible(true);
+			}
+
+			// add button to grid
+			for (int i = 0; i < table.getSize(); i++) {
+				for (int j = 0; j < table.getSize(); j++) {
+					grid.add(buttonList.get((table.getSize() * i) + j), j, i);
+					buttonList.get((table.getSize() * i) + j).setMaxSize(BASE, BASE);
+					buttonList.get((table.getSize() * i) + j).setOnMouseClicked(event2 -> {
+
+						Button button = (Button) event2.getSource();
+						((Labeled) event.getSource()).setText(button.getText());
+						((Labeled) event.getSource()).setStyle("-fx-text-fill: #483d8b");
+						try {
+							borderPane.getChildren().remove(miniPane);
+						} catch (IndexOutOfBoundsException ex) {
+
+						}
+					});
+				}
+			}
+			miniPane.setOnMouseExited(z -> {
+				borderPane.getChildren().remove(miniPane);
+			});
+		});
+	}
+
 	public void addNumberToLabel() {
 		int number;
-		System.out.println("table : " + table.getSize());
+		boolean show;
 		for (int row = 0; row < table.getSize() * table.getSize(); row++) {
 			for (int column = 0; column < table.getSize() * table.getSize(); column++) {
 				number = mode.getPuzzle().get(row).getList().get(column).getNumber();
-				label[column][row].setText(Integer.toString(number));
-				System.out.println("xxx");
-				System.out.println(number);
+				show = mode.getPuzzle().get(row).getList().get(column).getLock();
+				if (show) {
+					label[changeColumnScale(column, row)][changeRowScale(column, row)]
+							.setText(Integer.toString(number));
+				} else {
+					label[changeColumnScale(column, row)][changeRowScale(column, row)].setText("");
+					selectionButton(column, row);
+				}
+				label[changeColumnScale(column, row)][changeRowScale(column, row)].setAlignment(Pos.CENTER);
 			}
-		}
 
-		// List<Label> listLabel = new ArrayList<Label>();
-		// for (int i = 0; i < table.getList().size(); i++) {
-		// for (int j = 0; j < table.getList().size(); j++) {
-		// if(table.getList().get(i).getList().get(j).getLock()) {
-		// int number = table.getList().get(i).getList().get(j).getNumber();
-		// listLabel.add(new Label(Integer.toString(number)));
-		// } else {
-		// listLabel.add(new Label(""));
-		// }
-		// }
-		// }
+		}
+	}
+
+	public int changeColumnScale(int column, int row) {
+		return column % 3 + (row % 3) * 3;
+	}
+
+	public int changeRowScale(int column, int row) {
+		return column / 3 + (row / 3) * 3;
+	}
+
+	public void setMiniGrid() {
+		for (int size = 0; size < table.getSize() * table.getSize(); size++) {
+			buttonList.add(new Button());
+			buttonList.get(size).setText(Integer.toString(size + 1));
+		}
 	}
 
 	public void addPaneToSubGrid() {
 		for (int rowGrid = 0; rowGrid < table.getSize(); rowGrid++) {
-			for (int columnGrid = 0; columnGrid < table.getSize(); columnGrid++) {
-				for (int rowPane = 0; rowGrid < table.getSize(); rowGrid++) {
-					for (int columnPane = 0; columnPane < table.getSize(); columnPane++) {
-						subGrid[columnGrid][rowGrid].add(pane[rowPane * table.getSize() + columnPane][rowPane],
-								rowPane * table.getSize() + columnPane, rowPane);
+			for (int columnGrid = 0; columnGrid < table.getSize(); columnGrid++) {// a
+				for (int rowPane = 0; rowPane < table.getSize(); rowPane++) {// b
+					for (int columnPane = 0; columnPane < table.getSize(); columnPane++) {// c
+						subGrid[columnGrid][rowGrid].add(pane[(columnGrid * 3) + columnPane][rowPane + (rowGrid * 3)],
+								columnPane, rowPane);
 					}
 				}
 			}
 		}
 	}
-
-	// private Table table;
-	// private RandomNumber random;
-	//
-	// private GridPane gridA;
-	// private List<GridPane> gridB;
-	// private List<Label> listText;
-	// private int BASE = 50;
-	// private ModeFactory mode;
-	//
-	// public Grid(int num) {
-	// if(num == 4) {
-	// this.BASE = 30;
-	// }
-	//
-	// table = new Table(num);
-	// random = new RandomNumber(table);
-	// random.run();
-	//
-	// String x = "easy";
-	// ModeFactory.setFactory(x);
-	// mode = ModeFactory.getInstance();
-	// mode.setPuzzle();
-	// mode.randomInvisible();
-	//
-	// create();
-	//
-	//
-	// }
-	//
-	// public void create() {
-	// gridA = createGridA();
-	// gridB = createGridB();
-	// listText = addLabel();
-	// createGridC();
-	//
-	// int pointer = 0;
-	// for (int a = 0; a < table.getSize(); a++) {
-	// for (int b = 0; b < table.getSize(); b++) {
-	// gridA.add(gridB.get(pointer), b, a);
-	// pointer++;
-	// }
-	// }
-	// addNumber();
-	// }
-	//
-	// public Table getTable() {
-	// return table;
-	// }
-	//
-	// public GridPane getGridMain() {
-	// return gridA;
-	// }
-	//
-	// public List<GridPane> getGridMinor() {
-	// return gridB;
-	// }
-	//
-	// public List<Label> getLabel() {
-	// return listText;
-	//
-	// }
-	//
-	// public void emtyGrid(GridPane pane, int size) {
-	// for (int i = 0; i < table.getSize(); i++) {
-	// ColumnConstraints column = new ColumnConstraints(size);
-	// pane.getColumnConstraints().add(column);
-	// RowConstraints rows = new RowConstraints(size);
-	// pane.getRowConstraints().add(rows);
-	// }
-	// pane.setGridLinesVisible(true);
-	// }
-	//
-	// public GridPane createGridA() {
-	// GridPane pane = new GridPane();
-	// emtyGrid(pane, BASE * table.getSize());
-	// return pane;
-	// }
-	//
-	// public List<GridPane> createGridB() {
-	// List<GridPane> listGrid = new ArrayList<GridPane>();
-	// for (int i = 0; i < table.getList().size(); i++) {
-	// listGrid.add(new GridPane());
-	// }
-	// return listGrid;
-	// }
-	//
-	// public void createGridC() {
-	// for (int i = 0; i < table.getList().size(); i++) {
-	// emtyGrid(gridB.get(i), BASE);
-	// }
-	//
-	// }
-	//
-	// public List<Label> addLabel() {
-	// List<Label> listLabel = new ArrayList<Label>();
-	// for (int i = 0; i < table.getList().size(); i++) {
-	// for (int j = 0; j < table.getList().size(); j++) {
-	// if(table.getList().get(i).getList().get(j).getLock()) {
-	// int number = table.getList().get(i).getList().get(j).getNumber();
-	// listLabel.add(new Label(Integer.toString(number)));
-	// } else {
-	// listLabel.add(new Label(""));
-	// }
-	// }
-	// }
-	// return listLabel;
-	// }
-	//
-	// public void addNumber() {
-	// int pointer = 0;
-	// int tableSize = table.getSize();
-	// for (int a = 0; a < tableSize; a++) {
-	// for (int b = 0; b < tableSize; b++) {
-	// for (int i = 0; i < table.getList().size(); i++) {
-	// gridB.get((tableSize * a) + b).add(listText.get(pointer), (i % tableSize), (i
-	// / tableSize));
-	// pointer++;
-	// }
-	//
-	// }
-	// }
-	// }
+	
+	public Label[][] getLabel(){
+		return label;
+	}
 
 }

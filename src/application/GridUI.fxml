@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -28,23 +29,26 @@
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <BorderPane layoutX="159.0" layoutY="24.0" prefHeight="153.0" prefWidth="582.0">
-               <left>
-                  <Button mnemonicParsing="false" text="Hint" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets left="50.0" />
-                     </BorderPane.margin>
-                  </Button>
-               </left>
                <center>
                   <Button mnemonicParsing="false" text="Done" BorderPane.alignment="CENTER" />
                </center>
                <right>
-                  <Button mnemonicParsing="false" text="ลืมปุ่มไร" BorderPane.alignment="CENTER">
+                  <Button mnemonicParsing="false" onAction="#handleClear" text="Clear" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets right="50.0" />
                      </BorderPane.margin>
                   </Button>
                </right>
+               <left>
+                  <Button mnemonicParsing="false" text="Hint" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets left="50.0" />
+                     </BorderPane.margin>
+                     <graphic>
+                        <ImageView fitHeight="80.0" fitWidth="152.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+               </left>
             </BorderPane>
          </children></Pane>
    </bottom>
