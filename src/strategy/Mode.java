@@ -19,10 +19,8 @@ public abstract class Mode {
 		return mode;
 	}
 	
-	public static void setMode(String text) {
-		if(text.equals("easy"))
-		mode = new EasyStrategy();
-		else mode = new HardStrategy();
+	public static void setMode(Mode strategy) {
+		mode = strategy;
 	}
 	
 	public abstract int getSize(); 
@@ -30,5 +28,7 @@ public abstract class Mode {
 	public abstract void setPuzzle() ;
 	
 	public abstract List<GridManager> getPuzzle() ;
+	
+	public abstract int getBase();
 	
 	}

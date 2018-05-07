@@ -13,14 +13,21 @@ public class HardStrategy extends Mode {
 	private RandomNumber random;
 	private Random rand;
 	private int size;
-
+	private int base;
+	private int realSize;
+	private final int PERCENTAGE = 10;
+	private final int ONE_HUNDRED = 100;
 
 	public HardStrategy() {
 //		this.table = table; // 3 or 4
 //		random = new RandomNumber(table);
 //		random.run(); // list
 		random = RandomNumber.getInstance();
-		size = random.getSize();//3
+		if(random.getSize() == 3) 
+			this.base = 74;
+		else this.base = 42;
+		size = random.getSize();
+		realSize = size*size;
 		list = new ArrayList<>();
 		rand = new Random();
 	}
@@ -38,14 +45,14 @@ public class HardStrategy extends Mode {
 
 	@Override
 	public void randomInvisible() {
-		for (int grid = 0; grid < 9; grid++) {
-			for (int box = 0; box < 9; box++) {
-				int percentage = rand.nextInt(100);
-				if (percentage <= 30) {
+		for (int grid = 0; grid < realSize; grid++) {
+			for (int box = 0; box < realSize; box++) {
+				int percentage = rand.nextInt(ONE_HUNDRED);
+				if (percentage <= PERCENTAGE) 
 					list.get(grid).getList().get(box).setLock(true);
-				} else {
+				 else 
 					list.get(grid).getList().get(box).setLock(false);
-				}
+				
 			}
 		}
 	}
@@ -53,6 +60,11 @@ public class HardStrategy extends Mode {
 	@Override
 	public List<GridManager> getPuzzle() {
 		return list;
+	}
+
+	@Override
+	public int getBase() {
+		return base;
 	}
 
 }

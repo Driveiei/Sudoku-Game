@@ -10,7 +10,7 @@
 
 <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GridController">
    <top>
-      <Pane prefHeight="76.0" prefWidth="1200.0" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="57.0" prefWidth="1200.0" BorderPane.alignment="CENTER" />
    </top>
    <left>
       <Pane prefHeight="630.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
@@ -22,7 +22,7 @@
             <Button layoutX="234.0" layoutY="323.0" mnemonicParsing="false" onAction="#handleClear" text="Clear" />
             <Button layoutX="129.0" layoutY="232.0" mnemonicParsing="false" text="Done" />
             <ImageView fitHeight="64.0" fitWidth="155.0" layoutX="186.0" layoutY="470.0" pickOnBounds="true" preserveRatio="true" />
-            <Label layoutX="176.0" layoutY="14.0" text="Time 00:00">
+            <Label layoutX="152.0" layoutY="28.0" text="Time 00:00">
                <font>
                   <Font size="24.0" />
                </font>

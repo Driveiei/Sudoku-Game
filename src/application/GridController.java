@@ -19,7 +19,6 @@ public class GridController {
 	// Declare class
 	private Grid grid;
 	private Mode mode;
-	private BaseBox baseBox;
 
 	// funny attribute
 	private int size;
@@ -28,9 +27,6 @@ public class GridController {
 
 	@FXML
 	public void initialize() {
-
-		RandomNumber.setRandomNumber(4);
-		Mode.setMode("easy");
 		mode = Mode.getInstance();
 		mode.setPuzzle();
 
@@ -75,9 +71,9 @@ public class GridController {
 		puzzle.addAll(mode.getPuzzle());
 		for (int selectGrid = 0; selectGrid < realSize; selectGrid++) {
 			for (int selectBox = 0; selectBox < realSize; selectBox++) {
-				if (!puzzle.get((selectGrid / 3) * 3 + selectBox / 3).getList()
-						.get(3 * (selectGrid % 3) + selectBox % 3).getLock()) {
-					String x = Integer.toString(puzzle.get((selectGrid / 3) * 3 + selectBox / 3).getList()
+				if (!puzzle.get((selectGrid / size) * size + selectBox / size).getList()
+						.get(size * (selectGrid % size) + selectBox % size).getLock()) {
+					String x = Integer.toString(puzzle.get((selectGrid / size) * size + selectBox / 3).getList()
 							.get(3 * (selectGrid % 3) + selectBox % 3).getNumber());
 					saveInvisible.add(x);
 					if (grid.getLabel()[selectBox][selectGrid].getText().equals(x)) {
@@ -106,6 +102,11 @@ public class GridController {
 		return size * (row % size) + column % size;
 	}
 
+	public void setMode(Mode strategy) {
+		Mode.setMode(strategy);
+	}
+
+	
 	// public int callListNumber(List<GridManager> list ,int grid,int column) {
 	// return
 	// list.get(adaptGrid(selectBox,selectGrid)).getList().get(adaptBox(selectBox,selectGrid)).getNumber();

@@ -10,6 +10,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import strategy.EasyStrategy;
+import strategy.HardStrategy;
+import strategy.Mode;
 
 public class StageController {
 
@@ -20,9 +23,9 @@ public class StageController {
 	Label hard;
 	
 	public void handleEasy(MouseEvent event) {
-		new BaseBox("Easy");
+		Mode.setMode(new EasyStrategy());
 		try {
-			Parent pane = FXMLLoader.load(getClass().getResource("TableMenu.fxml"));
+			Parent pane = FXMLLoader.load(getClass().getResource("GridUI.fxml"));
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(scene);
@@ -34,9 +37,14 @@ public class StageController {
 	}
 	
 	public void handleHard(MouseEvent event) {
-		new BaseBox("Hard");
+		Mode.setMode(new HardStrategy());
 		try {
-			Parent pane = FXMLLoader.load(getClass().getResource("TableMenu.fxml"));
+			Parent pane = FXMLLoader.load(getClass().getResource("GridUI.fxml"));
+			//link controller part
+//			FXMLLoader loader = new FXMLLoader(getClass().getResource("GridUI.fxml"));
+//		    loader.load();
+//		    GridController grid = loader.getController();
+//		    grid.setMode(new EasyStrategy());
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(scene);

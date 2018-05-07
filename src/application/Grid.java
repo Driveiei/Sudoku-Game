@@ -28,14 +28,15 @@ public class Grid {
 
 	private Mode mode;
 
-	private final int BASE = 80;
-	private final int BASEs = 45;
+	private int BASE;
 	private int size ;
 	private int realSize;
 	
 	public Grid(BorderPane borderPane, Mode mode) {
 		this.borderPane = borderPane;
 		this.mode = mode;
+		this.BASE = mode.getBase();
+		
 		size = mode.getSize();
 		realSize = size*size;
 
@@ -63,8 +64,8 @@ public class Grid {
 
 	public void seperateMainGrid() {
 		for (int row = 0; row < size; row++) {
-			mainGrid.getColumnConstraints().add(new ColumnConstraints(BASE * 3));
-			mainGrid.getRowConstraints().add(new RowConstraints(BASE * 3));
+			mainGrid.getColumnConstraints().add(new ColumnConstraints(BASE * size));
+			mainGrid.getRowConstraints().add(new RowConstraints(BASE * size));
 		}
 		mainGrid.setGridLinesVisible(true);
 	}
@@ -199,7 +200,7 @@ public class Grid {
 			for (int columnGrid = 0; columnGrid < size; columnGrid++) {// a
 				for (int rowPane = 0; rowPane < size; rowPane++) {// b
 					for (int columnPane = 0; columnPane < size; columnPane++) {// c
-						subGrid[columnGrid][rowGrid].add(pane[(columnGrid * 3) + columnPane][rowPane + (rowGrid * 3)],
+						subGrid[columnGrid][rowGrid].add(pane[(columnGrid * size) + columnPane][rowPane + (rowGrid * size)],
 								columnPane, rowPane);
 					}
 				}

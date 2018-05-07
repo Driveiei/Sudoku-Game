@@ -13,7 +13,7 @@ public class ModeController {
 
 	public void handleNext(ActionEvent ac) {
 		try {
-			Parent pane = FXMLLoader.load(getClass().getResource("StageMenu.fxml"));	
+			Parent pane = FXMLLoader.load(getClass().getResource("TableMenu.fxml"));	
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
 			stage.setScene(scene);
