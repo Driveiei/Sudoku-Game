@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NameContoller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NameContoller">
    <children>
-      <Pane prefHeight="900.0" prefWidth="900.0">
+      <Pane prefHeight="800.0" prefWidth="1200.0">
          <children>
-            <AnchorPane prefHeight="907.0" prefWidth="900.0">
+            <AnchorPane prefHeight="800.0" prefWidth="1200.0">
                <children>
                   <Label layoutX="321.0" layoutY="233.0" text="YOUR NAME">
                      <font>
@@ -22,7 +22,7 @@
                         <Font name="Segoe UI Light Italic" size="28.0" />
                      </font>
                   </TextField>
-                  <Button layoutX="53.0" layoutY="788.0" mnemonicParsing="false" onAction="#handleBack" text="Back">
+                  <Button layoutX="650.0" layoutY="603.0" mnemonicParsing="false" onAction="#handleBack" text="Back">
                      <font>
                         <Font size="27.0" />
                      </font>

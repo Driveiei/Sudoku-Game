@@ -6,22 +6,25 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="900.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ModeController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ModeController">
    <children>
-      <Label layoutX="343.0" layoutY="146.0" text="Select Mode">
-         <font>
-            <Font name="Comic Sans MS" size="45.0" />
-         </font>
-      </Label>
-      <Button layoutX="121.0" layoutY="498.0" mnemonicParsing="false" onAction="#handleNext" text="Basic-Sudoku">
-         <font>
-            <Font size="28.0" />
-         </font>
-      </Button>
-      <Button layoutX="527.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleNext" text="Greter Than Sudoku">
-         <font>
-            <Font size="28.0" />
-         </font>
-      </Button>
+      <Pane prefHeight="800.0" prefWidth="1200.0">
+         <children>
+            <Label layoutX="358.0" layoutY="151.0" text="Select Mode">
+               <font>
+                  <Font name="Comic Sans MS" size="45.0" />
+               </font>
+            </Label>
+            <Button layoutX="238.0" layoutY="417.0" mnemonicParsing="false" onAction="#handleNext" text="Basic-Sudoku">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Button>
+            <Button layoutX="697.0" layoutY="357.0" mnemonicParsing="false" onAction="#handleNext" text="Greter Than Sudoku">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Button>
+         </children></Pane>
    </children>
 </AnchorPane>

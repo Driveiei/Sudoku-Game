@@ -6,22 +6,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="900.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TableController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TableController">
    <children>
-      <Label layoutX="339.0" layoutY="187.0" text="Your Table">
+      <Pane prefHeight="800.0" prefWidth="1200.0" />
+      <Button layoutX="777.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleFour" text="4X4">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Button>
+      <Button layoutX="299.0" layoutY="403.0" mnemonicParsing="false" onAction="#handleThree" text="3X3">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Button>
+      <Label layoutX="512.0" layoutY="194.0" text="Your Table">
          <font>
             <Font name="Comic Sans MS" size="50.0" />
          </font>
       </Label>
-      <Button layoutX="179.0" layoutY="552.0" mnemonicParsing="false" onAction="#handleThree" text="3X3">
-         <font>
-            <Font size="28.0" />
-         </font>
-      </Button>
-      <Button layoutX="661.0" layoutY="552.0" mnemonicParsing="false" onAction="#handleFour" text="4X4">
-         <font>
-            <Font size="28.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>

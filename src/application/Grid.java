@@ -28,7 +28,8 @@ public class Grid {
 
 	private Mode mode;
 
-	private final int BASE = 75;
+	private final int BASE = 80;
+	private final int BASEs = 45;
 	private int size ;
 	private int realSize;
 	

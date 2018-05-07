@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.StageController">
+   <children>
+      <Pane prefHeight="800.0" prefWidth="1200.0">
+         <children>
+            <Label layoutX="444.0" layoutY="155.0" prefHeight="100.0" prefWidth="311.0" text="Size">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="easy" layoutX="224.0" layoutY="415.0" onMouseClicked="#handleEasy" text="Easy">
+               <font>
+                  <Font size="49.0" />
+               </font>
+            </Label>
+            <Label fx:id="hard" layoutX="722.0" layoutY="379.0" onMouseClicked="#handleHard" text="Hard">
+               <font>
+                  <Font size="62.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

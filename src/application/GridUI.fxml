@@ -8,33 +8,28 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GridController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GridController">
    <top>
-      <Pane prefHeight="100.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="76.0" prefWidth="1200.0" BorderPane.alignment="CENTER" />
+   </top>
+   <left>
+      <Pane prefHeight="630.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Pane prefHeight="630.0" prefWidth="352.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="708.0" layoutY="33.0" text="Time 00:00">
+            <Button layoutX="210.0" layoutY="464.0" mnemonicParsing="false" text="Hint" />
+            <Button layoutX="234.0" layoutY="323.0" mnemonicParsing="false" onAction="#handleClear" text="Clear" />
+            <Button layoutX="129.0" layoutY="232.0" mnemonicParsing="false" text="Done" />
+            <ImageView fitHeight="64.0" fitWidth="155.0" layoutX="186.0" layoutY="470.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="176.0" layoutY="14.0" text="Time 00:00">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
          </children></Pane>
-   </top>
-   <left>
-      <Pane prefHeight="300.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
-   </left>
-   <right>
-      <Pane prefHeight="300.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
    </right>
    <bottom>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button layoutX="776.0" layoutY="113.0" mnemonicParsing="false" onAction="#handleClear" text="Clear" />
-            <Button layoutX="137.0" layoutY="63.0" mnemonicParsing="false" text="Hint">
-               <graphic>
-                  <ImageView fitHeight="64.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true" />
-               </graphic>
-            </Button>
-            <Button layoutX="598.0" layoutY="85.0" mnemonicParsing="false" text="Done" />
-         </children></Pane>
+      <Pane prefHeight="76.0" prefWidth="1200.0" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>
