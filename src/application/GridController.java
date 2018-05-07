@@ -8,9 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
 import logic.BoxManager;
 import logic.GridManager;
-import logic.RandomNumber;
-import logic.Table;
-import strategy.ModeFactory;
+import strategy.Mode;
 
 public class GridController {
 
@@ -20,9 +18,7 @@ public class GridController {
 
 	//Declare class
 	private Grid grid;
-	private ModeFactory mode;
-	private Table table;
-	private RandomNumber random;
+	private Mode mode;
 	
 	//funny attribute
 	private int size;
@@ -31,23 +27,22 @@ public class GridController {
 	
 	@FXML
 	public void initialize() {
-		//setTable
-		table = new Table(3);
-		random = new RandomNumber(table);
-		random.run();
+		Mode.setMode("easy");
+		mode = Mode.getInstance();
+		mode.setPuzzle();
 		
-		size = table.getSize();
+		size = mode.getSize();
 		realSize = size*size;
 		finish = false;
 		
-		//setMode
-		String x = "easy";
-		ModeFactory.setFactory(x, table);
-		mode = ModeFactory.getInstance(table);
-		mode.setPuzzle();
-		mode.randomInvisible();
+//		//setMode
+//		String x = "easy";
+//		Mode.setFactory(x, table);
+//		mode = Mode.getInstance(table);
+//		mode.setPuzzle();
+//		mode.randomInvisible();
 		
-		grid = new Grid(borderPane,table,mode);
+		grid = new Grid(borderPane,mode);
 		
 	}
 	
@@ -56,7 +51,8 @@ public class GridController {
 		puzzle.addAll(mode.getPuzzle());
 		for(int selectGrid = 0; selectGrid<realSize; selectGrid++) {
 			for(int selectBox = 0; selectBox < realSize; selectBox++) {
-				if(!puzzle.get(adaptGrid(selectBox,selectGrid)).getList().get(adaptBox(selectBox,selectGrid)).getLock()) {
+				BoxManager box = puzzle.get(adaptGrid(selectBox,selectGrid)).getList().get(adaptBox(selectBox,selectGrid));
+				if(!box.getLock()) {
 					grid.getLabel()[selectBox][selectGrid].setText("");
 				}
 			}
@@ -68,9 +64,10 @@ public class GridController {
 		puzzle.addAll(mode.getPuzzle());
 		for(int selectGrid = 0; selectGrid<realSize; selectGrid++) {
 			for(int selectBox = 0; selectBox < realSize; selectBox++) {
-				if(!puzzle.get((selectGrid/3)*3+selectBox/3).getList().get(3*(selectGrid%3)+selectBox%3).getLock()) {
-					String x = Integer.toString(puzzle.get(adaptGrid(selectBox,selectGrid)).getList().get(adaptBox(selectBox,selectGrid)).getNumber());
-					if(grid.getLabel()[selectBox][selectGrid].getText().equals(x)) {
+				BoxManager box = puzzle.get(adaptGrid(selectBox,selectGrid)).getList().get(adaptBox(selectBox,selectGrid));
+				if(!box.getLock()) {
+					String text = Integer.toString(box.getNumber());
+					if(grid.getLabel()[selectBox][selectGrid].getText().equals(text)) {
 						
 					}
 				}
@@ -79,16 +76,16 @@ public class GridController {
 	}
 	
 	public int adaptGrid(int column,int row) {
-		return (row/3)*3+column/3;
+		return (row/size)*size+column/size;
 	}
 	
 	public int adaptBox(int column,int row) {
-		return 3*(row%3)+column%3;
+		return size*(row%size)+column%size;
 	}
 	
-	public int callListNumber(List<GridManager> list ,int grid,int column) {
-		return list.get(adaptGrid(selectBox,selectGrid)).getList().get(adaptBox(selectBox,selectGrid)).getNumber();
-	}
+//	public int callListNumber(List<GridManager> list ,int grid,int column) {
+//		return list.get(adaptGrid(selectBox,selectGrid)).getList().get(adaptBox(selectBox,selectGrid)).getNumber();
+//	}
 	
 
 }

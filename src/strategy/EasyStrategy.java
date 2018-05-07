@@ -6,44 +6,48 @@ import java.util.Random;
 
 import logic.GridManager;
 import logic.RandomNumber;
-import logic.Table;
 
-public class EasyStrategy extends ModeFactory {
+public class EasyStrategy extends Mode {
 
 	private List<GridManager> list;
-	private Table table;
+	private RandomNumber random;
 	private Random rand;
+	private int size;
 
-	public EasyStrategy(Table table) {
-		this.table = table;
+	public EasyStrategy() {
 //		this.table = table; // 3 or 4
 //		random = new RandomNumber(table);
 //		random.run(); // list
+		random = RandomNumber.getInstance();
+		size = random.getSize();
 		list = new ArrayList<>();
 		rand = new Random();
 	}
 
+	@Override
+	public int getSize() {
+		return size;
+	}
 	
 	@Override
 	public void setPuzzle() {
-		list.addAll(table.getList());
+		list.addAll(random.getPuzzle());
+		randomInvisible();
 	}
 
 	@Override
 	public void randomInvisible() {
-		for (int j = 0; j < 9; j++) {
-			for (int i = 0; i < 9; i++) {
-				int x = rand.nextInt(100);
-				if (x <= 40) {
-					table.getList().get(j).getList().get(i).setLock(true);
+		for (int grid = 0; grid < 9; grid++) {
+			for (int box = 0; box < 9; box++) {
+				int percentage = rand.nextInt(100);
+				if (percentage <= 40) {
+					list.get(grid).getList().get(box).setLock(true);
 				} else {
-//					list.get(j).getList().get(i).setLock(false);
-					table.getList().get(j).getList().get(i).setLock(false);
+					list.get(grid).getList().get(box).setLock(false);
 				}
 			}
 		}
 	}
-
 
 	@Override
 	public List<GridManager> getPuzzle() {

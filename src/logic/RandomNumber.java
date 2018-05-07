@@ -4,28 +4,46 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomNumber implements Runnable {
-
-	private Table table;
+public class RandomNumber{
+	
+	private static RandomNumber random = null;
+	
+	private static Table table;
+	
 	private Random rand;
-
-	public RandomNumber(Table table) {
-		this.table = table;
+	
+	private RandomNumber() {
 		rand = new Random();
 	}
-
-	@Override
-	public void run() {
+	
+	public static RandomNumber getInstance() {
+		if (random == null) {
+			table = new Table(3);
+			random = new RandomNumber();
+		}
+		return random;
+	}
+	
+	public static void setRandomNumber(int number) {
+		table = new Table(number);
+		random = new RandomNumber();
+	}
+	
+	public int getSize() {
+		return table.getSize();
+	}
+	
+	public List<GridManager> getPuzzle() {
 		int size = (table.getSize() * table.getSize()); // 9
 		for (int grid = 0; grid < size; grid++) {
 			table.getList().add(new GridManager(grid, true));// create 9 grids.
 			createRandomSet(createNumberSet(size), grid, size); // create grid 0 1 2 3 4 5 6 7 8
 		}
 		print(table.getSize());
-		
+		return table.getList();
 	}
 	
-	public void print(int number) {
+	private void print(int number) {
 		for(int i = 0; i< number; i++) {
 			for(int j = 0; j < number; j++) {
 				for(int k =0; k<number; k++) {
@@ -42,17 +60,7 @@ public class RandomNumber implements Runnable {
 		}
 	}
 
-	public List<Integer> mergeDuplicateList(List<Integer> listOne, List<Integer> listTwo) {
-		List<Integer> merge = new ArrayList<Integer>();
-		merge.addAll(listOne);
-		for (Integer number : listTwo) {
-			if (!merge.contains(number))
-				merge.add(number);
-		}
-		return merge;
-	}
-
-	public List<Integer> mergeDuplicateList(int numberGrid,int column,int row){
+	private List<Integer> mergeDuplicateList(int numberGrid,int column,int row){
 		List<Integer> merge = new ArrayList<Integer>();
 		merge.addAll(table.duplicateColumn(numberGrid, column));
 		List<Integer> secondList = new ArrayList<Integer>();
@@ -64,7 +72,7 @@ public class RandomNumber implements Runnable {
 		return merge;
 	}
 	
-	public void createRandomSet(List<Integer> setOfNumber, int numberGrid, int size) {
+	private void createRandomSet(List<Integer> setOfNumber, int numberGrid, int size) {
 		int realSize = table.getSize();// 3
 		int column;
 		int row;
@@ -99,21 +107,21 @@ public class RandomNumber implements Runnable {
 		}
 	}
 
-	public int identifyRow(int realSize,int numberGrid,int box) {
+	private int identifyRow(int realSize,int numberGrid,int box) {
 		return realSize * (numberGrid / realSize) + box / realSize;
 	}
 	
-	public int identifyColumn(int realSize,int numberGrid,int box) {
+	private int identifyColumn(int realSize,int numberGrid,int box) {
 		return realSize * (numberGrid % realSize) + box % realSize;
 	}
 	
-	public int randomNumber(List<Integer> setOfNumber) {
+	private int randomNumber(List<Integer> setOfNumber) {
 		int cursor = rand.nextInt(setOfNumber.size());
 		int target = setOfNumber.get(cursor);
 		return target;
 	}
 	
-	public int undoCreateGrid(int numberGrid, int size, int realSize) {
+	private int undoCreateGrid(int numberGrid, int size, int realSize) {
 		int remainder = numberGrid % realSize;
 		for(int i = 0 ;i < remainder ;i++) {
 			table.clear(numberGrid - remainder + i);
@@ -122,7 +130,7 @@ public class RandomNumber implements Runnable {
 		return -1;
 	}
 
-	public List<Integer> createNumberSet(int size) {
+	private List<Integer> createNumberSet(int size) {
 		List<Integer> number = new ArrayList<Integer>();
 		for (int i = 1; i <= size; i++) {
 			number.add(i);

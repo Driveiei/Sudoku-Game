@@ -10,7 +10,6 @@ public class Table {
 	public Table(int size) {
 		this.size = size;
 		sudoku = new ArrayList<GridManager>();
-		// size 3 or 4.
 	}
 
 	// public boolean duplicateGrid(int number) {
@@ -75,9 +74,6 @@ public class Table {
 	// }
 
 	public List<Integer> duplicateRow(int numberGrid, int row) {
-		// numberGrid 0-8
-		// row 0-8
-		// target 1-9
 		int position = numberGrid % size;
 		int rowGrid = row / size;
 		int rowBox = row % size;
@@ -93,9 +89,6 @@ public class Table {
 	}
 
 	public List<Integer> duplicateColumn(int numberGrid, int column) {
-		// numberGrid 0-8
-		// column 0-8
-		// target 1-9
 		int position = numberGrid / size;
 		int columnGrid = column / size;
 		int columnBox = column % size;

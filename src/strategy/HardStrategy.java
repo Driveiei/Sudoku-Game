@@ -6,36 +6,45 @@ import java.util.Random;
 
 import logic.GridManager;
 import logic.RandomNumber;
-import logic.Table;
 
-public class HardStrategy extends ModeFactory {
+public class HardStrategy extends Mode {
 
 	private List<GridManager> list;
-	private Table table; // <<--- list
+	private RandomNumber random;
 	private Random rand;
+	private int size;
 
-	public HardStrategy(Table table) {
-		this.table = table; // 3 or 4
+
+	public HardStrategy() {
+//		this.table = table; // 3 or 4
 //		random = new RandomNumber(table);
 //		random.run(); // list
+		random = RandomNumber.getInstance();
+		size = random.getSize();//3
 		list = new ArrayList<>();
 		rand = new Random();
 	}
 
 	@Override
+	public int getSize() {
+		return size;
+	}
+	
+	@Override
 	public void setPuzzle() {
-		list.addAll(table.getList());
+		list.addAll(random.getPuzzle());
+		randomInvisible();
 	}
 
 	@Override
 	public void randomInvisible() {
-		for (int j = 0; j < Math.sqrt(list.size()); j++) {
-			for (int i = 0; i < Math.sqrt(list.size()); i++) {
-				int x = rand.nextInt(100);
-				if (x <= 30) {
-					list.get(j).getList().get(i).setLock(true);
+		for (int grid = 0; grid < 9; grid++) {
+			for (int box = 0; box < 9; box++) {
+				int percentage = rand.nextInt(100);
+				if (percentage <= 30) {
+					list.get(grid).getList().get(box).setLock(true);
 				} else {
-					list.get(j).getList().get(i).setLock(false);
+					list.get(grid).getList().get(box).setLock(false);
 				}
 			}
 		}
