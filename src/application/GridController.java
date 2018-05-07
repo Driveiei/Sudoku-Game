@@ -27,6 +27,7 @@ public class GridController {
 	//funny attribute
 	private int size;
 	private int realSize;
+	private boolean finish;
 	
 	@FXML
 	public void initialize() {
@@ -37,6 +38,7 @@ public class GridController {
 		
 		size = table.getSize();
 		realSize = size*size;
+		finish = false;
 		
 		//setMode
 		String x = "easy";
@@ -54,11 +56,39 @@ public class GridController {
 		puzzle.addAll(mode.getPuzzle());
 		for(int selectGrid = 0; selectGrid<realSize; selectGrid++) {
 			for(int selectBox = 0; selectBox < realSize; selectBox++) {
-				if(!puzzle.get((selectGrid/3)*3+selectBox/3).getList().get(3*(selectGrid%3)+selectBox%3).getLock()) {
+				if(!puzzle.get(adaptGrid(selectBox,selectGrid)).getList().get(adaptBox(selectBox,selectGrid)).getLock()) {
 					grid.getLabel()[selectBox][selectGrid].setText("");
 				}
 			}
 		}
 	}
+	
+	public void handleDone(ActionEvent event) {
+		List<GridManager> puzzle = new ArrayList<GridManager>();
+		puzzle.addAll(mode.getPuzzle());
+		for(int selectGrid = 0; selectGrid<realSize; selectGrid++) {
+			for(int selectBox = 0; selectBox < realSize; selectBox++) {
+				if(!puzzle.get((selectGrid/3)*3+selectBox/3).getList().get(3*(selectGrid%3)+selectBox%3).getLock()) {
+					String x = Integer.toString(puzzle.get(adaptGrid(selectBox,selectGrid)).getList().get(adaptBox(selectBox,selectGrid)).getNumber());
+					if(grid.getLabel()[selectBox][selectGrid].getText().equals(x)) {
+						
+					}
+				}
+			}
+		}
+	}
+	
+	public int adaptGrid(int column,int row) {
+		return (row/3)*3+column/3;
+	}
+	
+	public int adaptBox(int column,int row) {
+		return 3*(row%3)+column%3;
+	}
+	
+	public int callListNumber(List<GridManager> list ,int grid,int column) {
+		return list.get(adaptGrid(selectBox,selectGrid)).getList().get(adaptBox(selectBox,selectGrid)).getNumber();
+	}
+	
 
 }

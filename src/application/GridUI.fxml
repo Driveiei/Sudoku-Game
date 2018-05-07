@@ -28,28 +28,13 @@
    <bottom>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <BorderPane layoutX="159.0" layoutY="24.0" prefHeight="153.0" prefWidth="582.0">
-               <center>
-                  <Button mnemonicParsing="false" text="Done" BorderPane.alignment="CENTER" />
-               </center>
-               <right>
-                  <Button mnemonicParsing="false" onAction="#handleClear" text="Clear" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets right="50.0" />
-                     </BorderPane.margin>
-                  </Button>
-               </right>
-               <left>
-                  <Button mnemonicParsing="false" text="Hint" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets left="50.0" />
-                     </BorderPane.margin>
-                     <graphic>
-                        <ImageView fitHeight="80.0" fitWidth="152.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
-                  </Button>
-               </left>
-            </BorderPane>
+            <Button layoutX="776.0" layoutY="113.0" mnemonicParsing="false" onAction="#handleClear" text="Clear" />
+            <Button layoutX="137.0" layoutY="63.0" mnemonicParsing="false" text="Hint">
+               <graphic>
+                  <ImageView fitHeight="64.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Button>
+            <Button layoutX="598.0" layoutY="85.0" mnemonicParsing="false" text="Done" />
          </children></Pane>
    </bottom>
 </BorderPane>

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import jdk.management.resource.internal.inst.SocketOutputStreamRMHooks;
-
 public class RandomNumber implements Runnable {
 
 	private Table table;
