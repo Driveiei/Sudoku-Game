@@ -1,5 +1,7 @@
 package logic;
 
+
+
 public class LogicMain {
 
 	public static void main(String[] args) {
@@ -8,6 +10,7 @@ public class LogicMain {
 //		random.run();
 		RandomNumber random = RandomNumber.getInstance();
 		random.getPuzzle();
+	
 	}
 
 }

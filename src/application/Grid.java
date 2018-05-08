@@ -23,7 +23,7 @@ public class Grid {
 	private GridPane[][] subGrid;
 	private Pane[][] pane;
 	private Label[][] label;
-
+	
 	private List<Button> buttonList;
 
 	private Mode mode;
@@ -51,10 +51,10 @@ public class Grid {
 		pane = new Pane[realSize][realSize];
 		label = new Label[realSize][realSize];
 		buttonList = new ArrayList<Button>();
-
+		
 		createSubGrid();
 		modifySubGrid();
-		addSubGrid();// add sub to main
+		addSubGrid();
 
 		createPaneAndLabel();
 		addNumberToLabel();
@@ -126,6 +126,7 @@ public class Grid {
 			miniPane.setTranslateY(event.getSceneY() - miniPane.getPrefHeight() / 2);
 			setMiniGrid();
 			miniPane.getChildren().add(grid);
+			
 			borderPane.getChildren().add(miniPane);
 			miniPane.setVisible(true);
 			// create 3*3 on gridpane
@@ -158,6 +159,11 @@ public class Grid {
 				borderPane.getChildren().remove(miniPane);
 			});
 		});
+		
+	}
+	
+	public void setMouses(int column,int row) {
+		label[column][row].setOnMousePressed(null);
 	}
 
 	public void addNumberToLabel() {

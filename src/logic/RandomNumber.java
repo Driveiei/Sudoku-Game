@@ -36,7 +36,7 @@ public class RandomNumber{
 	public List<GridManager> getPuzzle() {
 		int size = (table.getSize() * table.getSize()); // 9
 		for (int grid = 0; grid < size; grid++) {
-			table.getList().add(new GridManager(grid, true));// create 9 grids.
+			table.getList().add(new GridManager(grid));// create 9 grids.
 			createRandomSet(createNumberSet(size), grid, size); // create grid 0 1 2 3 4 5 6 7 8
 		}
 		print(table.getSize());

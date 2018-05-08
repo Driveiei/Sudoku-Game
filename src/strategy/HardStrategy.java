@@ -48,11 +48,13 @@ public class HardStrategy extends Mode {
 		for (int grid = 0; grid < realSize; grid++) {
 			for (int box = 0; box < realSize; box++) {
 				int percentage = rand.nextInt(ONE_HUNDRED);
-				if (percentage <= PERCENTAGE) 
+				if (percentage <= PERCENTAGE) {
 					list.get(grid).getList().get(box).setLock(true);
-				 else 
+					list.get(grid).getList().get(box).setCheck(true);
+				}else { 
 					list.get(grid).getList().get(box).setLock(false);
-				
+					list.get(grid).getList().get(box).setCheck(false);
+				}
 			}
 		}
 	}

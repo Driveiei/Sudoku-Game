@@ -26,5 +26,9 @@ public class TimeTask extends Task<Integer> {
 		}
 		return timer;
 	}
+	
+	public String getTime() {
+		return String.format("%2d/%2d/%3d",minute,sec,timer );
+	}
 
 }
