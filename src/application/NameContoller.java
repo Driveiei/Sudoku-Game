@@ -9,13 +9,27 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class NameContoller {
 	@FXML
 	TextField text;
-	
-	public void handleName(ActionEvent ac) {
+	@FXML
+	ImageView back;
+	@FXML
+	public void initialize() {
+		back.setOnMouseEntered(in -> {
+			back.setFitWidth(225);
+			back.setFitHeight(175);
+			back.setOnMouseExited(out ->{
+				back.setFitWidth(200);
+				back.setFitHeight(150);
+			});
+		});
+	}
+	public void handleNext(ActionEvent ac) {
 		try {
 			Parent pane = FXMLLoader.load(getClass().getResource("ModeMenu.fxml"));	
 			Scene scene = new Scene(pane);
@@ -28,7 +42,7 @@ public class NameContoller {
 			}
 	}
 	
-	public void handleBack(ActionEvent ac) {
+	public void handleBack(MouseEvent ac) {
 		try {
 			Parent pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));	
 			Scene scene = new Scene(pane);

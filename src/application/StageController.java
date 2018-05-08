@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import strategy.EasyStrategy;
@@ -17,10 +18,16 @@ import strategy.Mode;
 public class StageController {
 
 	@FXML
-	Label easy;
+	ImageView easy;
 	
 	@FXML
-	Label hard;
+	ImageView hard;
+	
+	@FXML
+	public void initialize() {
+		effectImage(easy);
+		effectImage(hard);
+	}
 	
 	public void handleEasy(MouseEvent event) {
 		Mode.setMode(new EasyStrategy());
@@ -53,5 +60,16 @@ public class StageController {
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
 		}
+	}
+	
+	public void effectImage(ImageView image) {
+		image.setOnMouseEntered(in ->{
+			image.setFitWidth(225);
+			image.setFitHeight(175);
+			image.setOnMouseExited(out ->{
+				image.setFitWidth(200);
+				image.setFitHeight(150);
+			});
+		});
 	}
 }

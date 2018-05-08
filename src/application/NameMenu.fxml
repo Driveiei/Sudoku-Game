@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -8,25 +9,30 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NameContoller">
    <children>
+      <ImageView fitHeight="1290.0" fitWidth="1267.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../source/MainBG-VER1.jpg" />
+         </image>
+      </ImageView>
       <Pane prefHeight="800.0" prefWidth="1200.0">
          <children>
             <AnchorPane prefHeight="800.0" prefWidth="1200.0">
                <children>
-                  <Label layoutX="321.0" layoutY="233.0" text="YOUR NAME">
-                     <font>
-                        <Font name="Comic Sans MS" size="42.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="text" alignment="CENTER" layoutX="295.0" layoutY="405.0" onAction="#handleName" prefHeight="38.0" prefWidth="310.0">
+                  <TextField fx:id="text" alignment="CENTER" layoutX="457.0" layoutY="417.0" onAction="#handleNext" prefHeight="38.0" prefWidth="310.0">
                      <font>
                         <Font name="Segoe UI Light Italic" size="28.0" />
                      </font>
                   </TextField>
-                  <Button layoutX="650.0" layoutY="603.0" mnemonicParsing="false" onAction="#handleBack" text="Back">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
-                  </Button>
+                  <ImageView fx:id="back" fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="703.0" onMouseClicked="#handleBack" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../source/Starter-Button-Back.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="200.0" fitWidth="500.0" layoutX="362.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../source/Your-Name.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>

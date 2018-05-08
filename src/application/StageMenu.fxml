@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -8,23 +9,28 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.StageController">
    <children>
+      <ImageView fitHeight="1297.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../source/MainBG-VER4.jpg" />
+         </image>
+      </ImageView>
       <Pane prefHeight="800.0" prefWidth="1200.0">
          <children>
-            <Label layoutX="444.0" layoutY="155.0" prefHeight="100.0" prefWidth="311.0" text="Size">
-               <font>
-                  <Font size="96.0" />
-               </font>
-            </Label>
-            <Label fx:id="easy" layoutX="224.0" layoutY="415.0" onMouseClicked="#handleEasy" text="Easy">
-               <font>
-                  <Font size="49.0" />
-               </font>
-            </Label>
-            <Label fx:id="hard" layoutX="722.0" layoutY="379.0" onMouseClicked="#handleHard" text="Hard">
-               <font>
-                  <Font size="62.0" />
-               </font>
-            </Label>
+            <ImageView fitHeight="150.0" fitWidth="500.0" layoutX="350.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../source/Select%20Difficalty.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="easy" fitHeight="150.0" fitWidth="200.0" layoutX="250.0" layoutY="498.0" onMouseClicked="#handleEasy" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../source/Starter-Button-easy.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="hard" fitHeight="150.0" fitWidth="200.0" layoutX="750.0" layoutY="498.0" onMouseClicked="#handleHard" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../source/Starter-Button-Hard.jpg" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>
