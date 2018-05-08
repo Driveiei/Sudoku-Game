@@ -5,6 +5,7 @@ import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import logic.BoxManager;
 import logic.GridManager;
@@ -15,7 +16,12 @@ public class GridController {
 
 	@FXML
 	BorderPane borderPane;
-
+	
+	@FXML
+	Label timer;
+	
+	private TimeTask worker;
+	
 	// Declare class
 	private Grid grid;
 	private Mode mode;
@@ -27,6 +33,8 @@ public class GridController {
 
 	@FXML
 	public void initialize() {
+		runTime();
+		
 		mode = Mode.getInstance();
 		mode.setPuzzle();
 
@@ -106,6 +114,12 @@ public class GridController {
 		Mode.setMode(strategy);
 	}
 
+	public void runTime() {
+        worker = new TimeTask();
+        timer.setText("00 : 00 : 000");
+        timer.textProperty().bind(worker.messageProperty());
+        new Thread(worker).start();
+    }
 	
 	// public int callListNumber(List<GridManager> list ,int grid,int column) {
 	// return
