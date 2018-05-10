@@ -24,8 +24,8 @@ public class EasyStrategy extends Mode {
 //		random.run(); // list
 		random = RandomNumber.getInstance();
 		if(random.getSize() == 3) 
-			this.base = 74;
-		else this.base = 42;
+			this.base = 80;
+		else this.base = 45;
 		size = random.getSize();
 		realSize = size*size;
 		list = new ArrayList<>();

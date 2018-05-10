@@ -17,6 +17,7 @@ public class MainController {
 	ImageView about;
 	@FXML
 	ImageView scoreborad;
+	
 	@FXML
 	public void initialize() {
 		effectImage(start);

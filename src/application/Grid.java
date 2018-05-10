@@ -7,11 +7,21 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Reflection;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import strategy.Mode;
 
 public class Grid {
@@ -23,22 +33,22 @@ public class Grid {
 	private GridPane[][] subGrid;
 	private Pane[][] pane;
 	private Label[][] label;
-	
+
 	private List<Button> buttonList;
 
 	private Mode mode;
 
 	private int BASE;
-	private int size ;
+	private int size;
 	private int realSize;
-	
+
 	public Grid(BorderPane borderPane, Mode mode) {
 		this.borderPane = borderPane;
 		this.mode = mode;
 		this.BASE = mode.getBase();
-		
+
 		size = mode.getSize();
-		realSize = size*size;
+		realSize = size * size;
 
 		mainGrid = new GridPane();
 		seperateMainGrid();
@@ -51,7 +61,7 @@ public class Grid {
 		pane = new Pane[realSize][realSize];
 		label = new Label[realSize][realSize];
 		buttonList = new ArrayList<Button>();
-		
+
 		createSubGrid();
 		modifySubGrid();
 		addSubGrid();
@@ -126,7 +136,7 @@ public class Grid {
 			miniPane.setTranslateY(event.getSceneY() - miniPane.getPrefHeight() / 2);
 			setMiniGrid();
 			miniPane.getChildren().add(grid);
-			
+
 			borderPane.getChildren().add(miniPane);
 			miniPane.setVisible(true);
 			// create 3*3 on gridpane
@@ -146,7 +156,8 @@ public class Grid {
 
 						Button button = (Button) event2.getSource();
 						((Labeled) event.getSource()).setText(button.getText());
-						((Labeled) event.getSource()).setStyle("-fx-text-fill: #483d8b");
+						((Labeled) event.getSource()).setStyle("-fx-text-fill: rgb(240,128,128);");
+						((Labeled) event.getSource()).setFont(Font.font(null, FontWeight.LIGHT, 32));
 						try {
 							borderPane.getChildren().remove(miniPane);
 						} catch (IndexOutOfBoundsException ex) {
@@ -159,13 +170,14 @@ public class Grid {
 				borderPane.getChildren().remove(miniPane);
 			});
 		});
-		
+
 	}
-	
-	public void setMouses(int column,int row) {
+
+	public void removeButtonSelection(int column,int row) {
 		label[column][row].setOnMousePressed(null);
 	}
 
+	
 	public void addNumberToLabel() {
 		int number;
 		boolean show;
@@ -176,6 +188,8 @@ public class Grid {
 				if (show) {
 					label[changeColumnScale(column, row)][changeRowScale(column, row)]
 							.setText(Integer.toString(number));
+					label[changeColumnScale(column, row)][changeRowScale(column, row)]
+							.setFont(Font.font(null, FontWeight.BLACK, 32));
 				} else {
 					label[changeColumnScale(column, row)][changeRowScale(column, row)].setText("");
 					selectionButton(column, row);
@@ -191,7 +205,7 @@ public class Grid {
 	}
 
 	public int changeRowScale(int column, int row) {
-		return column /size + (row / size) * size;
+		return column / size + (row / size) * size;
 	}
 
 	public void setMiniGrid() {
@@ -206,16 +220,16 @@ public class Grid {
 			for (int columnGrid = 0; columnGrid < size; columnGrid++) {// a
 				for (int rowPane = 0; rowPane < size; rowPane++) {// b
 					for (int columnPane = 0; columnPane < size; columnPane++) {// c
-						subGrid[columnGrid][rowGrid].add(pane[(columnGrid * size) + columnPane][rowPane + (rowGrid * size)],
-								columnPane, rowPane);
+						subGrid[columnGrid][rowGrid].add(
+								pane[(columnGrid * size) + columnPane][rowPane + (rowGrid * size)], columnPane,
+								rowPane);
 					}
 				}
 			}
 		}
 	}
-	
-	public Label[][] getLabel(){
+
+	public Label[][] getLabel() {
 		return label;
 	}
-
 }

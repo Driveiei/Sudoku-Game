@@ -10,17 +10,17 @@
 
 <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GridController">
    <top>
-      <Pane prefHeight="57.0" prefWidth="1200.0" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="40.0" prefWidth="1200.0" BorderPane.alignment="CENTER" />
    </top>
    <left>
       <Pane prefHeight="630.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <Pane prefHeight="630.0" prefWidth="352.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="720.0" prefWidth="280.0" BorderPane.alignment="CENTER">
          <children>
             <Button layoutX="91.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleHint" prefHeight="115.0" prefWidth="167.0" text="Hint" />
             <Button layoutX="61.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleClear" prefHeight="140.0" prefWidth="227.0" text="Clear" />
-            <Button layoutX="130.0" layoutY="132.0" mnemonicParsing="false" onAction="#handleDones" prefHeight="71.0" prefWidth="174.0" text="Done" />
+            <Button layoutX="130.0" layoutY="132.0" mnemonicParsing="false" onAction="#handleDone" prefHeight="71.0" prefWidth="174.0" text="Done" />
             <Label fx:id="timer" layoutX="152.0" layoutY="28.0">
                <font>
                   <Font size="24.0" />
@@ -29,6 +29,6 @@
          </children></Pane>
    </right>
    <bottom>
-      <Pane prefHeight="76.0" prefWidth="1200.0" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="40.0" prefWidth="1200.0" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>
