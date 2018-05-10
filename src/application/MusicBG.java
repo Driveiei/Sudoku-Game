@@ -8,8 +8,6 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.FloatControl;
 
-import sun.awt.SunToolkit.InfiniteLoop;
-
 public class MusicBG implements Runnable {
 
 	private String musicFiles;

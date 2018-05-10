@@ -3,8 +3,6 @@ package application;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,13 +10,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.Labeled;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import logic.BoxManager;
 import logic.GridManager;
+import logic.RandomNumber;
 import strategy.Mode;
 
 public class GridController {
@@ -54,6 +52,7 @@ public class GridController {
 		support = new SupportGrid(size, mode);
 
 		griddy = new Grid(borderPane, mode);
+		RandomNumber.print(size);
 	}
 
 	public void handleClear(ActionEvent event) {

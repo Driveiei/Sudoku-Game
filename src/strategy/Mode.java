@@ -3,7 +3,6 @@ package strategy;
 import java.util.List;
 
 import logic.GridManager;
-import logic.Table;
 
 public abstract class Mode {
 	

@@ -1,9 +1,6 @@
 package application;
 
 import java.io.IOException;
-
-import com.sun.glass.events.MouseEvent;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

@@ -43,7 +43,7 @@ public class RandomNumber{
 		return table.getList();
 	}
 	
-	private void print(int number) {
+	public static void print(int number) {
 		for(int i = 0; i< number; i++) {
 			for(int j = 0; j < number; j++) {
 				for(int k =0; k<number; k++) {
