@@ -30,4 +30,6 @@ public abstract class Mode {
 	
 	public abstract int getBase();
 	
+	public abstract void clearPuzzle();
+	
 	}

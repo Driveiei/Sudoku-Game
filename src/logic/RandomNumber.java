@@ -19,8 +19,8 @@ public class RandomNumber{
 	public static RandomNumber getInstance() {
 		if (random == null) {
 			table = new Table(3);
-			random = new RandomNumber();
 		}
+		random = new RandomNumber();
 		return random;
 	}
 	

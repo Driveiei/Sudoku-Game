@@ -15,7 +15,7 @@ public class EasyStrategy extends Mode {
 	private int size;
 	private int base;
 	private int realSize;
-	private final int PERCENTAGE = 40;
+	private final int PERCENTAGE = 50;
 	private final int ONE_HUNDRED = 100;
 
 	public EasyStrategy() {
@@ -68,6 +68,12 @@ public class EasyStrategy extends Mode {
 	@Override
 	public int getBase() {
 		return base;
+	}
+
+	@Override
+	public void clearPuzzle() {
+		list.clear();
+		
 	}
 
 }

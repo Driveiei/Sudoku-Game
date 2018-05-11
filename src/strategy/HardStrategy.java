@@ -15,7 +15,7 @@ public class HardStrategy extends Mode {
 	private int size;
 	private int base;
 	private int realSize;
-	private final int PERCENTAGE = 10;
+	private final int PERCENTAGE = 30;
 	private final int ONE_HUNDRED = 100;
 
 	public HardStrategy() {
@@ -67,6 +67,12 @@ public class HardStrategy extends Mode {
 	@Override
 	public int getBase() {
 		return base;
+	}
+
+	@Override
+	public void clearPuzzle() {
+		list.clear();
+		
 	}
 
 }

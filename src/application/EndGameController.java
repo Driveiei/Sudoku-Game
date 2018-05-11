@@ -10,6 +10,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import logic.RandomNumber;
+import strategy.Mode;
 
 public class EndGameController {
 
@@ -27,6 +29,9 @@ public class EndGameController {
 
 	public void handlePlayAgain(ActionEvent ac) {
 		try {
+			Mode.getInstance().clearPuzzle();
+			RandomNumber.setRandomNumber(RandomNumber.getInstance().getSize());
+			
 			Parent pane = FXMLLoader.load(getClass().getResource("GridUI.fxml"));
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
