@@ -14,6 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import logic.RandomNumber;
 import strategy.Mode;
 
 public class Grid {
@@ -46,6 +47,7 @@ public class Grid {
 		mainGrid = new GridPane();
 		seperateMainGrid();
 		supportPane = new Pane();
+		addGreater();
 		supportPane.getChildren().add(mainGrid);
 		borderPane.setCenter(supportPane);
 		mainGrid.setAlignment(Pos.CENTER);
@@ -64,11 +66,6 @@ public class Grid {
 		addLabelToPane();
 		addPaneToSubGrid();
 		System.out.println(Mode.getInstance().getClass().getName());
-		if(Mode.getInstance().getClass().getName().equals("strategy.GreaterThanStrategy")) {
-		greaterPane = new Pane();
-		new GreaterThanLabel(greaterPane);
-		supportPane.getChildren().add(greaterPane);
-		}
 	}
 
 	public void seperateMainGrid() {
@@ -225,6 +222,14 @@ public class Grid {
 					}
 				}
 			}
+		}
+	}
+	
+	public void addGreater() {
+		if(Mode.getInstance().getClass().getName().equals("strategy.GreaterThanStrategy")) {
+			greaterPane = new Pane();
+			new GreaterThanLabel(greaterPane);
+			supportPane.getChildren().add(greaterPane);
 		}
 	}
 

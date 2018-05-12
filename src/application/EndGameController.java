@@ -9,6 +9,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import logic.RandomNumber;
 import strategy.Mode;
@@ -16,20 +18,23 @@ import strategy.Mode;
 public class EndGameController {
 
 	@FXML
-	Button playAgain;
+	ImageView playAgain;
 	@FXML
-	Button mainMenu;
+	ImageView mainMenu;
 	@FXML
-	Button scoreboard;
+	ImageView scoreboard;
 	private ScoreManager manage;
 	
-	
+	public void initialize() {
+		effectImage(playAgain);
+		effectImage(mainMenu);
+		effectImage(scoreboard);
+	}
 
-	public void handlePlayAgain(ActionEvent ac) {
+	public void handlePlayAgain(MouseEvent ac) {
+		Mode.getInstance().clearPuzzle();
+		RandomNumber.setRandomNumber(RandomNumber.getInstance().getSize());
 		try {
-			Mode.getInstance().clearPuzzle();
-			RandomNumber.setRandomNumber(RandomNumber.getInstance().getSize());
-			
 			Parent pane = FXMLLoader.load(getClass().getResource("GridUI.fxml"));
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
@@ -41,7 +46,9 @@ public class EndGameController {
 		}
 	}
 
-	public void handleMainMenu(ActionEvent ac) {
+	public void handleMainMenu(MouseEvent ac) {
+		Mode.getInstance().clearPuzzle();
+		RandomNumber.setRandomNumber(RandomNumber.getInstance().getSize());
 		try {
 			Parent pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 			Scene scene = new Scene(pane);
@@ -54,13 +61,11 @@ public class EndGameController {
 		}
 	}
 
-	public void handleScoreboard(ActionEvent ac) {
+	public void handleScoreboard(MouseEvent ac) {
 		
 		try {
 			FXMLLoader loader =new FXMLLoader(getClass().getResource("Scoreboard.fxml"));
 			Parent pane = loader.load();
-			ScoreboardController score = loader.getController();
-			score.setManager(manage);
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
 			stage.setScene(scene);
@@ -70,10 +75,20 @@ public class EndGameController {
 			System.err.println(e.getMessage());
 		}
 	}
+	
+	public void effectImage(ImageView image) {
+		image.setOnMouseEntered(in ->{
+			image.setFitWidth(225);
+			image.setFitHeight(175);
+			image.setOnMouseExited(out ->{
+				image.setFitWidth(200);
+				image.setFitHeight(150);
+			});
+		});
+	}
 
 	public void setScore(String name,String time) {
-		manage = new ScoreManager(name,time) ;
-		manage.recordScore();
-		
+		manage = ScoreManager.getInstance();
+		manage.recordScore(name, time);
 	}
 }

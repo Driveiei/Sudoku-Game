@@ -40,6 +40,7 @@ public class ModeController {
 	}
 	
 	public void handleGreater(MouseEvent ac) {
+		RandomNumber.setRandomNumber(3);
 		Mode.setMode(new GreaterThanStrategy());
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("GridUI.fxml"));	

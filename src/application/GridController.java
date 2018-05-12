@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 import logic.BoxManager;
 import logic.GridManager;
 import logic.RandomNumber;
-import strategy.EasyStrategy;
 import strategy.Mode;
 
 public class GridController {
@@ -129,7 +128,7 @@ public class GridController {
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 				stage.setScene(scene);
-				stage.setResizable(true);
+				stage.setResizable(false);
 				stage.show();
 			} catch (IOException e) {
 				System.err.println(e.getMessage());

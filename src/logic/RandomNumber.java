@@ -19,8 +19,8 @@ public class RandomNumber{
 	public static RandomNumber getInstance() {
 		if (random == null) {
 			table = new Table(3);
+			random = new RandomNumber();
 		}
-		random = new RandomNumber();
 		return random;
 	}
 	
@@ -39,7 +39,6 @@ public class RandomNumber{
 			table.getList().add(new GridManager(grid));// create 9 grids.
 			createRandomSet(createNumberSet(size), grid, size); // create grid 0 1 2 3 4 5 6 7 8
 		}
-		print(table.getSize());
 		return table.getList();
 	}
 	

@@ -1,5 +1,6 @@
 package application;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -12,48 +13,62 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
+import logic.RandomNumber;
+import logic.Table;
 import strategy.Mode;
 
 public class ScoreManager {
 
-	private String name;
-	private String time;
-	private String symbol;
+	private static ScoreManager score = null;
+
+	private static String symbol;
+
 	private List<Score> listScore;
-	
-	public ScoreManager() {
-		
+
+	private ScoreManager() {
+		listScore = new ArrayList<Score>();
 	}
 
-	public ScoreManager(String name, String time) {
-		this.name = name;
-		this.time = time;
+	public static ScoreManager getInstance() {
+		if(score == null) {
+			symbol = "+";
+			score = new ScoreManager();
+		}
+		return score;
 	}
-	
+
+	public static void setSymbol(String symbol) {
+		ScoreManager.symbol = symbol;
+		score = new ScoreManager();
+	}
+
+	public String getsymbol() {
+		return symbol;
+	}
+
 	public void sortTime(List<Score> list) {
-		Collections.sort(list,new Comparator<Score>() {
+		Collections.sort(list, new Comparator<Score>() {
 			@Override
 			public int compare(Score time1, Score time2) {
 				return time1.getTime().compareTo(time2.getTime());
 			}
-			
+
 		});
 	}
 
 	@SuppressWarnings("resource")
-	public List<Score> readScore() {
-		String filename = "score/score.md";
+	public List<Score> readScore() throws FileNotFoundException {
+		String path = System.getProperty("user.dir");
+		String filename = path+"score.md";
 		ClassLoader loader = ScoreManager.class.getClassLoader();
-		InputStream in = null;
+		InputStream in = new FileInputStream(filename);
 		Scanner readText;
-		in = loader.getResourceAsStream(filename);
 		readText = new Scanner(in);
-		Score save ;
-		listScore = new ArrayList<Score>();
+		Score save;
 		while (readText.hasNextLine()) {
 			String score = readText.nextLine();
 			if (symbol.equals("+")) {
-				if (score.startsWith("@") || score.startsWith("&") || score.startsWith("*")) {
+				if (score.startsWith("@") || score.startsWith("&") || score.startsWith("*") || score.startsWith("?")) {
 					continue;
 				}
 				String name = score.split(",")[0].trim();
@@ -61,7 +76,7 @@ public class ScoreManager {
 				save = new Score(name, time);
 				listScore.add(save);
 			} else if (symbol.equals("@")) {
-				if (score.startsWith("+") || score.startsWith("&") || score.startsWith("*")) {
+				if (score.startsWith("+") || score.startsWith("&") || score.startsWith("*") || score.startsWith("?")) {
 					continue;
 				}
 				String name = score.split(",")[0].trim();
@@ -69,22 +84,33 @@ public class ScoreManager {
 				save = new Score(name, time);
 				listScore.add(save);
 			} else if (symbol.equals("&")) {
-				if (score.startsWith("+") || score.startsWith("@") || score.startsWith("*")) {
+				if (score.startsWith("+") || score.startsWith("@") || score.startsWith("*") || score.startsWith("?")) {
 					continue;
 				}
 				String name = score.split(",")[0].trim();
 				String time = score.split(",")[1].trim();
 				save = new Score(name, time);
 				listScore.add(save);
-			} else {
-				if (score.startsWith("+") || score.startsWith("@") || score.startsWith("&")) {
+			} else if (symbol.equals("*")) {
+				if (score.startsWith("+") || score.startsWith("@") || score.startsWith("&") || score.startsWith("?")) {
 					continue;
+
+				}
+				String name = score.split(",")[0].trim();
+				String time = score.split(",")[1].trim();
+				save = new Score(name, time);
+				listScore.add(save);
+			} else if (symbol.equals("?")) {
+				if (score.startsWith("+") || score.startsWith("@") || score.startsWith("&") || score.startsWith("*")) {
+					continue;
+
 				}
 				String name = score.split(",")[0].trim();
 				String time = score.split(",")[1].trim();
 				save = new Score(name, time);
 				listScore.add(save);
 			}
+
 		}
 		if (in != null)
 			try {
@@ -94,9 +120,9 @@ public class ScoreManager {
 		return listScore;
 	}
 
-	public void recordScore() {
-		// if jar file(score.txt)
-		String outputfile = "src/score/score.md";
+	public void recordScore(String name,String time) {
+		String path = System.getProperty("user.dir");
+		String outputfile = path+"score.md";
 		OutputStream out = null;
 		try {
 			out = new FileOutputStream(outputfile, true);
@@ -108,33 +134,30 @@ public class ScoreManager {
 		if (Mode.getInstance().getSize() == 3) {
 			if (Mode.getInstance().getClass().getName().equals("strategy.EasyStrategy")) {
 				printOut.printf("+%s , %s\n", name, time);
-				this.symbol = "#";
+				symbol = "+";
 			}
 
-			if (Mode.getInstance().getClass().getName().equals("strategy.HardStrategy")) {
+			else if (Mode.getInstance().getClass().getName().equals("strategy.HardStrategy")) {
 				printOut.printf("@%s , %s\n", name, time);
-				this.symbol = "@";
+				symbol = "@";
+			}
+
+			else if (Mode.getInstance().getClass().getName().equals("strategy.GreaterThanStrategy")) {
+				printOut.printf("?%s , %s\n", name, time);
+				symbol = "?";
 			}
 		}
-		if (Mode.getInstance().getSize() == 4) {
+		else if (Mode.getInstance().getSize() == 4) {
 			if (Mode.getInstance().getClass().getName().equals("strategy.EasyStrategy")) {
 				printOut.printf("&%s , %s\n", name, time);
-				this.symbol = "&";
+				symbol = "&";
 			}
-			if (Mode.getInstance().getClass().getName().equals("strategy.HardStrategy")) {
+			else if (Mode.getInstance().getClass().getName().equals("strategy.HardStrategy")) {
 				printOut.printf("*%s , %s\n", name, time);
-				this.symbol = "*";
+				symbol = "*";
 			}
 		}
 		printOut.close();
 
-	}
-
-	public String getsymbol() {
-		return symbol;
-	}
-	
-	public void setSymbol(String symbol) {
-		this.symbol = symbol;
 	}
 }

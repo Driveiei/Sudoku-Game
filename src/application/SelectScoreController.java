@@ -37,7 +37,7 @@ public class SelectScoreController {
 	private ScoreManager manage;
 	
 	public void initialize() {
-		manage = new ScoreManager();
+		
 	}
 	public void handleScoreThree(ActionEvent ac) {
 		buttonThree.setVisible(false);
@@ -46,12 +46,10 @@ public class SelectScoreController {
 	}
 	
 	public void handleScoreThreeEasy(ActionEvent ac) {
-		manage.setSymbol("+");
+		ScoreManager.setSymbol("+");
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Scoreboard.fxml"));
 			Parent pane = loader.load();
-			ScoreboardController score = new ScoreboardController();
-			score.setManager(manage);
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
 			stage.setScene(scene);
@@ -63,12 +61,10 @@ public class SelectScoreController {
 	}
 	
 	public void handleScoreThreeHard(ActionEvent ac) {
-		manage.setSymbol("@");
+		ScoreManager.setSymbol("@");
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Scoreboard.fxml"));
 			Parent pane = loader.load();
-			ScoreboardController score = new ScoreboardController();
-			score.setManager(manage);
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
 			stage.setScene(scene);
@@ -86,12 +82,10 @@ public class SelectScoreController {
 	}
 	
 	public void handleScoreFourEasy(ActionEvent ac) {
-		manage.setSymbol("+");
+		ScoreManager.setSymbol("&");
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Scoreboard.fxml"));
 			Parent pane = loader.load();
-			ScoreboardController score = new ScoreboardController();
-			score.setManager(manage);
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
 			stage.setScene(scene);
@@ -103,12 +97,10 @@ public class SelectScoreController {
 	}
 	
 	public void handleScoreFourHard(ActionEvent ac) {
-		manage.setSymbol("@");
+		ScoreManager.setSymbol("*");
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Scoreboard.fxml"));
 			Parent pane = loader.load();
-			ScoreboardController score = new ScoreboardController();
-			score.setManager(manage);
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
 			stage.setScene(scene);
@@ -120,11 +112,10 @@ public class SelectScoreController {
 	}
 
 	public void handleScoreGreaterThan(ActionEvent ac) {
+		ScoreManager.setSymbol("?");
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Scoreboard.fxml"));
 			Parent pane = loader.load();
-			ScoreboardController score = new ScoreboardController();
-			score.setManager(manage);
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
 			stage.setScene(scene);

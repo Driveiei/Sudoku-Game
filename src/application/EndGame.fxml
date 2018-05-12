@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -9,9 +10,27 @@
    <children>
       <Pane prefHeight="800.0" prefWidth="1200.0">
          <children>
-            <Button layoutX="550.0" layoutY="235.0" mnemonicParsing="false" onAction="#handlePlayAgain" prefHeight="100.0" prefWidth="100.0" text="Play Again" />
-            <Button layoutX="550.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleMainMenu" prefHeight="100.0" prefWidth="100.0" text="Main Menu" />
-            <Button layoutX="550.0" layoutY="569.0" mnemonicParsing="false" onAction="#handleScoreboard" prefHeight="100.0" prefWidth="100.0" text="Scoreboard" />
+            <ImageView fitHeight="1200.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../source/MainBG2-VER1.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="playAgain" fitHeight="150.0" fitWidth="200.0" layoutX="500.0" layoutY="259.0" onMouseClicked="#handlePlayAgain" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../source/PlayAgain-Button.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="mainMenu" fitHeight="150.0" fitWidth="200.0" layoutX="500.0" layoutY="409.0" onMouseClicked="#handleMainMenu" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../source/MainMenu-Button.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="scoreboard" fitHeight="150.0" fitWidth="200.0" layoutX="500.0" layoutY="559.0" onMouseClicked="#handleScoreboard" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../source/ScoreBoard-Button.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="586.0" layoutY="109.0" text="Label" />
          </children></Pane>
    </children>
 </AnchorPane>
