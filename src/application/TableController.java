@@ -25,9 +25,11 @@ public class TableController {
 	}
 	
 	public void handleThree(MouseEvent event) {
-		RandomNumber.setRandomNumber(3);
 		try {
-			Parent pane = FXMLLoader.load(getClass().getResource("StageMenu.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("StageMenu.fxml"));
+			Parent pane = loader.load();
+			StageController setTable = loader.getController();
+			setTable.setRandomNumber(3);
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(scene);
@@ -40,9 +42,11 @@ public class TableController {
 	}
 	
 	public void handleFour(MouseEvent event) {
-		RandomNumber.setRandomNumber(4);
 		try {
-			Parent pane = FXMLLoader.load(getClass().getResource("StageMenu.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("StageMenu.fxml"));
+			Parent pane = loader.load();
+			StageController setTable = loader.getController();
+			setTable.setRandomNumber(4);
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(scene);

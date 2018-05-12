@@ -18,6 +18,7 @@ public class NameContoller {
 	TextField text;
 	@FXML
 	ImageView back;
+	private static String name;
 	@FXML
 	public void initialize() {
 		back.setOnMouseEntered(in -> {
@@ -29,7 +30,10 @@ public class NameContoller {
 			});
 		});
 	}
+	
+	
 	public void handleNext(ActionEvent ac) {
+		this.name = text.getText();
 		try {
 			Parent pane = FXMLLoader.load(getClass().getResource("ModeMenu.fxml"));	
 			Scene scene = new Scene(pane);
@@ -54,6 +58,10 @@ public class NameContoller {
 			}catch(IOException e) {
 				System.err.println(e.getMessage());
 			}
+	}
+	
+	public static String getName() {
+		return name;
 	}
 	
 }

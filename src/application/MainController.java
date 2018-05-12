@@ -54,7 +54,7 @@ public class MainController {
 
 	public void handleScoreboard(MouseEvent ac) {
 		try {
-			Parent pane = FXMLLoader.load(getClass().getResource("Scoreboard.fxml"));
+			Parent pane = FXMLLoader.load(getClass().getResource("SelectScoreboard.fxml"));
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
 			stage.setScene(scene);

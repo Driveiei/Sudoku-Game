@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SelectScoreController">
+   <children>
+      <Pane prefHeight="800.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="buttonThree" layoutX="518.0" layoutY="276.0" mnemonicParsing="false" onAction="#handleScoreThree" prefHeight="78.0" prefWidth="164.0" text="Sudoku-3X3-Score" />
+            <Button fx:id="buttonFour" layoutX="518.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleScoreFour" prefHeight="78.0" prefWidth="164.0" text="Sudoku-4X4-Score" />
+            <Button fx:id="buttonGreater" layoutX="518.0" layoutY="533.0" mnemonicParsing="false" onAction="#handleScoreGreaterThan" prefHeight="78.0" prefWidth="164.0" text="GreaterThanSudoku-Score" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="703.0" onMouseClicked="#handleBack" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../source/Starter-Button-Back.jpg" />
+               </image>
+            </ImageView>
+            <Button fx:id="button3Easy" layoutX="354.0" layoutY="276.0" mnemonicParsing="false" onAction="#handleScoreThreeEasy" prefHeight="78.0" prefWidth="164.0" text="Easy" visible="false" />
+            <Button fx:id="button3Hard" layoutX="682.0" layoutY="276.0" mnemonicParsing="false" onAction="#handleScoreThreeHard" prefHeight="78.0" prefWidth="164.0" text="Hard" visible="false" />
+            <Button fx:id="button4Easy" layoutX="354.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleScoreFourEasy" prefHeight="78.0" prefWidth="164.0" text="Easy" visible="false" />
+            <Button fx:id="button4Hard" layoutX="682.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleScoreFourHard" prefHeight="78.0" prefWidth="164.0" text="Hard" visible="false" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

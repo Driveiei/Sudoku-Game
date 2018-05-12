@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import logic.BoxManager;
 import logic.GridManager;
 import logic.RandomNumber;
+import strategy.EasyStrategy;
 import strategy.Mode;
 
 public class GridController {
@@ -119,8 +120,12 @@ public class GridController {
 				break;
 		}
 		if (check) {
+			
 			try {
-				Parent pane = FXMLLoader.load(getClass().getResource("EndGame.fxml"));
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("EndGame.fxml"));
+				Parent pane = loader.load();
+				EndGameController setTime = loader.getController();
+				setTime.setScore(NameContoller.getName(),timer.getText());
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 				stage.setScene(scene);
@@ -138,6 +143,11 @@ public class GridController {
 		timer.textProperty().bind(worker.messageProperty());
 		new Thread(worker).start();
 
+	}
+
+	public void setMode(Mode strategy) {
+		Mode.setMode(strategy);
+		
 	}
 
 }

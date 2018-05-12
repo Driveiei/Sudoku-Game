@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import logic.RandomNumber;
 import strategy.EasyStrategy;
 import strategy.HardStrategy;
 import strategy.Mode;
@@ -17,20 +18,22 @@ public class StageController {
 
 	@FXML
 	ImageView easy;
-	
+
 	@FXML
 	ImageView hard;
-	
+
 	@FXML
 	public void initialize() {
 		effectImage(easy);
 		effectImage(hard);
 	}
-	
+
 	public void handleEasy(MouseEvent event) {
-		Mode.setMode(new EasyStrategy());
 		try {
-			Parent pane = FXMLLoader.load(getClass().getResource("GridUI.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("GridUI.fxml"));
+			Parent pane = loader.load();
+			GridController setEasy = loader.getController();
+			setEasy.setMode(new EasyStrategy());
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(scene);
@@ -40,16 +43,14 @@ public class StageController {
 			System.err.println(e.getMessage());
 		}
 	}
-	
+
 	public void handleHard(MouseEvent event) {
-		Mode.setMode(new HardStrategy());
 		try {
-			Parent pane = FXMLLoader.load(getClass().getResource("GridUI.fxml"));
-			//link controller part
-//			FXMLLoader loader = new FXMLLoader(getClass().getResource("GridUI.fxml"));
-//		    loader.load();
-//		    GridController grid = loader.getController();
-//		    grid.setMode(new EasyStrategy());
+			// link controller part
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("GridUI.fxml"));
+			Parent pane = loader.load();
+			GridController setHard = loader.getController();
+			setHard.setMode(new HardStrategy());
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(scene);
@@ -59,15 +60,20 @@ public class StageController {
 			System.err.println(e.getMessage());
 		}
 	}
-	
+
 	public void effectImage(ImageView image) {
-		image.setOnMouseEntered(in ->{
+		image.setOnMouseEntered(in -> {
 			image.setFitWidth(225);
 			image.setFitHeight(175);
-			image.setOnMouseExited(out ->{
+			image.setOnMouseExited(out -> {
 				image.setFitWidth(200);
 				image.setFitHeight(150);
 			});
 		});
+	}
+
+	public void setRandomNumber(int table) {
+		RandomNumber.setRandomNumber(table);
+
 	}
 }

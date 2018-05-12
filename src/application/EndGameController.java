@@ -21,11 +21,9 @@ public class EndGameController {
 	Button mainMenu;
 	@FXML
 	Button scoreboard;
-
-	@FXML
-	public void initialize() {
-
-	}
+	private ScoreManager manage;
+	
+	
 
 	public void handlePlayAgain(ActionEvent ac) {
 		try {
@@ -57,8 +55,12 @@ public class EndGameController {
 	}
 
 	public void handleScoreboard(ActionEvent ac) {
+		
 		try {
-			Parent pane = FXMLLoader.load(getClass().getResource("Scoreboard.fxml"));
+			FXMLLoader loader =new FXMLLoader(getClass().getResource("Scoreboard.fxml"));
+			Parent pane = loader.load();
+			ScoreboardController score = loader.getController();
+			score.setManager(manage);
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
 			stage.setScene(scene);
@@ -67,5 +69,12 @@ public class EndGameController {
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
 		}
+	}
+
+	public void setScore(String name,String time) {
+		manage = new ScoreManager(name,time) ;
+		manage.recordScore();
+		
+		
 	}
 }
