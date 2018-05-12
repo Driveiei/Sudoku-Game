@@ -1,8 +1,10 @@
-package application;
+package test;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import application.SupportGrid;
 
 public class SupportGridTest {
 

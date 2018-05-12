@@ -1,4 +1,4 @@
-package logic;
+package test;
 
 import static org.junit.Assert.*;
 
@@ -7,6 +7,11 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import logic.BoxManager;
+import logic.GridManager;
+import logic.RandomNumber;
+import logic.Table;
 
 public class TableTest {
 
