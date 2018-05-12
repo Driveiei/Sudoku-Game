@@ -29,14 +29,16 @@ public class Grid {
 	private List<Button> buttonList;
 
 	private Mode mode;
+	private GreaterThanLabel great;
+	private Pane greaterPane;
 
 	private int BASE;
 	private int size;
 	private int realSize;
 
-	public Grid(BorderPane borderPane, Mode mode) {
+	public Grid(BorderPane borderPane) {
 		this.borderPane = borderPane;
-		this.mode = mode;
+		mode = Mode.getInstance();
 		this.BASE = mode.getBase();
 
 		size = mode.getSize();
@@ -62,6 +64,10 @@ public class Grid {
 		addNumberToLabel();
 		addLabelToPane();
 		addPaneToSubGrid();
+		
+		greaterPane = new Pane();
+		great = new GreaterThanLabel(greaterPane);
+		supportPane.getChildren().add(greaterPane);
 	}
 
 	public void seperateMainGrid() {

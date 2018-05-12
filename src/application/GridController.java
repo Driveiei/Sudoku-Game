@@ -50,9 +50,9 @@ public class GridController {
 		size = mode.getSize();
 		realSize = size * size;
 
-		support = new SupportGrid(size, mode);
+		support = new SupportGrid(size);
 
-		griddy = new Grid(borderPane, mode);
+		griddy = new Grid(borderPane);
 		RandomNumber.print(size);
 	}
 

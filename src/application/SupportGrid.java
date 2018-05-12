@@ -15,11 +15,11 @@ public class SupportGrid {
 	private int size;
 	private int realSize;
 	
-	public SupportGrid(int size,Mode mode) {
+	public SupportGrid(int size) {
 		rand = new Random();
 		this.size = size;
 		realSize = size*size;
-		this.mode = mode;
+		mode = Mode.getInstance();
 	}
 	
 	public int randomCursor(int size) {
