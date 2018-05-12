@@ -6,10 +6,21 @@ import org.junit.Test;
 
 import application.SupportGrid;
 
+/**
+ * JUnit 4 tests for SupportGrid using only SupportGrid's method test in anyway.
+ * 
+ * @author Kornphon Noiprasert
+ * @author Vichakorn Yotboonrueang
+ */
 public class SupportGridTest {
 
+	/** Declare for calling in to this test. */
 	private SupportGrid support = new SupportGrid(3);
 
+	/**
+	 * To test adaptGrid can change scale from array to list scale to use in grid
+	 * identify or not
+	 */
 	@Test
 	public void testAdaptGrid() {
 		assertEquals(7, support.adaptGrid(5, 6));
@@ -19,6 +30,10 @@ public class SupportGridTest {
 		assertEquals(4, support.adaptGrid(4, 5));
 	}
 
+	/**
+	 * To test adaptBox can change scale from array to list scale to use in box
+	 * identify or not
+	 */
 	@Test
 	public void testAdaptBox() {
 		assertEquals(2, support.adaptBox(5, 6));
@@ -28,24 +43,35 @@ public class SupportGridTest {
 		assertEquals(7, support.adaptBox(7, 5));
 	}
 
+	/**
+	 * To test scaleToArrayColumn can change scale from list to array scale to use
+	 * in column identify or not
+	 */
 	@Test
-	public void testScaleToArray() {
-		assertEquals(7, support.adaptGrid(4, 8));
-		assertEquals(4, support.adaptGrid(5, 3));
-		assertEquals(6, support.adaptGrid(0, 7));
-		assertEquals(6, support.adaptGrid(2, 6));
-		assertEquals(1, support.adaptGrid(3, 1));
+	public void testScaleToArrayColumn() {
+		assertEquals(5, support.scaleToArrayColumn(4, 8));
+		assertEquals(6, support.scaleToArrayColumn(5, 3));
+		assertEquals(1, support.scaleToArrayColumn(0, 7));
+		assertEquals(6, support.scaleToArrayColumn(2, 6));
+		assertEquals(1, support.scaleToArrayColumn(3, 1));
 	}
 
+	/**
+	 * To test scaleToArrayRow can change scale from list to array scale to use in
+	 * row identify or not
+	 */
 	@Test
 	public void testScaleToRow() {
-		assertEquals(8, support.adaptGrid(7, 6));
-		assertEquals(4, support.adaptGrid(5, 4));
-		assertEquals(7, support.adaptGrid(3, 8));
-		assertEquals(3, support.adaptGrid(2, 3));
-		assertEquals(2, support.adaptGrid(8, 0));
+		assertEquals(8, support.scaleToArrayRow(7, 6));
+		assertEquals(4, support.scaleToArrayRow(5, 4));
+		assertEquals(5, support.scaleToArrayRow(3, 8));
+		assertEquals(1, support.scaleToArrayRow(2, 3));
+		assertEquals(6, support.scaleToArrayRow(8, 0));
 	}
-	
+
+	/**
+	 * Test randomCursor can random a number from one to target number or not
+	 */
 	@Test
 	public void testRandomCursor() {
 		int randomOne = support.randomCursor(6);

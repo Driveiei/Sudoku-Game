@@ -13,26 +13,42 @@ import logic.GridManager;
 import logic.RandomNumber;
 import logic.Table;
 
+/**
+ * JUnit 4 tests for RandomNumber using only RandomNumber's method and table's
+ * method to test in anyway.
+ * 
+ * @author Kornphon Noiprasert
+ * @author Vichakorn Yotboonrueang
+ */
 public class RandomNumberTest {
 
+	/** Declare RandomNumber class to generate a puzzle. */
 	private RandomNumber random;
+	/** Declare Table class to get size of board. */
 	private Table table;
 
+	/**
+	 * Initialize a puzzle to makes test easier.
+	 */
 	@Before
 	public void setUp() throws Exception {
 		RandomNumber.setRandomNumber(3);
 		random = RandomNumber.getInstance();
 		table = random.getTable();
 		for (int grid = 0; grid < 9; grid++) {
-			table.getList().add(new GridManager(grid));
+			table.getList().add(new GridManager());
 		}
 		for (int grid = 0; grid < 9; grid++) {
 			for (int box = 0; box < 9; box++) {
-				table.getList().get(grid).getList().add(new BoxManager(box, false, false, 50));
+				table.getList().get(grid).getList().add(new BoxManager(box, false, 50));
 			}
 		}
 	}
 
+	/**
+	 * Test createRandomNumber method can create set of number that starts from one
+	 * to any number or not.
+	 */
 	@Test
 	public void testCreateRandomNumber() {
 		List<Integer> test = new ArrayList<Integer>();
@@ -54,6 +70,9 @@ public class RandomNumberTest {
 		assertFalse(test.contains(11));
 	}
 
+	/**
+	 * Test randomNumber method can random number in any list or not.
+	 */
 	@Test
 	public void testRandomNumber() {
 		List<Integer> setOfNumber = new ArrayList<Integer>();
@@ -68,6 +87,10 @@ public class RandomNumberTest {
 		assertTrue(setOfNumber.contains(random.randomNumber(setOfNumber)));
 	}
 
+	/**
+	 * Test identifyColumn method can identify any number of each box and return
+	 * number of column or not.
+	 */
 	@Test
 	public void testIdentifyColumn() {
 		int threeSize = 3;
@@ -80,6 +103,10 @@ public class RandomNumberTest {
 		assertEquals(8, random.identifyColumn(fourSize, 6, 12));
 	}
 
+	/**
+	 * Test identifyRow method can identify any number of each box and return number
+	 * of row or not.
+	 */
 	@Test
 	public void testIdentifyRow() {
 		int threeSize = 3;
@@ -92,15 +119,20 @@ public class RandomNumberTest {
 		assertEquals(12, random.identifyRow(fourSize, 13, 1));
 	}
 
+	/**
+	 * Test mergeDuplicateList method can merge two lists(on the top and left of
+	 * this numberGrid) which contain duplicate number in the list to wipe it out or
+	 * not.
+	 */
 	@Test
 	public void testMergeDuplicateList() {
 		List<Integer> duplicateList = new ArrayList<Integer>();
-		//has no list.
+		// has no list.
 		duplicateList.addAll(random.mergeDuplicateList(0, 1, 1));
 		assertEquals(0, duplicateList.size());
 		duplicateList.clear();
 
-		//has upper List without left list.
+		// has upper List without left list.
 		duplicateList.addAll(random.mergeDuplicateList(3, 1, 3));
 		assertEquals(3, duplicateList.size());
 		assertTrue(duplicateList.contains(1));
@@ -108,15 +140,15 @@ public class RandomNumberTest {
 		assertTrue(duplicateList.contains(7));
 		duplicateList.clear();
 
-		//has left List without upper list.
+		// has left List without upper list.
 		duplicateList.addAll(random.mergeDuplicateList(2, 8, 0));
 		assertEquals(3, duplicateList.size());// 0, 1, and 2 are duplicate.
 		assertTrue(duplicateList.contains(0));
 		assertTrue(duplicateList.contains(1));
 		assertTrue(duplicateList.contains(2));
 		duplicateList.clear();
-		
-		//have upper and left list.
+
+		// have upper and left list.
 		duplicateList.addAll(random.mergeDuplicateList(5, 6, 5));
 		assertEquals(5, duplicateList.size());
 		assertTrue(duplicateList.contains(0));
@@ -129,6 +161,10 @@ public class RandomNumberTest {
 
 	}
 
+	/**
+	 * Test undoCreateGrid method can undo the process of generating a set of
+	 * number(1-9 or 1-16) to makes new order of number or not.
+	 */
 	@Test
 	public void testUndoCreateGrid() {
 		int realSize = 3;
@@ -148,7 +184,11 @@ public class RandomNumberTest {
 		assertTrue(table.getList().get(5).getList().get(3) == notChangeBox);
 		assertTrue(table.getList().get(2).getList().get(3) == notChangeBoxAgain);
 	}
-	
+
+	/**
+	 * Test createRandomSet method can generate random set of number(1-9 or 1-16)
+	 * for each grid or not.
+	 */
 	@Test
 	public void testCreateRandomSet() {
 		BoxManager firstBox = table.getList().get(7).getList().get(4);
@@ -156,8 +196,8 @@ public class RandomNumberTest {
 		BoxManager thirdBox = table.getList().get(8).getList().get(8);
 		table.getList().remove(8);
 		table.getList().remove(7);
-		table.getList().add(new GridManager(7));
-		table.getList().add(new GridManager(8));
+		table.getList().add(new GridManager());
+		table.getList().add(new GridManager());
 		random.createRandomSet(new ArrayList<Integer>(), 7, 9);
 		random.createRandomSet(new ArrayList<Integer>(), 8, 9);
 		GridManager seventhGrid = table.getList().get(7);
@@ -165,11 +205,11 @@ public class RandomNumberTest {
 		BoxManager oneBox = seventhGrid.getList().get(4);
 		BoxManager twoBox = seventhGrid.getList().get(8);
 		BoxManager threeBox = eighthGrid.getList().get(8);
-		assertEquals(9,seventhGrid.getList().size());
-		assertEquals(9,eighthGrid.getList().size());
-		assertNotEquals(firstBox,oneBox);
-		assertNotEquals(secondBox,twoBox);
-		assertNotEquals(thirdBox,threeBox);
+		assertEquals(9, seventhGrid.getList().size());
+		assertEquals(9, eighthGrid.getList().size());
+		assertNotEquals(firstBox, oneBox);
+		assertNotEquals(secondBox, twoBox);
+		assertNotEquals(thirdBox, threeBox);
 
 	}
 }
