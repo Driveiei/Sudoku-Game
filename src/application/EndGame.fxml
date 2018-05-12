@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -30,7 +32,18 @@
                   <Image url="@../source/ScoreBoard-Button.jpg" />
                </image>
             </ImageView>
-            <Label layoutX="586.0" layoutY="109.0" text="Label" />
+            <Label fx:id="yourTime" alignment="CENTER" layoutX="247.0" layoutY="47.0" style="-fx-background-color: #696969; -fx-border-color: white; -fx-border-width: 5;" text="Time  XX : XX : XX" textAlignment="CENTER" underline="true">
+               <font>
+                  <Font name="ZF #2ndPixelus" size="120.0" />
+               </font>
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="WHITE" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </textFill></Label>
          </children></Pane>
    </children>
 </AnchorPane>

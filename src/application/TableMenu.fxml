@@ -16,7 +16,7 @@
                   <Image url="@../source/MainBG-VER3.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="500.0" layoutX="350.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="500.0" layoutX="350.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../source/Select%20Table.png" />
                </image>

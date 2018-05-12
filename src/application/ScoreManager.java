@@ -60,7 +60,6 @@ public class ScoreManager {
 	public List<Score> readScore() throws FileNotFoundException {
 		String path = System.getProperty("user.dir");
 		String filename = path+"score.md";
-		ClassLoader loader = ScoreManager.class.getClassLoader();
 		InputStream in = new FileInputStream(filename);
 		Scanner readText;
 		readText = new Scanner(in);

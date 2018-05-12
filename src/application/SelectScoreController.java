@@ -9,43 +9,51 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class SelectScoreController {
 
 	@FXML
-	Button buttonThree;
+	ImageView buttonThree;
 	@FXML
-	Button button3Easy;
+	ImageView button3Easy;
 	@FXML
-	Button button3Hard;
-	
-	
-	@FXML
-	Button buttonFour;
-	@FXML
-	Button button4Easy;
-	@FXML
-	Button button4Hard;
-	
+	ImageView button3Hard;
 	
 	@FXML
-	Button buttonGreater;
+	ImageView buttonFour;
+	@FXML
+	ImageView button4Easy;
+	@FXML
+	ImageView button4Hard;
+	
+	@FXML
+	ImageView buttonGreater;
+	@FXML 
+	ImageView back;
 	
 	
 	private ScoreManager manage;
 	
 	public void initialize() {
-		
+		effectImage(buttonThree);
+		effectImage(button3Easy);
+		effectImage(button3Hard);
+		effectImage(buttonFour);
+		effectImage(button4Easy);
+		effectImage(button4Hard);
+		effectImage(buttonGreater);
+		effectImage(back);
 	}
-	public void handleScoreThree(ActionEvent ac) {
+	public void handleScoreThree(MouseEvent ac) {
 		buttonThree.setVisible(false);
 		button3Easy.setVisible(true);
 		button3Hard.setVisible(true);
 	}
 	
-	public void handleScoreThreeEasy(ActionEvent ac) {
+	public void handleScoreThreeEasy(MouseEvent ac) {
 		ScoreManager.setSymbol("+");
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Scoreboard.fxml"));
@@ -60,7 +68,7 @@ public class SelectScoreController {
 		}
 	}
 	
-	public void handleScoreThreeHard(ActionEvent ac) {
+	public void handleScoreThreeHard(MouseEvent ac) {
 		ScoreManager.setSymbol("@");
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Scoreboard.fxml"));
@@ -75,13 +83,13 @@ public class SelectScoreController {
 		}
 	}
 
-	public void handleScoreFour(ActionEvent ac) {
+	public void handleScoreFour(MouseEvent ac) {
 		buttonFour.setVisible(false);
 		button4Easy.setVisible(true);
 		button4Hard.setVisible(true);
 	}
 	
-	public void handleScoreFourEasy(ActionEvent ac) {
+	public void handleScoreFourEasy(MouseEvent ac) {
 		ScoreManager.setSymbol("&");
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Scoreboard.fxml"));
@@ -96,7 +104,7 @@ public class SelectScoreController {
 		}
 	}
 	
-	public void handleScoreFourHard(ActionEvent ac) {
+	public void handleScoreFourHard(MouseEvent ac) {
 		ScoreManager.setSymbol("*");
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Scoreboard.fxml"));
@@ -111,7 +119,7 @@ public class SelectScoreController {
 		}
 	}
 
-	public void handleScoreGreaterThan(ActionEvent ac) {
+	public void handleScoreGreaterThan(MouseEvent ac) {
 		ScoreManager.setSymbol("?");
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Scoreboard.fxml"));
@@ -137,5 +145,16 @@ public class SelectScoreController {
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
 		}
+	}
+	
+	public void effectImage(ImageView image) {
+		image.setOnMouseEntered(in ->{
+			image.setFitWidth(225);
+			image.setFitHeight(175);
+			image.setOnMouseExited(out ->{
+				image.setFitWidth(200);
+				image.setFitHeight(150);
+			});
+		});
 	}
 }

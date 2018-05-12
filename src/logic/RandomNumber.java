@@ -39,25 +39,7 @@ public class RandomNumber{
 			table.getList().add(new GridManager(grid));
 			createRandomSet(createNumberSet(size), grid, size); 
 		}
-		print(table.getSize());
 		return table.getList();
-	}
-	
-	public static void print(int number) {
-		for(int i = 0; i< number; i++) {
-			for(int j = 0; j < number; j++) {
-				for(int k =0; k<number; k++) {
-					for(int l = 0; l< number;l++) {
-						System.out.printf("%2s",table.getList().get(number*i+k).getList().get(number*j+l).getNumber());
-						System.out.print(" ");
-					}
-					System.out.print("| ");
-				}
-				System.out.println();
-			}
-			if(number == 4) System.out.print("----------------------------------");
-			System.out.println("---------------------");
-		}
 	}
 
 	public List<Integer> mergeDuplicateList(int numberGrid,int column,int row){

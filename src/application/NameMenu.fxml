@@ -18,7 +18,7 @@
          <children>
             <AnchorPane prefHeight="800.0" prefWidth="1200.0">
                <children>
-                  <TextField fx:id="text" alignment="CENTER" layoutX="457.0" layoutY="417.0" onAction="#handlEnter" prefHeight="38.0" prefWidth="310.0">
+                  <TextField fx:id="text" alignment="CENTER" layoutX="445.0" layoutY="416.0" onAction="#handleEnter" prefHeight="38.0" prefWidth="310.0">
                      <font>
                         <Font name="Segoe UI Light Italic" size="28.0" />
                      </font>
@@ -28,7 +28,7 @@
                         <Image url="@../source/Starter-Button-Back.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="200.0" fitWidth="500.0" layoutX="362.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="200.0" fitWidth="500.0" layoutX="350.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../source/Your-Name.png" />
                      </image>

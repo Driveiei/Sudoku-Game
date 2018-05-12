@@ -26,6 +26,8 @@ public class GridController {
 
 	@FXML
 	Label timer;
+	
+	private static String time;
 
 	private TimeTask worker;
 
@@ -52,7 +54,6 @@ public class GridController {
 		support = new SupportGrid(size);
 
 		griddy = new Grid(borderPane);
-		RandomNumber.print(size);
 	}
 
 	public void handleClear(ActionEvent event) {
@@ -119,12 +120,10 @@ public class GridController {
 				break;
 		}
 		if (check) {
-			
+			time = timer.getText();
 			try {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("EndGame.fxml"));
 				Parent pane = loader.load();
-				EndGameController setTime = loader.getController();
-				setTime.setScore(NameContoller.getName(),timer.getText());
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 				stage.setScene(scene);
@@ -134,6 +133,10 @@ public class GridController {
 				System.err.println(e.getMessage());
 			}
 		}
+	}
+	
+	public static String getTime() {
+		return time;
 	}
 
 	public void runTime() {

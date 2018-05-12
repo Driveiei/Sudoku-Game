@@ -65,7 +65,6 @@ public class Grid {
 		addNumberToLabel();
 		addLabelToPane();
 		addPaneToSubGrid();
-		System.out.println(Mode.getInstance().getClass().getName());
 	}
 
 	public void seperateMainGrid() {

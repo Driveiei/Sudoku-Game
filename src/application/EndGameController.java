@@ -5,10 +5,12 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -23,9 +25,15 @@ public class EndGameController {
 	ImageView mainMenu;
 	@FXML
 	ImageView scoreboard;
+	@FXML
+	Label yourTime;
 	private ScoreManager manage;
 	
 	public void initialize() {
+		manage = ScoreManager.getInstance();
+		manage.recordScore(NameContoller.getName(), GridController.getTime());
+		yourTime.setText("Time "+GridController.getTime());
+
 		effectImage(playAgain);
 		effectImage(mainMenu);
 		effectImage(scoreboard);
@@ -87,8 +95,4 @@ public class EndGameController {
 		});
 	}
 
-	public void setScore(String name,String time) {
-		manage = ScoreManager.getInstance();
-		manage.recordScore(name, time);
-	}
 }

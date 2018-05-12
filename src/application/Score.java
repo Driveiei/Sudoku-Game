@@ -20,6 +20,6 @@ public class Score {
 
 	@Override
 	public String toString() {
-		return String.format("%-30s %5s", name, time);
+		return String.format("%-6s%20s", name, time);
 	}
 }
