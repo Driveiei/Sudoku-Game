@@ -29,11 +29,10 @@ public class StageController {
 	}
 
 	public void handleEasy(MouseEvent event) {
+		Mode.setMode(new EasyStrategy());
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("GridUI.fxml"));
 			Parent pane = loader.load();
-			GridController setEasy = loader.getController();
-			setEasy.setMode(new EasyStrategy());
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(scene);
@@ -45,12 +44,11 @@ public class StageController {
 	}
 
 	public void handleHard(MouseEvent event) {
+		Mode.setMode(new HardStrategy());
 		try {
 			// link controller part
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("GridUI.fxml"));
 			Parent pane = loader.load();
-			GridController setHard = loader.getController();
-			setHard.setMode(new HardStrategy());
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(scene);

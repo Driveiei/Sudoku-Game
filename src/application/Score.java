@@ -6,7 +6,7 @@ public class Score {
 	private String time;
 
 	public Score(String name, String time) {
-		this.name = name;
+		this.name = name.substring(1);
 		this.time = time;
 	}
 
@@ -20,6 +20,6 @@ public class Score {
 
 	@Override
 	public String toString() {
-		return String.format("%-30s ,%5s", name, time);
+		return String.format("%-30s %5s", name, time);
 	}
 }

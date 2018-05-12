@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class ScoreboardController {
+public class ScoreboardController  {
 	@FXML
 	Label score1;
 	@FXML
@@ -26,16 +26,11 @@ public class ScoreboardController {
 	
 	private ScoreManager reader;
 
-	public void initialize() {
-		//System.out.println(reader.getsymbol());
-//		List<Score> save = reader.readScore();
-//		score1.setText(save.get(0).toString());
-//		score2.setText(save.get(0).toString());
-//		score3.setText(save.get(0).toString());
-//		score4.setText(save.get(0).toString());
-//		score5.setText(save.get(0).toString());
-	}
 
+	public void initialize() {
+		score1.setText(String.format("%-30s %5s", "XXXX", "XX : XX : XXX"));
+	}
+	
 	public void handleMenu(MouseEvent ac) {
 		try {
 			Parent pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
@@ -52,7 +47,9 @@ public class ScoreboardController {
 	public void setManager(ScoreManager reader) {
 		this.reader = reader;
 		List<Score> save = reader.readScore();
-//		System.out.println(save);
+		reader.sortTime(save);
+		
+	
 
 	}
 }

@@ -29,7 +29,6 @@ public class Grid {
 	private List<Button> buttonList;
 
 	private Mode mode;
-	private GreaterThanLabel great;
 	private Pane greaterPane;
 
 	private int BASE;
@@ -64,10 +63,12 @@ public class Grid {
 		addNumberToLabel();
 		addLabelToPane();
 		addPaneToSubGrid();
-		
+		System.out.println(Mode.getInstance().getClass().getName());
+		if(Mode.getInstance().getClass().getName().equals("strategy.GreaterThanStrategy")) {
 		greaterPane = new Pane();
-		great = new GreaterThanLabel(greaterPane);
+		new GreaterThanLabel(greaterPane);
 		supportPane.getChildren().add(greaterPane);
+		}
 	}
 
 	public void seperateMainGrid() {

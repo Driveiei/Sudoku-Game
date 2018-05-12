@@ -7,7 +7,7 @@ import java.util.Random;
 import logic.GridManager;
 import logic.RandomNumber;
 
-public class EasyStrategy extends Mode {
+public class GreaterThanStrategy extends Mode {
 
 	private List<GridManager> list;
 	private RandomNumber random;
@@ -15,10 +15,8 @@ public class EasyStrategy extends Mode {
 	private int size;
 	private int base;
 	private int realSize;
-	private final int PERCENTAGE = 80;
-	private final int ONE_HUNDRED = 100;
 
-	public EasyStrategy() {
+	public GreaterThanStrategy() {
 //		this.table = table; // 3 or 4
 //		random = new RandomNumber(table);
 //		random.run(); // list
@@ -46,19 +44,9 @@ public class EasyStrategy extends Mode {
 
 	@Override
 	public void randomInvisible() {
-		for (int grid = 0; grid < realSize; grid++) {
-			for (int box = 0; box < realSize; box++) {
-				int percentage = rand.nextInt(ONE_HUNDRED);
-				if (percentage <= PERCENTAGE) {
-					list.get(grid).getList().get(box).setLock(true);
-					list.get(grid).getList().get(box).setCheck(true);
-				}else { 
-					list.get(grid).getList().get(box).setLock(false);
-					list.get(grid).getList().get(box).setCheck(false);
-				}
-			}
+		
 		}
-	}
+
 
 	@Override
 	public List<GridManager> getPuzzle() {

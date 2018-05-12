@@ -9,6 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import logic.RandomNumber;
+import strategy.GreaterThanStrategy;
+import strategy.Mode;
 
 public class ModeController {
 	@FXML
@@ -22,9 +25,25 @@ public class ModeController {
 		effectImage(greater);
 	}
 
-	public void handleNext(MouseEvent ac) {
+	public void handleBasic(MouseEvent ac) {
 		try {
 			Parent pane = FXMLLoader.load(getClass().getResource("TableMenu.fxml"));	
+			Scene scene = new Scene(pane);
+			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
+			stage.setScene(scene);
+			stage.setResizable(false);
+			stage.show();
+			}catch(IOException e) {
+				System.err.println(e.getMessage());
+			}
+		
+	}
+	
+	public void handleGreater(MouseEvent ac) {
+		Mode.setMode(new GreaterThanStrategy());
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("GridUI.fxml"));	
+			Parent pane = loader.load()	;
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
 			stage.setScene(scene);

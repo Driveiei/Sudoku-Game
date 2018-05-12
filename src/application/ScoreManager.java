@@ -1,14 +1,14 @@
 package application;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -29,20 +29,29 @@ public class ScoreManager {
 		this.name = name;
 		this.time = time;
 	}
+	
+	public void sortTime(List<Score> list) {
+		Collections.sort(list,new Comparator<Score>() {
+			@Override
+			public int compare(Score time1, Score time2) {
+				return time1.getTime().compareTo(time2.getTime());
+			}
+			
+		});
+	}
 
+	@SuppressWarnings("resource")
 	public List<Score> readScore() {
 		String filename = "score/score.md";
 		ClassLoader loader = ScoreManager.class.getClassLoader();
 		InputStream in = null;
 		Scanner readText;
 		in = loader.getResourceAsStream(filename);
-		InputStreamReader reader = new InputStreamReader(in);
 		readText = new Scanner(in);
 		Score save ;
 		listScore = new ArrayList<Score>();
 		while (readText.hasNextLine()) {
 			String score = readText.nextLine();
-			System.out.println(score);
 			if (symbol.equals("+")) {
 				if (score.startsWith("@") || score.startsWith("&") || score.startsWith("*")) {
 					continue;
@@ -52,15 +61,15 @@ public class ScoreManager {
 				save = new Score(name, time);
 				listScore.add(save);
 			} else if (symbol.equals("@")) {
-				if (score.startsWith("#") || score.startsWith("&") || score.startsWith("*")) {
+				if (score.startsWith("+") || score.startsWith("&") || score.startsWith("*")) {
 					continue;
 				}
 				String name = score.split(",")[0].trim();
-				String time = score.split(":")[1].trim();
+				String time = score.split(",")[1].trim();
 				save = new Score(name, time);
 				listScore.add(save);
 			} else if (symbol.equals("&")) {
-				if (score.startsWith("#") || score.startsWith("@") || score.startsWith("*")) {
+				if (score.startsWith("+") || score.startsWith("@") || score.startsWith("*")) {
 					continue;
 				}
 				String name = score.split(",")[0].trim();
@@ -68,7 +77,7 @@ public class ScoreManager {
 				save = new Score(name, time);
 				listScore.add(save);
 			} else {
-				if (score.startsWith("#") || score.startsWith("@") || score.startsWith("&")) {
+				if (score.startsWith("+") || score.startsWith("@") || score.startsWith("&")) {
 					continue;
 				}
 				String name = score.split(",")[0].trim();
@@ -117,7 +126,6 @@ public class ScoreManager {
 				this.symbol = "*";
 			}
 		}
-
 		printOut.close();
 
 	}

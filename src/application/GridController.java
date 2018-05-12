@@ -144,10 +144,4 @@ public class GridController {
 		new Thread(worker).start();
 
 	}
-
-	public void setMode(Mode strategy) {
-		Mode.setMode(strategy);
-		
-	}
-
 }

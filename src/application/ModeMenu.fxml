@@ -21,12 +21,12 @@
                   <Image url="@../source/SelectMode.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="sudoku" fitHeight="200.0" fitWidth="300.0" layoutX="250.0" layoutY="400.0" onMouseClicked="#handleNext" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="sudoku" fitHeight="200.0" fitWidth="300.0" layoutX="250.0" layoutY="400.0" onMouseClicked="#handleBasic" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../source/3X3.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="greater" fitHeight="200.0" fitWidth="300.0" layoutX="750.0" layoutY="400.0" onMouseClicked="#handleNext" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="greater" fitHeight="200.0" fitWidth="300.0" layoutX="750.0" layoutY="400.0" onMouseClicked="#handleGreater" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../source/greaterthan.png" />
                </image>

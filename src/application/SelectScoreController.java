@@ -16,19 +16,19 @@ public class SelectScoreController {
 
 	@FXML
 	Button buttonThree;
-	
 	@FXML
 	Button button3Easy;
 	@FXML
 	Button button3Hard;
 	
+	
 	@FXML
 	Button buttonFour;
-	
 	@FXML
 	Button button4Easy;
 	@FXML
 	Button button4Hard;
+	
 	
 	@FXML
 	Button buttonGreater;

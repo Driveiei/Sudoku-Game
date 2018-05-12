@@ -75,6 +75,5 @@ public class EndGameController {
 		manage = new ScoreManager(name,time) ;
 		manage.recordScore();
 		
-		
 	}
 }
