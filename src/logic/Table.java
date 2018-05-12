@@ -19,7 +19,7 @@ public class Table {
 		int rowBox = row % size;
 		List<Integer> check = new ArrayList<Integer>();
 		if (position == 0)
-			return check;// ???
+			return check;
 		for (int times = 0; times < position; times++) {
 			for (int box = 0; box <= (size - 1); box++) {
 				check.add(sudoku.get(size * rowGrid + times).getList().get(size * rowBox + box).getNumber());
@@ -34,7 +34,7 @@ public class Table {
 		int columnBox = column % size;
 		List<Integer> check = new ArrayList<Integer>();
 		if (position == 0)
-			return check;// ???
+			return check;
 		for (int times = 0; times < position; times++) {
 			for (int box = 0; box <= (size - 1); box++) {
 				check.add(sudoku.get(columnGrid + (size * times)).getList().get(size * box + columnBox).getNumber());

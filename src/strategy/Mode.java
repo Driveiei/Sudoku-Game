@@ -7,8 +7,6 @@ import logic.GridManager;
 public abstract class Mode {
 	
 	private static Mode mode = null;
-	
-//	public abstract Table createSudoku(List);
 		
 	public abstract void randomInvisible();
 	

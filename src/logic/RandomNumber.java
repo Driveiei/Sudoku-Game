@@ -34,11 +34,12 @@ public class RandomNumber{
 	}
 	
 	public List<GridManager> getPuzzle() {
-		int size = (table.getSize() * table.getSize()); // 9
+		int size = (table.getSize() * table.getSize()); 
 		for (int grid = 0; grid < size; grid++) {
-			table.getList().add(new GridManager(grid));// create 9 grids.
-			createRandomSet(createNumberSet(size), grid, size); // create grid 0 1 2 3 4 5 6 7 8
+			table.getList().add(new GridManager(grid));
+			createRandomSet(createNumberSet(size), grid, size); 
 		}
+		print(table.getSize());
 		return table.getList();
 	}
 	
@@ -59,7 +60,7 @@ public class RandomNumber{
 		}
 	}
 
-	private List<Integer> mergeDuplicateList(int numberGrid,int column,int row){
+	public List<Integer> mergeDuplicateList(int numberGrid,int column,int row){
 		List<Integer> merge = new ArrayList<Integer>();
 		merge.addAll(table.duplicateColumn(numberGrid, column));
 		List<Integer> secondList = new ArrayList<Integer>();
@@ -71,7 +72,7 @@ public class RandomNumber{
 		return merge;
 	}
 	
-	private void createRandomSet(List<Integer> setOfNumber, int numberGrid, int size) {
+	public void createRandomSet(List<Integer> setOfNumber, int numberGrid, int size) {
 		int realSize = table.getSize();// 3
 		int column;
 		int row;
@@ -106,21 +107,21 @@ public class RandomNumber{
 		}
 	}
 
-	private int identifyRow(int realSize,int numberGrid,int box) {
+	public int identifyRow(int realSize,int numberGrid,int box) {
 		return realSize * (numberGrid / realSize) + box / realSize;
 	}
 	
-	private int identifyColumn(int realSize,int numberGrid,int box) {
+	public int identifyColumn(int realSize,int numberGrid,int box) {
 		return realSize * (numberGrid % realSize) + box % realSize;
 	}
 	
-	private int randomNumber(List<Integer> setOfNumber) {
+	public int randomNumber(List<Integer> setOfNumber) {
 		int cursor = rand.nextInt(setOfNumber.size());
 		int target = setOfNumber.get(cursor);
 		return target;
 	}
 	
-	private int undoCreateGrid(int numberGrid, int size, int realSize) {
+	public int undoCreateGrid(int numberGrid, int size, int realSize) {
 		int remainder = numberGrid % realSize;
 		for(int i = 0 ;i < remainder ;i++) {
 			table.clear(numberGrid - remainder + i);
@@ -129,11 +130,19 @@ public class RandomNumber{
 		return -1;
 	}
 
-	private List<Integer> createNumberSet(int size) {
+	public List<Integer> createNumberSet(int size) {
+		if(size <= 0) return null;
 		List<Integer> number = new ArrayList<Integer>();
 		for (int i = 1; i <= size; i++) {
 			number.add(i);
 		}
 		return number;
+	}
+	
+	/**
+	 * for test.
+	 * */
+	public Table getTable() {
+		return table;
 	}
 }

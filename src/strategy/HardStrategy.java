@@ -19,9 +19,6 @@ public class HardStrategy extends Mode {
 	private final int ONE_HUNDRED = 100;
 
 	public HardStrategy() {
-//		this.table = table; // 3 or 4
-//		random = new RandomNumber(table);
-//		random.run(); // list
 		random = RandomNumber.getInstance();
 		if(random.getSize() == 3) 
 			this.base = 80;
@@ -74,5 +71,4 @@ public class HardStrategy extends Mode {
 		list.clear();
 		
 	}
-
 }
