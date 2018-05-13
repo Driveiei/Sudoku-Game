@@ -11,7 +11,7 @@
 ## Description of application
 
 Sudoku Game application is an application puzzle game designed for a single player that composing the grid contains all of the digits from 1 to 9 or 16. The puzzle setter provides a partially completed grid, which for a well-posed puzzle has a single solution.
-
+![MainPage](readme_pics/MainPage.png)
 ## Details of application
 
 The application lets players input name and choose mode, size, and difficulty then start the game. In the game, a player must place numbers in the correct squares as soon as possible. After player finished the game, score table will be display the player’s name, rank of player’s time, and choices for players (play again or main menu).
@@ -34,7 +34,7 @@ Sudoku Game has 2 modes which are ‘Basic-Sudoku’ and ‘Greater than Sudoku’.
 ![]()
 
 - User can select difficulty and size of board whatever user would like to play.
-![readme.pics](MainPage.png)
+![]()
 
 ### Gameplay 
 - User can `Right mouse click` on the box to lock a number(if user's sure in answer).
