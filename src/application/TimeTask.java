@@ -18,6 +18,8 @@ public class TimeTask extends Task<Integer> {
 	private int sec = 0;
 	/**time run on one minute per sixty seconds.*/
 	private int minute = 0;
+	/**base second add to time for special event*/
+	private final int SPECIALTIME = 25;
 
 	/**
 	 * Invoked when the Task is executed, the call method must be overridden and
@@ -44,6 +46,19 @@ public class TimeTask extends Task<Integer> {
 			timer++;
 		}
 		return timer;
+	}
+	
+	/**
+	 * add special second time.
+	 * 
+	 * @param sec
+	 */
+	public void setTime() {
+		this.sec += SPECIALTIME;
+		if(this.sec >= 60) {
+			this.sec -= 60;
+			minute++;
+		}
 	}
 
 	
