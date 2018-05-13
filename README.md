@@ -64,7 +64,7 @@ Sudoku Game has 2 modes which are ‘Basic-Sudoku’ and ‘Greater than Sudoku’.
 - application — Contains important class for this program with .fxml class.
 - logic — Contains logic class which using to generate puzzle.
 - source — Contains some pictures with .jpg and .png files for using in GUI.
-- strategy — Contains class with factory for preparation the puzzle.
+- strategy — Contains class with strategy pattern for preparation the puzzle.
 - test — Contains some class with JUnit test to check that logic of program works correctly before doing GUI, and contains some class to make dummy data in console.
 
 ## Installation
@@ -83,7 +83,7 @@ There are some patterns that had use in this program.
 
 - Model-View-Controller Pattern — Separate the responsibility for control, model and view for GUI.
 - Singleton Pattern — Use all same object for the same class in the program.
-- Abstract factory Pattern - Create necessary method and leaves the actual product creation to other classes.
+- Strategy Pattern - Create objects which represent various strategies and a context object.
 
 #### Programs
 ##### Scene Builder
