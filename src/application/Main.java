@@ -20,10 +20,13 @@ public class Main extends Application {
 	/**
 	 * Configure and start the application with music.
 	 * 
-	 * @param args not used
+	 * @param args
+	 *            not used
 	 */
 	public static void main(String[] arg) {
-		(new Thread(new MusicBG())).start();
+//		MusicBG bg = new MusicBG();
+//		Thread thread = new Thread(bg);
+//		thread.start();
 		launch(arg);
 	}
 
@@ -31,8 +34,11 @@ public class Main extends Application {
 	 * The start method is called after the init method has returned, and after the
 	 * system is ready for the application to begin running.
 	 * 
-	 * @param stage - the stage for this application which the application scene can be set.
-	 * @throws Checked exceptions need to be declared in a method or constructor's
+	 * @param stage
+	 *            - the stage for this application which the application scene can
+	 *            be set.
+	 * @throws Checked
+	 *             exceptions need to be declared in a method or constructor's
 	 *             throws clause if they can be thrown by the execution of the
 	 *             method or constructor and propagate outside the method or
 	 *             constructor boundary.
