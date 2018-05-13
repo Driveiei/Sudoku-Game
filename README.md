@@ -34,7 +34,7 @@ Sudoku Game has 2 modes which are ‘Basic-Sudoku’ and ‘Greater than Sudoku’.
 ![]()
 
 - User can select difficulty and size of board whatever user would like to play.
-![]()
+![readme.pics](MainPage.png)
 
 ### Gameplay 
 - User can `Right mouse click` on the box to lock a number(if user's sure in answer).
