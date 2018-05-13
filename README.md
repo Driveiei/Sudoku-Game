@@ -1,12 +1,12 @@
 # Sudoku-Game
 
-* ##### Contents*
-#### -[Description of application](description-of-application)
-#### -[Details of application](details-of-application)
-#### -[Game Features](game-features)
-#### -[Installation](installation)
-#### -[Technology and Knowledge](technology-and-knowledge)
-#### -[Contributors](contributors)
+*Contents*
+#### -[Description of application](#description-of-application)
+#### -[Details of application](#details-of-application)
+#### -[Game Features](#game-features)
+#### -[Installation](#installation)
+#### -[Technology and Knowledge](#technology-and-knowledge)
+#### -[Contributors](#contributors)
 
 ## Description of application
 
@@ -53,9 +53,6 @@ Sudoku Game has 2 modes which are ‘Basic-Sudoku’ and ‘Greater than Sudoku’.
 
 ## Installation
 This program runs on Java 8.
-
-#### Required Library
-------------
 
 #### How to Run
 
