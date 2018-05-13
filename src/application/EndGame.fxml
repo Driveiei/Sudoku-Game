@@ -17,24 +17,24 @@
                   <Image url="@../source/MainBG2-VER1.jpg" />
                </image>
             </ImageView>
-            <ImageView fx:id="playAgain" fitHeight="150.0" fitWidth="200.0" layoutX="500.0" layoutY="259.0" onMouseClicked="#handlePlayAgain" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="playAgain" fitHeight="150.0" fitWidth="200.0" layoutX="500.0" layoutY="250.0" onMouseClicked="#handlePlayAgain" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../source/PlayAgain-Button.jpg" />
                </image>
             </ImageView>
-            <ImageView fx:id="mainMenu" fitHeight="150.0" fitWidth="200.0" layoutX="500.0" layoutY="409.0" onMouseClicked="#handleMainMenu" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="mainMenu" fitHeight="150.0" fitWidth="200.0" layoutX="500.0" layoutY="400.0" onMouseClicked="#handleMainMenu" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../source/MainMenu-Button.jpg" />
                </image>
             </ImageView>
-            <ImageView fx:id="scoreboard" fitHeight="150.0" fitWidth="200.0" layoutX="500.0" layoutY="559.0" onMouseClicked="#handleScoreboard" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="scoreboard" fitHeight="150.0" fitWidth="200.0" layoutX="500.0" layoutY="550.0" onMouseClicked="#handleScoreboard" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../source/ScoreBoard-Button.jpg" />
                </image>
             </ImageView>
-            <Label fx:id="yourTime" alignment="CENTER" layoutX="247.0" layoutY="47.0" style="-fx-background-color: #696969; -fx-border-color: white; -fx-border-width: 5;" text="Time  XX : XX : XX" textAlignment="CENTER" underline="true">
+            <Label fx:id="yourTime" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="291.0" layoutY="24.0" style="-fx-background-color: #696969; -fx-border-color: white; -fx-border-width: 5;" text="Time  00 : 00 : 000">
                <font>
-                  <Font name="ZF #2ndPixelus" size="120.0" />
+                  <Font name="Angsana New" size="120.0" />
                </font>
                <textFill>
                   <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
