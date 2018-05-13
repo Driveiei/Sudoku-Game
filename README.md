@@ -11,7 +11,10 @@
 ## Description of application
 
 Sudoku Game application is an application puzzle game designed for a single player that composing the grid contains all of the digits from 1 to 9 or 16. The puzzle setter provides a partially completed grid, which for a well-posed puzzle has a single solution.
+
+
 ![MainPage](readme_pics/MainPage.png)
+
 ## Details of application
 
 The application lets players input name and choose mode, size, and difficulty then start the game. In the game, a player must place numbers in the correct squares as soon as possible. After player finished the game, score table will be display the player’s name, rank of player’s time, and choices for players (play again or main menu).
@@ -22,19 +25,29 @@ The application lets players input name and choose mode, size, and difficulty th
 Sudoku Game has 2 modes which are ‘Basic-Sudoku’ and ‘Greater than Sudoku’.
 
 - Basic-Sudoku is a normally Sudoku game which has 2 levels (easy and hard). Also, Sudoku game can select 3X3 table or 4X4 table.
-![]()
+
+![basic](readme_pics/AboutBasicThan.png)
+
 
 - Greater than Sudoku has additional rule where border between two squares is used to give a hint as to which neighbor is larger than the other. It has a pointer towards the smaller of the two numbers.
-![]()
+
+![greater](readme_pics/AboutGreaterThan.png)
+
 
 - 'Time system' and 'Scoreboard system' to record the time for each player use to solve the puzzle. Moreover, the application can record seperate scores for each game mode.  
-![]()
+
+![highscore](readme_pics/HighScore.png)
+
 
 - User can input name(max 9 characters) to record into scoreboard.
-![]()
+
+![name](readme_pics/Name.png)
+
 
 - User can select difficulty and size of board whatever user would like to play.
-![]()
+
+![difficult](readme_pics/Difficult.png) ![size](readme_pics/Size.png)
+
 
 ### Gameplay 
 - User can `Right mouse click` on the box to lock a number(if user's sure in answer).
@@ -43,6 +56,9 @@ Sudoku Game has 2 modes which are ‘Basic-Sudoku’ and ‘Greater than Sudoku’.
 - Click `Main menu` button to turn back to main menu.
 - Click `Hint` button to hint a random number and plus 25 seconds(limit 9 times for 3x3 puzzle and 16 times for 4x4 puzzle).
 - Click `Done` button to commit the answer and record user's score.
+
+![]()
+
 
 ### Packages
 - application — Contains important class for this program with .fxml class.
@@ -72,7 +88,9 @@ There are some patterns that had use in this program.
 #### Programs
 ##### Scene Builder
 SceneBuilder is an application where you can drag and drop JavaFX UI components, and then tell your JavaFX program to use the fxml file(s) to display the user interface. So, it is so easy to use and to spend less time for user interface. 
-![]()
+
+![scene](readme_pics/Scene.png)
+
 
 ## Contributors
 - [**Kornphon Noiprasert**](https://github.com/Driveiei) [6010545021]
