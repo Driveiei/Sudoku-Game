@@ -1,12 +1,12 @@
 # Sudoku-Game
 
 *Contents*
--[Description of application](#description-of-application)
--[Details of application](#details-of-application)
--[Game Features](#game-features)
--[Installation](#installation)
--[Technology and Knowledge](#technology-and-knowledge)
--[Contributors](#contributors)
+- [Description of application](#description-of-application)
+- [Details of application](#details-of-application)
+- [Game Features](#game-features)
+- [Installation](#installation)
+- [Technology and Knowledge](#technology-and-knowledge)
+- [Contributors](#contributors)
 
 ## Description of application
 
