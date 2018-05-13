@@ -43,6 +43,7 @@ public class Main extends Application {
 			Parent pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 			Scene scene = new Scene(pane);
 			stage.setResizable(false);
+			stage.setTitle("Sudoku Game");
 			stage.setScene(scene);
 			stage.show();
 		} catch (IOException e) {
