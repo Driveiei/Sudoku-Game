@@ -40,7 +40,7 @@ public class TableTest {
 		}
 		for (int grid = 0; grid < 9; grid++) {
 			for (int box = 1; box <= 9; box++) {
-				table.getList().get(grid).getList().add(new BoxManager(box, false, 50));
+				table.getList().get(grid).getList().add(new BoxManager(box, false, false, 50));
 			}
 		}
 	}

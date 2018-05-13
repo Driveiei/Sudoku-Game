@@ -11,6 +11,8 @@ public class BoxManager {
 	private int number;
 	/** the invisible status of this box. */
 	private boolean lock;
+	/**the clear status of this box*/
+	private boolean check;
 	/** the unique number of each block. */
 	private int code;
 
@@ -22,9 +24,10 @@ public class BoxManager {
 	 * @param lock - the invisible status of this box.
 	 * @param code - a number to make an unique box.
 	 */
-	public BoxManager(int number, boolean lock, int code) {
+	public BoxManager(int number, boolean lock, boolean check, int code) {
 		this.number = number;
 		this.lock = lock;
+		this.check = check;
 		this.code = code;
 	}
 
@@ -56,7 +59,7 @@ public class BoxManager {
 	}
 
 	/**
-	 * To set the status of each box.
+	 * Set the status of each box.
 	 * 
 	 * @param lock - a status of each box.
 	 */
@@ -64,4 +67,21 @@ public class BoxManager {
 		this.lock = lock;
 	}
 
+	/**
+	 * Set the clear status of each box.
+	 * 
+	 * @param lock - a status of each box.
+	 */
+	public void setCheck(boolean check) {
+		this.check = check;
+	}
+	
+	/**
+	 * Get the clear status of each box.
+	 * 
+	 * @return clear status of each box.
+	 */
+	public boolean getCheck() {
+		return check;
+	}
 }

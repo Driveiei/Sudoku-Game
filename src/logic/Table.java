@@ -81,7 +81,7 @@ public class Table {
 	 * @param target - a number to add into this grid.
 	 * */
 	public void insert(int numberGrid, int target) {
-		sudoku.get(numberGrid).getList().add(new BoxManager(target, false, code++));
+		sudoku.get(numberGrid).getList().add(new BoxManager(target, false, false, code++));
 	}
 
 	/**

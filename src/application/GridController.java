@@ -118,7 +118,7 @@ public class GridController {
 	 *            bubbling phase described at EventDispatcher.
 	 */
 	public void handleHint(MouseEvent event) {
-		//if (count < realSize) {
+		if (count < realSize) {
 			worker.setTime();
 			List<BoxManager> puzzle = new ArrayList<BoxManager>();
 			puzzle.addAll(support.getSpaceBoxList());
@@ -143,9 +143,10 @@ public class GridController {
 			griddy.getLabel()[column][row].setStyle("-fx-text-fill: rgb(255, 64, 0);");
 			griddy.getLabel()[column][row].setFont(Font.font(null, FontWeight.BLACK, 32));
 			mode.getPuzzle().get(numberOfGrid).getList().get(numberOfBox).setLock(true);
+			mode.getPuzzle().get(numberOfGrid).getList().get(numberOfBox).setCheck(true);
 			griddy.removeButtonSelection(column, row);
 			count++;
-		//}
+		}
 	}
 	/**When player have success game(numbers in box are correct, and fill all empty box).
 	 * This event for switch scene to 'EndGame.fxml'.
@@ -163,7 +164,7 @@ public class GridController {
 				int grid = support.adaptGrid(selectBox, selectGrid);
 				int box = support.adaptBox(selectBox, selectGrid);
 				BoxManager oneBox = puzzle.get(grid).getList().get(box);
-				if (!oneBox.getLock()) {
+				if (!oneBox.getLock() || !oneBox.getCheck()) {
 					String answerText = Integer.toString(oneBox.getNumber());
 					if (griddy.getLabel()[selectBox][selectGrid].getText().equals(answerText))
 						continue;

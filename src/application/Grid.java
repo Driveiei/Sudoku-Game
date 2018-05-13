@@ -15,7 +15,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import logic.RandomNumber;
 import strategy.Mode;
 /**
  * Grid represents production by take BorderPane of GridController then add all of function
@@ -133,7 +132,8 @@ public class Grid {
 			}
 		}
 	}
-	/**This method is show box of number that player want input to game.
+	/**
+	 * This method is show box of number that player want input to game.
 	 * included event when player need to lock number(right-click to number) from clear and hint method.
 	 * 
 	 * @param column 
@@ -190,7 +190,9 @@ public class Grid {
 		}	//if player right-click to label that have number it's will lock.
 			else if(event.getButton() == MouseButton.SECONDARY) {
 				if(!label[changeColumnScale(column, row)][changeRowScale(column, row)].getText().equals("")) {
+					if(BASE == 80) 
 					label[changeColumnScale(column, row)][changeRowScale(column, row)].setStyle("-fx-background-insets: 20;-fx-background-color: rgb(240,128,128);-fx-background-radius: 200;");
+					else label[changeColumnScale(column, row)][changeRowScale(column, row)].setStyle("-fx-background-insets: 5;-fx-background-color: rgb(240,128,128);-fx-background-radius: 200;");
 					mode.getPuzzle().get(row).getList().get(column).setLock(true);
 				}
 			}
@@ -252,7 +254,7 @@ public class Grid {
 		for (int size = 0; size < realSize; size++) {
 			buttonList.add(new Button());
 			buttonList.get(size).setText(Integer.toString(size + 1));
-			buttonList.get(size).setFont(Font.font(null, FontWeight.BOLD, 24));
+			buttonList.get(size).setFont(Font.font(null, FontWeight.BOLD, BASE/3));
 		}
 	}
 	/**

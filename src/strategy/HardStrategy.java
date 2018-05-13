@@ -73,8 +73,10 @@ public class HardStrategy extends Mode {
 				int percentage = rand.nextInt(ONE_HUNDRED);
 				if (percentage <= PERCENTAGE) {
 					list.get(grid).getList().get(box).setLock(true);
+					list.get(grid).getList().get(box).setCheck(true);
 				} else {
 					list.get(grid).getList().get(box).setLock(false);
+					list.get(grid).getList().get(box).setCheck(false);
 				}
 			}
 		}
