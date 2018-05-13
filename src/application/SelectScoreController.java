@@ -2,41 +2,56 @@ package application;
 
 import java.io.IOException;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+/**
+ * SelectScoreController for events and initializing components with score selection buttons for
+ * every mode(Basic Sudoku and Greater than Sudoku).
+ * 
+ * @author Kornphon Noiprasert
+ * @author Vichakorn Yotboonrueang
+ */
 public class SelectScoreController {
 
+	/** Node used for painting images on '3x3' board button loaded with Image class.*/
 	@FXML
 	ImageView buttonThree;
+	/**Node used for painting images on 'easy' mode button loaded with Image class. */
 	@FXML
 	ImageView button3Easy;
+	/** Node used for painting images on 'hard' mode board button loaded with Image class.*/
 	@FXML
 	ImageView button3Hard;
-	
+	/**Node used for painting images on '4x4' board button loaded with Image class.*/
 	@FXML
 	ImageView buttonFour;
+	/** Node used for painting images on 'easy' mode button loaded with Image class.*/
 	@FXML
 	ImageView button4Easy;
+	/**Node used for painting images on 'hard' mode button loaded with Image class.*/
 	@FXML
 	ImageView button4Hard;
-	
+	/** Node used for painting images on 'Greater than Sudoku' board button loaded with Image class.*/
 	@FXML
 	ImageView buttonGreater;
-	@FXML 
+	/**Node used for painting images on 'Back' button loaded with Image class.*/
+	@FXML
 	ImageView back;
-	
-	
-	private ScoreManager manage;
-	
+
+	/**
+	 * JavaFX calls the initialize() method of your controller when it creates the
+	 * UI form, after the components have been created and @FXML annotated
+	 * attributes have been set.
+	 *
+	 * This is a hook to initialize anything your controller or UI needs.
+	 */
 	public void initialize() {
 		effectImage(buttonThree);
 		effectImage(button3Easy);
@@ -47,19 +62,35 @@ public class SelectScoreController {
 		effectImage(buttonGreater);
 		effectImage(back);
 	}
-	public void handleScoreThree(MouseEvent ac) {
+
+	/**
+	 * Select size of board(3x3) to appears two modes(easy and hard).
+	 * 
+	 * @param event - When mouse event occurs, the top-most node under cursor is
+	 *            picked and the event is delivered to it through capturing and
+	 *            bubbling phase described at EventDispatcher.
+	 */
+	public void handleScoreThree(MouseEvent event) {
 		buttonThree.setVisible(false);
 		button3Easy.setVisible(true);
 		button3Hard.setVisible(true);
 	}
-	
-	public void handleScoreThreeEasy(MouseEvent ac) {
+
+	/**
+	 * Select easy mode to appears five-top scores player who can solve the puzzle on 3x3 board
+	 * less time in this mode and switch scene to 'Scoreboard.fxml'.
+	 * 
+	 * @param event - When mouse event occurs, the top-most node under cursor is
+	 *            picked and the event is delivered to it through capturing and
+	 *            bubbling phase described at EventDispatcher.
+	 */
+	public void handleScoreThreeEasy(MouseEvent event) {
 		ScoreManager.setSymbol("+");
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Scoreboard.fxml"));
 			Parent pane = loader.load();
 			Scene scene = new Scene(pane);
-			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(scene);
 			stage.setResizable(false);
 			stage.show();
@@ -67,14 +98,22 @@ public class SelectScoreController {
 			System.err.println(e.getMessage());
 		}
 	}
-	
-	public void handleScoreThreeHard(MouseEvent ac) {
+
+	/**
+	 * Select hard mode to appears five-top scores player who can solve the puzzle on 3x3 board
+	 * less time in this mode and switch scene to 'Scoreboard.fxml'.
+	 * 
+	 * @param event - When mouse event occurs, the top-most node under cursor is
+	 *            picked and the event is delivered to it through capturing and
+	 *            bubbling phase described at EventDispatcher.
+	 */
+	public void handleScoreThreeHard(MouseEvent event) {
 		ScoreManager.setSymbol("@");
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Scoreboard.fxml"));
 			Parent pane = loader.load();
 			Scene scene = new Scene(pane);
-			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(scene);
 			stage.setResizable(false);
 			stage.show();
@@ -83,19 +122,34 @@ public class SelectScoreController {
 		}
 	}
 
-	public void handleScoreFour(MouseEvent ac) {
+	/**
+	 * Select size of board(4x4) to appears two modes(easy and hard).
+	 * 
+	 * @param event - When mouse event occurs, the top-most node under cursor is
+	 *            picked and the event is delivered to it through capturing and
+	 *            bubbling phase described at EventDispatcher.
+	 */
+	public void handleScoreFour(MouseEvent event) {
 		buttonFour.setVisible(false);
 		button4Easy.setVisible(true);
 		button4Hard.setVisible(true);
 	}
-	
-	public void handleScoreFourEasy(MouseEvent ac) {
+
+	/**
+	 * Select easy mode to appears five-top scores player who can solve the puzzle on 4x4 board
+	 * less time in this mode and switch scene to 'Scoreboard.fxml'.
+	 * 
+	 * @param event - When mouse event occurs, the top-most node under cursor is
+	 *            picked and the event is delivered to it through capturing and
+	 *            bubbling phase described at EventDispatcher.
+	 */
+	public void handleScoreFourEasy(MouseEvent event) {
 		ScoreManager.setSymbol("&");
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Scoreboard.fxml"));
 			Parent pane = loader.load();
 			Scene scene = new Scene(pane);
-			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(scene);
 			stage.setResizable(false);
 			stage.show();
@@ -103,14 +157,22 @@ public class SelectScoreController {
 			System.err.println(e.getMessage());
 		}
 	}
-	
-	public void handleScoreFourHard(MouseEvent ac) {
+
+	/**
+	 * Select hard mode to appears five-top scores player who can solve the puzzle on 4x4 board
+	 * less time in this mode and switch scene to 'Scoreboard.fxml'.
+	 * 
+	 * @param event - When mouse event occurs, the top-most node under cursor is
+	 *            picked and the event is delivered to it through capturing and
+	 *            bubbling phase described at EventDispatcher.
+	 */
+	public void handleScoreFourHard(MouseEvent event) {
 		ScoreManager.setSymbol("*");
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Scoreboard.fxml"));
 			Parent pane = loader.load();
 			Scene scene = new Scene(pane);
-			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(scene);
 			stage.setResizable(false);
 			stage.show();
@@ -119,13 +181,21 @@ public class SelectScoreController {
 		}
 	}
 
-	public void handleScoreGreaterThan(MouseEvent ac) {
+	/**
+	 * Select 'Greater than Sudoku' mode to appears five-top scores player who can solve the puzzle on 4x4 board
+	 * less time in this mode and switch scene to 'Scoreboard.fxml'.
+	 * 
+	 * @param event - When mouse event occurs, the top-most node under cursor is
+	 *            picked and the event is delivered to it through capturing and
+	 *            bubbling phase described at EventDispatcher.
+	 */
+	public void handleScoreGreaterThan(MouseEvent event) {
 		ScoreManager.setSymbol("?");
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Scoreboard.fxml"));
 			Parent pane = loader.load();
 			Scene scene = new Scene(pane);
-			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(scene);
 			stage.setResizable(false);
 			stage.show();
@@ -134,11 +204,18 @@ public class SelectScoreController {
 		}
 	}
 
-	public void handleBack(MouseEvent ac) {
+	/**
+	 * Link with "MainMenu.fxml" to switch scene to other scene for back to MainMenu game.
+	 * 
+	 * @param event - When mouse event occurs, the top-most node under cursor is
+	 *            picked and the event is delivered to it through capturing and
+	 *            bubbling phase described at EventDispatcher.
+	 */
+	public void handleBack(MouseEvent event) {
 		try {
 			Parent pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 			Scene scene = new Scene(pane);
-			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(scene);
 			stage.setResizable(false);
 			stage.show();
@@ -146,12 +223,17 @@ public class SelectScoreController {
 			System.err.println(e.getMessage());
 		}
 	}
-	
+
+	/**
+	 * Makes the picture zoom in/out when mouse cursor enters on the button.
+	 * 
+	 * @param image - is a Node used for painting images loaded with Image class. 
+	 */
 	public void effectImage(ImageView image) {
-		image.setOnMouseEntered(in ->{
+		image.setOnMouseEntered(in -> {
 			image.setFitWidth(225);
 			image.setFitHeight(175);
-			image.setOnMouseExited(out ->{
+			image.setOnMouseExited(out -> {
 				image.setFitWidth(200);
 				image.setFitHeight(150);
 			});

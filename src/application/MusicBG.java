@@ -8,37 +8,48 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.FloatControl;
 
+/**
+ * MusicBG represents sound in this application. Manage the sound to play all the time.
+ * 
+ * @author Kornphon Noiprasert
+ * @author Vichakorn Yotboonrueang
+ */
 public class MusicBG implements Runnable {
-
-	private String musicFiles;
-
-	public MusicBG(){
-		musicFiles = "/source/bg.wav";
-
+	
+	/**
+	 * Initialize this class.
+	 */
+	public MusicBG() {
 		
-
 	}
 
-	private void playSound(String fileName) {
+	/**
+	 * Run sounds throughout the application runs.
+	 * */
+	private void playSound() {
 		try {
-			URL soundFile = getClass().getResource(fileName);
-			AudioInputStream ais  = AudioSystem.getAudioInputStream(soundFile);
+			URL soundFile = getClass().getResource("/source/bg.wav");
+			AudioInputStream ais = AudioSystem.getAudioInputStream(soundFile);
 			AudioFormat format = ais.getFormat();
 			DataLine.Info info = new DataLine.Info(Clip.class, format);
 			Clip clip = (Clip) AudioSystem.getLine(info);
 			clip.open(ais);
-			FloatControl gainControl = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
+			FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 			gainControl.setValue(-10);
 			clip.loop(Integer.MAX_VALUE);
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * When an object implementing interface Runnable is used to create a thread,
+	 * starting the thread causes the object's run method to be called in that
+	 * separately executing thread.
+	 */
 	@Override
 	public void run() {
-		playSound(musicFiles);
-		
+		playSound();
 
 	}
 
