@@ -166,6 +166,7 @@ public class Grid {
 				for (int j = 0; j < size; j++) {
 					grid.add(buttonList.get((size * i) + j), j, i);
 					buttonList.get((size * i) + j).setMaxSize(BASE, BASE);
+					buttonList.get((size * i) + j).setStyle("-fx-background-color: white;-fx-border-color: black;");
 					//click button will setText of empty label.
 					buttonList.get((size * i) + j).setOnMouseClicked(event2 -> {
 
@@ -251,6 +252,7 @@ public class Grid {
 		for (int size = 0; size < realSize; size++) {
 			buttonList.add(new Button());
 			buttonList.get(size).setText(Integer.toString(size + 1));
+			buttonList.get(size).setFont(Font.font(null, FontWeight.BOLD, 24));
 		}
 	}
 	/**
