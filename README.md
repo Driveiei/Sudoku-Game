@@ -10,16 +10,16 @@
 
 ## Description of application
 
-	Sudoku Game application is an application puzzle game designed for a single player that composing the grid contains all of the digits from 1 to 9 or 16. The puzzle setter provides a partially completed grid, which for a well-posed puzzle has a single solution.
+Sudoku Game application is an application puzzle game designed for a single player that composing the grid contains all of the digits from 1 to 9 or 16. The puzzle setter provides a partially completed grid, which for a well-posed puzzle has a single solution.
 
 ## Details of application
 
-	The application lets players input name and choose mode, size, and difficulty then start the game. In the game, a player must place numbers in the correct squares as soon as possible. After player finished the game, score table will be display the player’s name, rank of player’s time, and choices for players (play again or main menu).
+The application lets players input name and choose mode, size, and difficulty then start the game. In the game, a player must place numbers in the correct squares as soon as possible. After player finished the game, score table will be display the player’s name, rank of player’s time, and choices for players (play again or main menu).
 
 ## Game Features
 
 ### Game System
-	Sudoku Game has 2 modes which are ‘Basic-Sudoku’ and ‘Greater than Sudoku’.
+Sudoku Game has 2 modes which are ‘Basic-Sudoku’ and ‘Greater than Sudoku’.
 
 - Basic-Sudoku is a normally Sudoku game which has 2 levels (easy and hard). Also, Sudoku game can select 3X3 table or 4X4 table.
 ![]()
@@ -52,7 +52,7 @@
 - test — Contains some class with JUnit test to check that logic of program works correctly before doing GUI, and contains some class to make dummy data in console.
 
 ## Installation
-	This program runs on Java 8.
+This program runs on Java 8.
 
 #### How to Run
 - Download the latest release of this program.
@@ -79,4 +79,4 @@ SceneBuilder is an application where you can drag and drop JavaFX UI components,
 
 -[**Vichakorn Yotboonrueang**](https://github.com/Newaz2542) 6010545889
 
-	`Note` This project created by two students in Software and Knowledge Engineering program, which this application is final project as part of Programming II course for second semester of Kasetsart University.
+`Note` This project created by two students in Software and Knowledge Engineering program, which this application is final project as part of Programming II course for second semester of Kasetsart University.
