@@ -26,7 +26,7 @@ Sudoku Game has 2 modes which are ‘Basic-Sudoku’ and ‘Greater than Sudoku’.
 
 - Basic-Sudoku is a normally Sudoku game which has 2 levels (easy and hard). Also, Sudoku game can select 3X3 table or 4X4 table.
 
-![basic](readme_pics/AboutBasicThan.png)
+![basic](readme_pics/AboutBasicSudoku.png)
 
 
 - Greater than Sudoku has additional rule where border between two squares is used to give a hint as to which neighbor is larger than the other. It has a pointer towards the smaller of the two numbers.
@@ -57,7 +57,7 @@ Sudoku Game has 2 modes which are ‘Basic-Sudoku’ and ‘Greater than Sudoku’.
 - Click `Hint` button to hint a random number and plus 25 seconds(limit 9 times for 3x3 puzzle and 16 times for 4x4 puzzle).
 - Click `Done` button to commit the answer and record user's score.
 
-![]()
+![descript](readme_pics/Descript.png)
 
 
 ### Packages
