@@ -1,12 +1,12 @@
 # Sudoku-Game
 
-*##### Contents*
--#### [Description of application](description-of-application)
--#### [Details of application](details-of-application)
--#### [Game Features](game-features)
--#### [Installation](installation)
--#### [Technology and Knowledge](technology-and-knowledge)
--#### [Contributors](contributors)
+* ##### Contents*
+#### -[Description of application](description-of-application)
+#### -[Details of application](details-of-application)
+#### -[Game Features](game-features)
+#### -[Installation](installation)
+#### -[Technology and Knowledge](technology-and-knowledge)
+#### -[Contributors](contributors)
 
 ## Description of application
 
@@ -78,67 +78,8 @@ There are some patterns that had use in this program.
 SceneBuilder is an application where you can drag and drop JavaFX UI components, and then tell your JavaFX program to use the fxml file(s) to display the user interface. So, it is so easy to use and to spend less time for user interface. 
 ![]()
 
-## Installation
-
-
 ## Contributors
-- [**Kornphon Noiprasert**](https://github.com/Driveiei) 6010545021
-- [**Vichakorn Yotboonrueang**](https://github.com/Newaz2542) 6010545889
-
-`Note` This project created by two students in Software and Knowledge Engineering program, which this application is final project as part of Programming II course for second semester of Kasetsart University.
-- User can input name(max 9 characters) to record into scoreboard.
-![]()
-
-- User can select difficulty and size of board whatever user would like to play.
-![]()
-
-### Gameplay 
-- User can `Right mouse click` on the box to lock a number(if user's sure in answer).
-- Click `Clear` button to clear all numbers in every boxes which weren't lock.
-- Click `Restart` button to play a new game with latest option.
-- Click `Main menu` button to turn back to main menu.
-- Click `Hint` button to hint a random number and plus 25 seconds(limit 9 times for 3x3 puzzle and 16 times for 4x4 puzzle).
-- Click `Done` button to commit the answer and record user's score.
-
-### Packages
-- application — Contains important class for this program with .fxml class.
-- logic — Contains logic class which using to generate puzzle.
-- source — Contains some pictures with .jpg and .png files for using in GUI.
-- strategy — Contains class with factory for preparation the puzzle.
-- test — Contains some class with JUnit test to check that logic of program works correctly before doing GUI, and contains some class to make dummy data in console.
-
-## Installation
-This program runs on Java 8.
-
-#### Required Library
-------------
-
-#### How to Run
-
-- Download the latest release of this program.
-- Open Java text editor.
-- Create Java project and include JAR file in library folder.
-- Runs the program.
-Or you can use JAR file in library folder in our project.
-
-## Technology and Knowledge
-#### Patterns
-There are some patterns that had use in this program.
-
-- Model-View-Controller Pattern — Separate the responsibility for control, model and view for GUI.
-- Singleton Pattern — Use all same object for the same class in the program.
-- Abstract factory Pattern - Create necessary method and leaves the actual product creation to other classes.
-
-#### Programs
-##### Scene Builder
-SceneBuilder is an application where you can drag and drop JavaFX UI components, and then tell your JavaFX program to use the fxml file(s) to display the user interface. So, it is so easy to use and to spend less time for user interface. 
-![]()
-
-## Installation
-
-
-## Contributors
-- [**Kornphon Noiprasert**](https://github.com/Driveiei) 6010545021
-- [**Vichakorn Yotboonrueang**](https://github.com/Newaz2542) 6010545889
+-[**Kornphon Noiprasert**](https://github.com/Driveiei) 6010545021
+-[**Vichakorn Yotboonrueang**](https://github.com/Newaz2542) 6010545889
 
 `Note` This project created by two students in Software and Knowledge Engineering program, which this application is final project as part of Programming II course for second semester of Kasetsart University.
