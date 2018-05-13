@@ -51,7 +51,7 @@ public class Grid {
 		supportPane.getChildren().add(mainGrid);
 		borderPane.setCenter(supportPane);
 		mainGrid.setAlignment(Pos.CENTER);
-
+		supportPane.setStyle("-fx-background-color: white;-fx-border-color: black;-fx-border-width: 5;-fx-opacity: 0.9;");
 		subGrid = new GridPane[size][size];// create
 		pane = new Pane[realSize][realSize];
 		label = new Label[realSize][realSize];

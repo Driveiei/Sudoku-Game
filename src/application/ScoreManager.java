@@ -10,6 +10,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -56,13 +57,13 @@ public class ScoreManager {
 		});
 	}
 
-	@SuppressWarnings("resource")
-	public List<Score> readScore() throws FileNotFoundException {
+	
+	
+	public List<Score> readScore() throws FileNotFoundException  {
 		String path = System.getProperty("user.dir");
 		String filename = path+"score.md";
 		InputStream in = new FileInputStream(filename);
-		Scanner readText;
-		readText = new Scanner(in);
+		Scanner readText = new Scanner(in);
 		Score save;
 		while (readText.hasNextLine()) {
 			String score = readText.nextLine();

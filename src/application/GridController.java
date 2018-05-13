@@ -10,6 +10,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -26,6 +28,17 @@ public class GridController {
 
 	@FXML
 	Label timer;
+	
+	@FXML
+	ImageView assist;
+	@FXML
+	ImageView clear;
+	@FXML
+	ImageView done;
+	@FXML
+	ImageView restart;
+	@FXML
+	ImageView mainMenu;
 	
 	private static String time;
 
@@ -56,7 +69,7 @@ public class GridController {
 		griddy = new Grid(borderPane);
 	}
 
-	public void handleClear(ActionEvent event) {
+	public void handleClear(MouseEvent event) {
 		List<GridManager> puzzle = new ArrayList<GridManager>();
 		puzzle.addAll(mode.getPuzzle());
 		for (int selectGrid = 0; selectGrid < realSize; selectGrid++) {
@@ -70,7 +83,7 @@ public class GridController {
 		}
 	}
 
-	public void handleHint(ActionEvent event) {
+	public void handleHint(MouseEvent event) {
 		List<BoxManager> puzzle = new ArrayList<BoxManager>();
 		puzzle.addAll(support.getSpaceBoxList());
 		if (puzzle.size() == 0)
@@ -97,7 +110,7 @@ public class GridController {
 		griddy.removeButtonSelection(column, row);
 	}
 
-	public void handleDone(ActionEvent event) {
+	public void handleDone(MouseEvent event) {
 		List<GridManager> puzzle = new ArrayList<GridManager>();
 		boolean check = true;
 		puzzle.addAll(mode.getPuzzle());
@@ -132,6 +145,36 @@ public class GridController {
 			} catch (IOException e) {
 				System.err.println(e.getMessage());
 			}
+		}
+	}
+	
+	public void handleRestart(MouseEvent ac) {
+		Mode.getInstance().clearPuzzle();
+		RandomNumber.setRandomNumber(RandomNumber.getInstance().getSize());
+		try {
+			Parent pane = FXMLLoader.load(getClass().getResource("GridUI.fxml"));
+			Scene scene = new Scene(pane);
+			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
+			stage.setScene(scene);
+			stage.setResizable(false);
+			stage.show();
+		} catch (IOException e) {
+			System.err.println(e.getMessage());
+		}
+	}
+	
+	public void handleMainMenu(MouseEvent ac) {
+		Mode.getInstance().clearPuzzle();
+		RandomNumber.setRandomNumber(RandomNumber.getInstance().getSize());
+		try {
+			Parent pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+			Scene scene = new Scene(pane);
+			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
+			stage.setScene(scene);
+			stage.setResizable(false);
+			stage.show();
+		} catch (IOException e) {
+			System.err.println(e.getMessage());
 		}
 	}
 	
