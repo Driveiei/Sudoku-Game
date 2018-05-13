@@ -23,7 +23,7 @@ public class Main extends Application {
 	 * @param args not used
 	 */
 	public static void main(String[] arg) {
-		// (new Thread(new MusicBG())).start();
+		(new Thread(new MusicBG())).start();
 		launch(arg);
 	}
 
