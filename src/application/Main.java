@@ -20,8 +20,7 @@ public class Main extends Application {
 	/**
 	 * Configure and start the application with music.
 	 * 
-	 * @param args
-	 *            not used
+	 * @param args not used
 	 */
 	public static void main(String[] arg) {
 		launch(arg);
