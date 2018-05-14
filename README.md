@@ -73,10 +73,10 @@ This program runs on Java 8.
 #### How to Run
 - Download the latest release of this program.
 - Open Java text editor.
-- Create Java project and include JAR file in library folder.
+- Create Java project and include JAR file in dist folder.
 - Runs the program.
 
-- Or you can use JAR file in library folder in our project.
+- Or you can use JAR file in dist folder in our project.
 
 ## Technology and Knowledge
 #### Patterns
