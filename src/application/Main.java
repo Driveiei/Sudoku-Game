@@ -24,9 +24,6 @@ public class Main extends Application {
 	 *            not used
 	 */
 	public static void main(String[] arg) {
-//		MusicBG bg = new MusicBG();
-//		Thread thread = new Thread(bg);
-//		thread.start();
 		launch(arg);
 	}
 
