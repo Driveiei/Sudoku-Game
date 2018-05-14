@@ -19,12 +19,12 @@ import logic.BoxManager;
 import logic.GridManager;
 import logic.RandomNumber;
 import strategy.Mode;
+
 /**
  * GridController for events and initializing components that player can play game.
  * 
  * @author Kornphon Noiprasert
  * @author Vichakorn Yotboonrueang
- *
  */
 public class GridController {
 	/** This BorderPane is for adding table of sudoku*/

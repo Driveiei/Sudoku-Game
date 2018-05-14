@@ -61,11 +61,11 @@ Sudoku Game has 2 modes which are ‘Basic-Sudoku’ and ‘Greater than Sudoku’.
 
 
 ### Packages
-- application — Contains important class for this program with .fxml class.
-- logic — Contains logic class which using to generate puzzle.
-- source — Contains some pictures with .jpg and .png files for using in GUI.
-- strategy — Contains class with strategy pattern for preparation the puzzle.
-- test — Contains some class with JUnit test to check that logic of program works correctly before doing GUI, and contains some class to make dummy data in console.
+- **application** — Contains important class for this program with .fxml class.
+- **logic** — Contains logic class which using to generate puzzle.
+- **source** — Contains some pictures with .jpg and .png files for using in GUI.
+- **strategy** — Contains class with strategy pattern for preparation the puzzle.
+- **test** — Contains some class with JUnit test to check that logic of program works correctly before doing GUI, and contains some class to make dummy data in console.
 
 ## Installation
 This program runs on Java 8.
@@ -81,9 +81,9 @@ Or you can use JAR file in library folder in our project.
 #### Patterns
 There are some patterns that had use in this program.
 
-- Model-View-Controller Pattern — Separate the responsibility for control, model and view for GUI.
-- Singleton Pattern — Use all same object for the same class in the program.
-- Strategy Pattern - Create objects which represent various strategies and a context object.
+- **Model-View-Controller Pattern** — Separate the responsibility for control, model and view for GUI.
+- **Singleton Pattern** — Use all same object for the same class in the program.
+- **Strategy Pattern** - Create objects which represent various strategies and a context object.
 
 #### Programs
 ##### Scene Builder

@@ -37,7 +37,7 @@ public class Grid {
 	private Mode mode;
 	private Pane greaterPane;
 	
-	/** Declare   attribute */
+	/** Declare   attributes */
 	private int BASE;
 	private int size;
 	private int realSize;
@@ -63,7 +63,7 @@ public class Grid {
 		mainGrid.setAlignment(Pos.CENTER);
 		supportPane
 				.setStyle("-fx-background-color: white;-fx-border-color: black;-fx-border-width: 5;-fx-opacity: 0.9;");
-		subGrid = new GridPane[size][size];// create
+		subGrid = new GridPane[size][size];
 		pane = new Pane[realSize][realSize];
 		label = new Label[realSize][realSize];
 		buttonList = new ArrayList<Button>();
@@ -77,6 +77,7 @@ public class Grid {
 		addLabelToPane();
 		addPaneToSubGrid();
 	}
+	
 	/**Separate MainGrid by size of puzzle.*/
 	public void separateMainGrid() {
 		for (int row = 0; row < size; row++) {
@@ -85,6 +86,7 @@ public class Grid {
 		}
 		mainGrid.setGridLinesVisible(true);
 	}
+	
 	/**Create number of GridPane by array2D.*/
 	public void createSubGrid() {
 		for (int row = 0; row < size; row++) {
@@ -93,6 +95,7 @@ public class Grid {
 			}
 		}
 	}
+	
 	/**Separate SubGrid by size of puzzle.*/
 	public void modifySubGrid() {
 		for (int row = 0; row < size; row++) {
@@ -136,8 +139,8 @@ public class Grid {
 	 * This method is show box of number that player want input to game.
 	 * included event when player need to lock number(right-click to number) from clear and hint method.
 	 * 
-	 * @param column 
-	 * @param row
+	 * @param column - the cursor position of puzzle in vertical box.
+	 * @param row - the cursor position of puzzle in horizontal box.
 	 */
 	public void selectionButton(int column, int row) {
 		//when player click on empty label it'll show mini box that contains number.
@@ -200,14 +203,18 @@ public class Grid {
 
 	}
 	/**
+	 * Remove button selection when already pressed hint button.
 	 * 
-	 * @param column of grid
-	 * @param row of grid
+	 * @param column - the cursor position of puzzle in vertical box.
+	 * @param row - the cursor position of puzzle in horizontal box.
 	 */
 	public void removeButtonSelection(int column, int row) {
 		label[column][row].setOnMousePressed(null);
 	}
 
+	/**
+	 * Add the number to every grid depends on invisble status of any number.
+	 * */
 	public void addNumberToLabel() {
 		int number;
 		boolean show;
@@ -230,25 +237,25 @@ public class Grid {
 		}
 	}
 	/**
-	 *  converts array2D to List
-	 * @param column of grid
-	 * @param row of grid
-	 * @return
+	 * Converts array2D to List
+	 * @param column - the cursor position of puzzle in vertical box.
+	 * @param row - the cursor position of puzzle in horizontal box.
+	 * @return change list scale to column scale.
 	 */
 	public int changeColumnScale(int column, int row) {
 		return column % size + (row % size) * size;
 	}
 	/**
-	 *  converts array2D to List
-	 * @param column of grid
-	 * @param row of grid
-	 * @return
+	 * Converts array2D to List
+	 * @param column - the cursor position of puzzle in vertical box.
+	 * @param row - the cursor position of puzzle in horizontal box.
+	 * @return change list scale to column scale.
 	 */
 	public int changeRowScale(int column, int row) {
 		return column / size + (row / size) * size;
 	}
 	/**
-	 * set Number to button(set on selectButton).
+	 * Set Number to button(set on selectButton).
 	 */
 	public void setMiniGrid() {
 		for (int size = 0; size < realSize; size++) {
@@ -258,7 +265,7 @@ public class Grid {
 		}
 	}
 	/**
-	 * add Pane that contains all of numbers in game to SubGrid.
+	 * Add Pane that contains all of numbers in game to SubGrid.
 	 */
 	public void addPaneToSubGrid() {
 		for (int rowGrid = 0; rowGrid < size; rowGrid++) {
@@ -285,7 +292,7 @@ public class Grid {
 	}
 	/**Get label2D for used in controller.
 	 * 
-	 * @return label
+	 * @return label of numbers.
 	 */
 	public Label[][] getLabel() {
 		return label;
