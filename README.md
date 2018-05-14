@@ -75,7 +75,8 @@ This program runs on Java 8.
 - Open Java text editor.
 - Create Java project and include JAR file in library folder.
 - Runs the program.
-Or you can use JAR file in library folder in our project.
+
+- Or you can use JAR file in library folder in our project.
 
 ## Technology and Knowledge
 #### Patterns
