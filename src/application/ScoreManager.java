@@ -99,6 +99,7 @@ public class ScoreManager {
 	 * */
 	@SuppressWarnings("resource")
 	public List<Score> readScore() throws FileNotFoundException {
+		try {
 		String path = System.getProperty("user.dir");
 		String filename = path + "score.md";
 		InputStream in = new FileInputStream(filename);
@@ -157,6 +158,10 @@ public class ScoreManager {
 				in.close();
 			} catch (IOException ioe) {
 			}
+		}catch(FileNotFoundException e) {
+			System.out.println("Didn't have any score.");
+			System.out.println("Finish the game first");
+		}
 		return listScore;
 	}
 
