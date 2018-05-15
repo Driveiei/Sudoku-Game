@@ -30,8 +30,7 @@ public class Main extends Application {
 	 * The start method is called after the init method has returned, and after the
 	 * system is ready for the application to begin running.
 	 * 
-	 * @param stage
-	 *            - the stage for this application which the application scene can
+	 * @param stage - the stage for this application which the application scene can
 	 *            be set.
 	 * @throws Checked
 	 *             exceptions need to be declared in a method or constructor's
