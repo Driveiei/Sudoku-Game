@@ -39,9 +39,7 @@ public class HardStrategy extends Mode {
 	public HardStrategy() {
 		random = RandomNumber.getInstance();
 		if (random.getSize() == 3)
-			this.base = 80;
-		else
-			this.base = 45;
+		this.base = calculateBase();
 		size = random.getSize();
 		realSize = size * size;
 		list = new ArrayList<>();
@@ -106,5 +104,16 @@ public class HardStrategy extends Mode {
 	@Override
 	public void clearPuzzle() {
 		list.clear();
+	}
+	
+	/**
+	 * Fix size of each box base on puzzle's size.
+	 * 
+	 * @return size of each box.
+	 * */
+	public int calculateBase() {
+		if(random.getSize() == 3)
+		return 80;
+		else return 45;
 	}
 }
