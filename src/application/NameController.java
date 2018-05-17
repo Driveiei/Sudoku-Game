@@ -43,6 +43,9 @@ public class NameController {
 	 */
 	@FXML
 	ImageView next;
+	/**
+	 * Caution input text characters
+	 * */
 	@FXML
 	Label notify;
 

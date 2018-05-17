@@ -29,7 +29,7 @@ public class EasyStrategy extends Mode {
 	/** A number of box in one column or row. */
 	private int realSize;
 	/** Chance of number which will be invisible or not. */
-	private final int PERCENTAGE = 50;
+	private final int PERCENTAGE = 55;
 	/** The maximum percentage */
 	private final int ONE_HUNDRED = 100;
 
