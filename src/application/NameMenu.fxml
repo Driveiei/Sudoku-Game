@@ -38,6 +38,10 @@
                         <Image url="@../source/Next-Button.jpg" />
                      </image>
                   </ImageView>
+                  <Label fx:id="notify" alignment="CENTER" layoutX="459.0" layoutY="492.0" prefHeight="60.0" prefWidth="282.0" style="-fx-background-color: white; -fx-background-radius: 50;" text="Name can't be longer than 9 characters." textFill="RED">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
                </children>
             </AnchorPane>
          </children>

@@ -5,12 +5,16 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 /**
@@ -42,6 +46,8 @@ public class NameContoller {
 	 */
 	@FXML
 	ImageView next;
+	@FXML
+	Label notify;
 
 	/**
 	 * JavaFX calls the initialize() method of your controller when it creates the
@@ -54,6 +60,7 @@ public class NameContoller {
 	public void initialize() {
 		effectImage(back);
 		effectImage(next);
+		notify.setVisible(false);
 	}
 
 	/**
@@ -79,6 +86,9 @@ public class NameContoller {
 				System.err.println(e.getMessage());
 			}
 		}
+		else {
+			notify.setVisible(true);
+		}
 	}
 
 	/**
@@ -103,6 +113,8 @@ public class NameContoller {
 			} catch (IOException e) {
 				System.err.println(e.getMessage());
 			}
+		}else {
+			notify.setVisible(true);
 		}
 	}
 
