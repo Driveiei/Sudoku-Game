@@ -31,14 +31,15 @@ public class ScoreManager {
 	private static ScoreManager score = null;
 
 	/**
-	 * Text to divide symbol which can seperate the type of score which score should shown.
+	 * Text to divide symbol which can separate the type of score which score should shown.
 	 * */
 	private static String symbol;
 	/**List of Score*/
 	private List<Score> listScore;
+	private List<String> listSymbol;
 
 	/**
-	 * Initailize list of score.
+	 * Initialize list of score.
 	 * */
 	private ScoreManager() {
 		listScore = new ArrayList<Score>();
@@ -60,7 +61,7 @@ public class ScoreManager {
 	/**
 	 * Change the Score's symbol type.
 	 * 
-	 * @param symbol - text to divide symbol which can seperate the type of score which score should shown.
+	 * @param symbol - text to divide symbol which can separate the type of score which score should shown.
  	 */
 	public static void setSymbol(String symbol) {
 		ScoreManager.symbol = symbol;
@@ -70,7 +71,7 @@ public class ScoreManager {
 	/**
 	 * Get the Score's symbol type.
 	 * 
-	 * @return text to divide symbol which can seperate the type of score which score should shown.
+	 * @return text to divide symbol which can separate the type of score which score should shown.
 	 * */
 	public String getsymbol() {
 		return symbol;
@@ -108,49 +109,15 @@ public class ScoreManager {
 		Score save;
 		while (readText.hasNextLine()) {
 			String score = readText.nextLine();
-			if (symbol.equals("+")) {
-				if (score.startsWith("@") || score.startsWith("&") || score.startsWith("*") || score.startsWith("?")) {
+				if (score.startsWith(symbol)) {
+					String name = score.split(",")[0].trim();
+					String time = score.split(",")[1].trim();
+					save = new Score(name, time);
+				}
+				else {
 					continue;
 				}
-				String name = score.split(",")[0].trim();
-				String time = score.split(",")[1].trim();
-				save = new Score(name, time);
 				listScore.add(save);
-			} else if (symbol.equals("@")) {
-				if (score.startsWith("+") || score.startsWith("&") || score.startsWith("*") || score.startsWith("?")) {
-					continue;
-				}
-				String name = score.split(",")[0].trim();
-				String time = score.split(",")[1].trim();
-				save = new Score(name, time);
-				listScore.add(save);
-			} else if (symbol.equals("&")) {
-				if (score.startsWith("+") || score.startsWith("@") || score.startsWith("*") || score.startsWith("?")) {
-					continue;
-				}
-				String name = score.split(",")[0].trim();
-				String time = score.split(",")[1].trim();
-				save = new Score(name, time);
-				listScore.add(save);
-			} else if (symbol.equals("*")) {
-				if (score.startsWith("+") || score.startsWith("@") || score.startsWith("&") || score.startsWith("?")) {
-					continue;
-
-				}
-				String name = score.split(",")[0].trim();
-				String time = score.split(",")[1].trim();
-				save = new Score(name, time);
-				listScore.add(save);
-			} else if (symbol.equals("?")) {
-				if (score.startsWith("+") || score.startsWith("@") || score.startsWith("&") || score.startsWith("*")) {
-					continue;
-
-				}
-				String name = score.split(",")[0].trim();
-				String time = score.split(",")[1].trim();
-				save = new Score(name, time);
-				listScore.add(save);
-			}
 
 		}
 		if (in != null)
@@ -209,4 +176,5 @@ public class ScoreManager {
 		printOut.close();
 
 	}
+	
 }
