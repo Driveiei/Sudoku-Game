@@ -5,7 +5,6 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,8 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 /**
@@ -24,7 +21,7 @@ import javafx.stage.Stage;
  * @author Kornphon Noiprasert
  * @author Vichakorn Yotboonrueang
  */
-public class NameContoller {
+public class NameController {
 	/**
 	 * Text to save on scoreboard.
 	 */
@@ -86,7 +83,11 @@ public class NameContoller {
 				System.err.println(e.getMessage());
 			}
 		}
-		else {
+		else if (text.getText().length() >= 10) {
+			notify.setText("Name can't be longer than 9 characters.");
+			notify.setVisible(true);
+		} else {
+			notify.setText("Please input your name.");
 			notify.setVisible(true);
 		}
 	}

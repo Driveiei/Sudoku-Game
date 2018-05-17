@@ -21,12 +21,12 @@ public class GreaterThanLabel {
 	/** Declare Mode for using to get puzzle. */
 	private Mode mode;
 
+	/**Pane for all symbols*/
+	Pane greaterPane;
+	
 	/** Use for adjust translate of symbols */
 	private final int TWO = 2;
 
-	/**Pane for generates symbols in it.*/
-	Pane greaterPane;
-	
 	/** Image for each symbols. */
 	private Image vLeft = new Image("source/v-left.png");
 	private Image vUp = new Image("source/v-up.png");
@@ -42,7 +42,7 @@ public class GreaterThanLabel {
 		mode = Mode.getInstance();
 		this.greaterPane = greaterPane;
 	}
-
+	
 	/**
 	 * Generate all symbols into pane.
 	 * */
@@ -60,7 +60,7 @@ public class GreaterThanLabel {
 			greaterPane.getChildren().add(vertical.get(cursor));
 		}
 	}
-	
+
 	/**
 	 * Set the Image for each line(only horizontal line) with fixed image depends on
 	 * adjacent cells.

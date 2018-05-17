@@ -16,13 +16,13 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import strategy.Mode;
-
 /**
  * Grid represents production by take BorderPane of GridController then add all of function
  * that sudoku should have.
  * 
  * @author Kornphon Noiprasert
  * @author Vichakorn Yotboonrueang
+ *
  */
 public class Grid {
 	
@@ -38,15 +38,14 @@ public class Grid {
 	private SupportGrid support;
 	private Pane greaterPane;
 	
-	/** Declare attributes */
+	/** Declare   attributes */
 	private int BASE;
 	private int size;
 	private int realSize;
 
-	/**
-	 * Initialize class and set default.
+	/**Initialize class and set default.
 	 * 
-	 * @param borderPane from GridController.
+	 * @param borderPane form GridController
 	 */
 	public Grid(BorderPane borderPane) {
 		this.borderPane = borderPane;
@@ -55,13 +54,13 @@ public class Grid {
 	}
 	
 	/**
-	 * Generate all numbers and symbols(GreaterThan-Sudoku mode) into UI.
+	 * Generate all numbers and symbols into the puzzle.
 	 * */
 	public void run() {
 		size = mode.getSize();
 		realSize = size * size;
-
 		support = new SupportGrid(size);
+
 		mainGrid = new GridPane();
 		separateMainGrid();
 		supportPane = new Pane();
@@ -69,7 +68,7 @@ public class Grid {
 		supportPane.getChildren().add(mainGrid);
 		borderPane.setCenter(supportPane);
 		mainGrid.setAlignment(Pos.CENTER);
-		supportPane.setStyle(getBackGround());
+		supportPane.setStyle(getBackground());
 		subGrid = new GridPane[size][size];
 		pane = new Pane[realSize][realSize];
 		label = new Label[realSize][realSize];
@@ -85,7 +84,7 @@ public class Grid {
 		addPaneToSubGrid();
 	}
 	
-	/**Separate MainGrid by puzzle's size.*/
+	/**Separate MainGrid by size of puzzle.*/
 	public void separateMainGrid() {
 		for (int row = 0; row < size; row++) {
 			mainGrid.getColumnConstraints().add(new ColumnConstraints(BASE * size));
@@ -103,7 +102,7 @@ public class Grid {
 		}
 	}
 	
-	/**Separate SubGrid by puzzle's size.*/
+	/**Separate SubGrid by size of puzzle.*/
 	public void modifySubGrid() {
 		for (int row = 0; row < size; row++) {
 			for (int column = 0; column < size; column++) {
@@ -115,7 +114,6 @@ public class Grid {
 			}
 		}
 	}
-	
 	/**Add SubGrid to MainGrid*/
 	public void addSubGrid() {
 		for (int row = 0; row < size; row++) {
@@ -124,8 +122,7 @@ public class Grid {
 			}
 		}
 	}
-	
-	/**Create Pane and Label by puzzle's size*/
+	/**Create Pane and Label by number of puzzle box*/
 	public void createPaneAndLabel() {
 		for (int row = 0; row < realSize; row++) {
 			for (int column = 0; column < realSize; column++) {
@@ -136,7 +133,6 @@ public class Grid {
 			}
 		}
 	}
-	
 	/**Add Label to Pane*/
 	public void addLabelToPane() {
 		for (int row = 0; row < realSize; row++) {
@@ -147,13 +143,46 @@ public class Grid {
 	}
 	
 	/**
+	 * Remove button selection when already pressed hint button.
+	 * 
+	 * @param column - the cursor position of puzzle in vertical box.
+	 * @param row - the cursor position of puzzle in horizontal box.
+	 */
+	public void removeButtonSelection(int column, int row) {
+		label[column][row].setOnMousePressed(null);
+	}
+
+	/**
+	 * Add the number to every grid depends on invisble status of any number.
+	 * */
+	public void addNumberToLabel() {
+		for (int grid = 0; grid < realSize; grid++) {
+			for (int box = 0; box < realSize; box++) {
+				int number = mode.getPuzzle().get(grid).getList().get(box).getNumber();
+				boolean show = mode.getPuzzle().get(grid).getList().get(box).getLock();
+				int column = support.scaleToArrayColumn(grid, box);
+				int row = support.scaleToArrayRow(grid, box);
+				if (show) {
+					label[column][row].setText(Integer.toString(number));
+					label[column][row].setFont(Font.font(null, FontWeight.BLACK, 32));
+				} else {
+					label[column][row].setText("");
+					selectionButton(box, grid);
+				}
+				label[column][row].setAlignment(Pos.CENTER);
+			}
+
+		}
+	}
+	
+	/**
 	 * This method is show box of number that player want input to game.
 	 * included event when player need to lock number(right-click to number) from clear and hint method.
 	 * 
-	 * @param grid - the cursor position of puzzle in game.
-	 * @param box - the cursor position of puzzle in grid.
+	 * @param box - the cursor position of puzzle in vertical box.
+	 * @param grid - the cursor position of puzzle in horizontal box.
 	 */
-	public void selectionButton(int grid, int box) {
+	public void selectionButton(int box, int grid) {
 		int column = support.scaleToArrayColumn(grid, box);
 		int row = support.scaleToArrayRow(grid, box);
 		//when player click on empty label it'll show mini box that contains number.
@@ -178,20 +207,19 @@ public class Grid {
 			}
 
 			// add button to grid
-			for (int horizontal = 0; horizontal < size; horizontal++) {
-				for (int vertical = 0; vertical < size; vertical++) {
-					int number = (size * horizontal) + vertical;
-					buttonGrid.add(buttonList.get(number), vertical, horizontal);
-					buttonList.get(number).setMaxSize(BASE, BASE);
-					buttonList.get(number).setStyle("-fx-background-color: white;-fx-border-color: black;");
+			for (int i = 0; i < size; i++) {
+				for (int j = 0; j < size; j++) {
+					buttonGrid.add(buttonList.get((size * i) + j), j, i);
+					buttonList.get((size * i) + j).setMaxSize(BASE, BASE);
+					buttonList.get((size * i) + j).setStyle("-fx-background-color: white;-fx-border-color: black;");
 					//click button will setText of empty label.
-					buttonList.get(number).setOnMouseClicked(event2 -> {
+					buttonList.get((size * i) + j).setOnMouseClicked(event2 -> {
 
 						Button button = (Button) event2.getSource();
 						((Labeled) event.getSource()).setText(button.getText());
 						((Labeled) event.getSource()).setStyle("-fx-text-fill: rgb(21, 138, 0);");
 						((Labeled) event.getSource()).setFont(Font.font(null, FontWeight.BOLD, 32));
-						mode.getPuzzle().get(box).getList().get(grid).setLock(false);
+						mode.getPuzzle().get(grid).getList().get(box).setLock(false);
 						try {
 							borderPane.getChildren().remove(miniPane);
 						} catch (IndexOutOfBoundsException ex) {
@@ -210,43 +238,11 @@ public class Grid {
 					if(BASE == 80) 
 					label[column][row].setStyle("-fx-background-insets: 20;-fx-background-color: rgb(240,128,128);-fx-background-radius: 200;");
 					else label[column][row].setStyle("-fx-background-insets: 5;-fx-background-color: rgb(240,128,128);-fx-background-radius: 200;");
-					mode.getPuzzle().get(box).getList().get(grid).setLock(true);
+					mode.getPuzzle().get(grid).getList().get(box).setLock(true);
 				}
 			}
 		});
-	}
-	
-	/**
-	 * Remove button selection when already pressed hint button.
-	 * 
-	 * @param column - the cursor position of puzzle in vertical box.
-	 * @param row - the cursor position of puzzle in horizontal box.
-	 */
-	public void removeButtonSelection(int column, int row) {
-		label[column][row].setOnMousePressed(null);
-	}
 
-	/**
-	 * Add the number to every grid depends on invisble status of any number.
-	 */
-	public void addNumberToLabel() {
-		for (int grid = 0; grid < realSize; grid++) {
-			for (int box = 0; box < realSize; box++) {
-				int number = mode.getPuzzle().get(grid).getList().get(box).getNumber();
-				boolean show = mode.getPuzzle().get(grid).getList().get(box).getLock();
-				int column = support.scaleToArrayColumn(grid, box);
-				int row = support.scaleToArrayRow(grid, box);
-				if (show) {
-					label[column][row].setText(Integer.toString(number));
-					label[column][row].setFont(Font.font(null, FontWeight.BLACK, 32));
-				} else {
-					label[column][row].setText("");
-					selectionButton(grid, box);
-				}
-				label[column][row].setAlignment(Pos.CENTER);
-			}
-
-		}
 	}
 	
 	/**
@@ -259,33 +255,33 @@ public class Grid {
 			buttonList.get(size).setFont(Font.font(null, FontWeight.BOLD, BASE/3));
 		}
 	}
-	
 	/**
 	 * Add Pane that contains all of numbers in game to SubGrid.
 	 */
 	public void addPaneToSubGrid() {
 		for (int rowGrid = 0; rowGrid < size; rowGrid++) {
-			for (int columnGrid = 0; columnGrid < size; columnGrid++) {
-				for (int rowPane = 0; rowPane < size; rowPane++) {
-					for (int columnPane = 0; columnPane < size; columnPane++) {
-						subGrid[columnGrid][rowGrid].add(pane[(columnGrid * size) + columnPane][rowPane + (rowGrid * size)], columnPane,rowPane);
+			for (int columnGrid = 0; columnGrid < size; columnGrid++) {// a
+				for (int rowPane = 0; rowPane < size; rowPane++) {// b
+					for (int columnPane = 0; columnPane < size; columnPane++) {// c
+						subGrid[columnGrid][rowGrid].add(
+								pane[(columnGrid * size) + columnPane][rowPane + (rowGrid * size)], columnPane,
+								rowPane);
 					}
 				}
 			}
 		}
 	}
-	
 	/**
-	 * This method for initialize GreaterThanSudoku mode. It's call GreaterThanLabel class and generates symbol(<,>,^,v).
+	 * This method for mode SudokuGreaterThan it's will create symbol(<,>,^,v).
 	 */
 	public void addGreater() {
 		if (Mode.getInstance().getClass().getName().equals("strategy.GreaterThanStrategy")) {
 			greaterPane = new Pane();
-			new GreaterThanLabel(greaterPane).run();
+			GreaterThanLabel greatLabel = new GreaterThanLabel(greaterPane);
+			greatLabel.run();
 			supportPane.getChildren().add(greaterPane);
 		}
 	}
-	
 	/**Get label2D for used in controller.
 	 * 
 	 * @return label of numbers.
@@ -295,11 +291,11 @@ public class Grid {
 	}
 	
 	/**
-	 * Get text's background of puzzle
+	 * Get background of the puzzle.
 	 * 
-	 * @return Text's background of puzzle.
-	 */
-	public String getBackGround() {
+	 * @return Text's puzzle with white color.
+	 * */
+	public String getBackground() {
 		return "-fx-background-color: white;-fx-border-color: black;-fx-border-width: 5;-fx-opacity: 0.9;";
 	}
 }

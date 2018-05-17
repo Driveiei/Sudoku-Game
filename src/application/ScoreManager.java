@@ -138,10 +138,8 @@ public class ScoreManager {
 	/**
 	 * Write scores with adding symbols to the text.
 	 * 
-	 * @param name
-	 *            - name of user to record.
-	 * @param time
-	 *            - time which user uses to solve the puzzle in game.
+	 * @param name - name of user to record.
+	 * @param time - time which user uses to solve the puzzle in game.
 	 */
 	public void recordScore(String name, String time) {
 		String path = System.getProperty("user.dir");

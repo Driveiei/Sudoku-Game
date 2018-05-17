@@ -49,7 +49,7 @@ public class EndGameController {
 	 */
 	public void initialize() {
 		manage = ScoreManager.getInstance();
-		manage.recordScore(NameContoller.getName(), GridController.getTime());
+		manage.recordScore(NameController.getName(), GridController.getTime());
 		yourTime.setText("Time " + GridController.getTime());
 
 		effectImage(playAgain);
