@@ -38,7 +38,6 @@ public class HardStrategy extends Mode {
 	 */
 	public HardStrategy() {
 		random = RandomNumber.getInstance();
-		if (random.getSize() == 3)
 		this.base = calculateBase();
 		size = random.getSize();
 		realSize = size * size;
