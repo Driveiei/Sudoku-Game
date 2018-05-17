@@ -75,8 +75,8 @@ public class SupportGrid {
 	 * Change scale from grid and box to array scale(column and row) to use in
 	 * column identify position.
 	 * 
-	 * @param grid - cursor number of grid(0-8 or 0-15).
-	 * @param box - cursor number of box(0-8 or 0-15).
+	 * @param grid - cursor number of grid in puzzle(0-8 or 0-15).
+	 * @param box - cursor number of box in grid(0-8 or 0-15).
 	 * @return number of column identify.
 	 */
 	public int scaleToArrayColumn(int grid, int box) {
@@ -87,8 +87,8 @@ public class SupportGrid {
 	 * Change scale from grid and box to array scale(column and row) to use in row
 	 * identify position.
 	 * 
-	 * @param grid - cursor number of grid(0-8 or 0-15).
-	 * @param box - cursor number of box(0-8 or 0-15).
+	 * @param grid - cursor number of grid in puzzle(0-8 or 0-15).
+	 * @param box - cursor number of box in grid(0-8 or 0-15).
 	 * @return number of row identify.
 	 */
 	public int scaleToArrayRow(int grid, int box) {

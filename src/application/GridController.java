@@ -21,40 +21,43 @@ import logic.RandomNumber;
 import strategy.Mode;
 
 /**
- * GridController for events and initializing components that player can play game.
+ * GridController for events and initializing components that player can play
+ * game.
  * 
  * @author Kornphon Noiprasert
  * @author Vichakorn Yotboonrueang
  */
 public class GridController {
-	/** This BorderPane is for adding table of sudoku*/
+	/** This BorderPane is for adding table of sudoku */
 	@FXML
 	BorderPane borderPane;
-	/** This Label link to task for update time along with GridController is running */
+	/**
+	 * This Label link to task for update time along with GridController is running
+	 */
 	@FXML
 	Label timer;
-	/** ImageView for show hint when click*/
+	/** ImageView for show hint when click */
 	@FXML
 	ImageView assist;
-	/** ImageView for clear number when click*/
+	/** ImageView for clear number when click */
 	@FXML
 	ImageView clear;
-	/** ImageView for change scene  from user when click*/
+	/** ImageView for change scene from user when click */
 	@FXML
 	ImageView done;
-	/** ImageView for restart this scene when click*/
+	/** ImageView for restart this scene when click */
 	@FXML
 	ImageView restart;
-	/** ImageView for return to main menu when click*/
+	/** ImageView for return to main menu when click */
 	@FXML
 	ImageView mainMenu;
-	
-	/**save final time of player*/
+
+	/** save final time of player */
 	private static String time;
-	/**worker to start threads*/
+	/** worker to start threads */
 	private TimeTask worker;
 
-	/** Declare class*/
+	/** Declare class */
 	private Grid griddy;
 	private Mode mode;
 	private SupportGrid support;
@@ -88,15 +91,18 @@ public class GridController {
 		support = new SupportGrid(size);
 
 		griddy = new Grid(borderPane);
+		griddy.run();
 	}
-	/**Clear every number in table that has from player(if box has been locked by player handleClear will ignore that box).
+
+	/**
+	 * Clear every number in table that has from player(if box has been locked by
+	 * player handleClear will ignore that box).
 	 * 
-	 * @param event When mouse event occurs, the top-most node under cursor is
+	 * @param event - When mouse event occurs, the top-most node under cursor is
 	 *            picked and the event is delivered to it through capturing and
 	 *            bubbling phase described at EventDispatcher.
 	 */
 	public void handleClear(MouseEvent event) {
-
 		List<GridManager> puzzle = new ArrayList<GridManager>();
 		puzzle.addAll(mode.getPuzzle());
 		for (int selectGrid = 0; selectGrid < realSize; selectGrid++) {
@@ -110,10 +116,11 @@ public class GridController {
 		}
 	}
 
-	/**Show hint for player.It's randomly show up(if box has been locked by player handleHint will ignore that box).
-	 * this method can't click more than size.
+	/**
+	 * Show hint for player.It's randomly show up(if box has been locked by player
+	 * handleHint will ignore that box). this method can't click more than size.
 	 * 
-	 * @param event When mouse event occurs, the top-most node under cursor is
+	 * @param event - When mouse event occurs, the top-most node under cursor is
 	 *            picked and the event is delivered to it through capturing and
 	 *            bubbling phase described at EventDispatcher.
 	 */
@@ -148,10 +155,12 @@ public class GridController {
 			count++;
 		}
 	}
-	/**When player have success game(numbers in box are correct, and fill all empty box).
-	 * This event for switch scene to 'EndGame.fxml'.
+
+	/**
+	 * When player have success game(numbers in box are correct, and fill all empty
+	 * box). This event for switch scene to 'EndGame.fxml'.
 	 * 
-	 * @param event When mouse event occurs, the top-most node under cursor is
+	 * @param event - When mouse event occurs, the top-most node under cursor is
 	 *            picked and the event is delivered to it through capturing and
 	 *            bubbling phase described at EventDispatcher.
 	 */
@@ -169,6 +178,7 @@ public class GridController {
 					if (griddy.getLabel()[selectBox][selectGrid].getText().equals(answerText))
 						continue;
 					else {
+						// false when any number wrong.
 						check = false;
 						break;
 					}
@@ -177,6 +187,7 @@ public class GridController {
 			if (!check)
 				break;
 		}
+		// End game when all numbers are correct.
 		if (check) {
 			time = timer.getText();
 			try {
@@ -192,20 +203,21 @@ public class GridController {
 			}
 		}
 	}
-	
-	/**Reset all of this scene(create new table).
+
+	/**
+	 * Reset all of this scene(create new table).
 	 * 
-	 * @param event When mouse event occurs, the top-most node under cursor is
+	 * @param event - When mouse event occurs, the top-most node under cursor is
 	 *            picked and the event is delivered to it through capturing and
 	 *            bubbling phase described at EventDispatcher.
 	 */
-	public void handleRestart(MouseEvent ac) {
+	public void handleRestart(MouseEvent event) {
 		Mode.getInstance().clearPuzzle();
 		RandomNumber.setRandomNumber(RandomNumber.getInstance().getSize());
 		try {
 			Parent pane = FXMLLoader.load(getClass().getResource("GridUI.fxml"));
 			Scene scene = new Scene(pane);
-			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(scene);
 			stage.setResizable(false);
 			stage.show();
@@ -213,20 +225,21 @@ public class GridController {
 			System.err.println(e.getMessage());
 		}
 	}
-	
-	/**Return to main menu.This round isn't save score.
+
+	/**
+	 * Return to main menu.This round isn't save score.
 	 * 
-	 * @param event When mouse event occurs, the top-most node under cursor is
+	 * @param event - When mouse event occurs, the top-most node under cursor is
 	 *            picked and the event is delivered to it through capturing and
 	 *            bubbling phase described at EventDispatcher.
 	 */
-	public void handleMainMenu(MouseEvent ac) {
+	public void handleMainMenu(MouseEvent event) {
 		Mode.getInstance().clearPuzzle();
 		RandomNumber.setRandomNumber(RandomNumber.getInstance().getSize());
 		try {
 			Parent pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 			Scene scene = new Scene(pane);
-			Stage stage = (Stage) ((Node) ac.getSource()).getScene().getWindow();
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(scene);
 			stage.setResizable(false);
 			stage.show();
@@ -234,18 +247,20 @@ public class GridController {
 			System.err.println(e.getMessage());
 		}
 	}
-	/**Get the total time that user used for solve sudoku problem.
+
+	/**
+	 * Get the total time that user used for solve sudoku problem.
 	 * 
 	 * @return String of time.
 	 */
 	public static String getTime() {
 		return time;
 	}
-	
+
 	/**
 	 * Makes the picture zoom in/out when mouse cursor enters on the button.
 	 * 
-	 * @param image - is a Node used for painting images loaded with Image class. 
+	 * @param image - is a Node used for painting images loaded with Image class.
 	 */
 	public void effectImage(ImageView image) {
 		image.setOnMouseEntered(in -> {
@@ -257,9 +272,9 @@ public class GridController {
 			});
 		});
 	}
-	
+
 	/**
-	 * start thread to update time in 'GridUI.fxml'.
+	 * Start thread to update time in 'GridUI.fxml'.
 	 */
 	public void runTime() {
 		worker = new TimeTask();

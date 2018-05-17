@@ -24,6 +24,9 @@ public class GreaterThanLabel {
 	/** Use for adjust translate of symbols */
 	private final int TWO = 2;
 
+	/**Pane for generates symbols in it.*/
+	Pane greaterPane;
+	
 	/** Image for each symbols. */
 	private Image vLeft = new Image("source/v-left.png");
 	private Image vUp = new Image("source/v-up.png");
@@ -37,6 +40,13 @@ public class GreaterThanLabel {
 	 */
 	public GreaterThanLabel(Pane greaterPane) {
 		mode = Mode.getInstance();
+		this.greaterPane = greaterPane;
+	}
+
+	/**
+	 * Generate all symbols into pane.
+	 * */
+	public void run() {
 		int size = mode.getSize();
 		int computeSize = size * size * size * (size - 1);
 		List<ImageView> horizontal = new ArrayList<>();
@@ -50,7 +60,7 @@ public class GreaterThanLabel {
 			greaterPane.getChildren().add(vertical.get(cursor));
 		}
 	}
-
+	
 	/**
 	 * Set the Image for each line(only horizontal line) with fixed image depends on
 	 * adjacent cells.

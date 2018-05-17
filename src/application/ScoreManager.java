@@ -16,8 +16,9 @@ import java.util.Scanner;
 import strategy.Mode;
 
 /**
- * ScoreManager is a singleton class for manipulate this class's instance that can generate score symbols to identify
- * type of score which should have shown on scoreboard.
+ * ScoreManager is a singleton class for manipulate this class's instance that
+ * can generate score symbols to identify type of score which should have shown
+ * on scoreboard.
  * 
  * @author Kornphon Noiprasert
  * @author Vichakorn Yotboonrueang
@@ -31,16 +32,16 @@ public class ScoreManager {
 	private static ScoreManager score = null;
 
 	/**
-	 * Text to divide symbol which can separate the type of score which score should shown.
-	 * */
+	 * Text to divide symbol which can separate the type of score which score should
+	 * shown.
+	 */
 	private static String symbol;
-	/**List of Score*/
+	/** List of Score */
 	private List<Score> listScore;
-	private List<String> listSymbol;
 
 	/**
 	 * Initialize list of score.
-	 * */
+	 */
 	private ScoreManager() {
 		listScore = new ArrayList<Score>();
 	}
@@ -61,8 +62,10 @@ public class ScoreManager {
 	/**
 	 * Change the Score's symbol type.
 	 * 
-	 * @param symbol - text to divide symbol which can separate the type of score which score should shown.
- 	 */
+	 * @param symbol
+	 *            - text to divide symbol which can separate the type of score which
+	 *            score should shown.
+	 */
 	public static void setSymbol(String symbol) {
 		ScoreManager.symbol = symbol;
 		score = new ScoreManager();
@@ -71,8 +74,9 @@ public class ScoreManager {
 	/**
 	 * Get the Score's symbol type.
 	 * 
-	 * @return text to divide symbol which can separate the type of score which score should shown.
-	 * */
+	 * @return text to divide symbol which can separate the type of score which
+	 *         score should shown.
+	 */
 	public String getsymbol() {
 		return symbol;
 	}
@@ -80,8 +84,9 @@ public class ScoreManager {
 	/**
 	 * Sort score by ascending the time.
 	 * 
-	 * @param list of score which must be sort in this method by time.
-	 * */
+	 * @param list
+	 *            of score which must be sort in this method by time.
+	 */
 	public void sortTime(List<Score> list) {
 		Collections.sort(list, new Comparator<Score>() {
 			@Override
@@ -96,36 +101,34 @@ public class ScoreManager {
 	 * Read scores from filter by symbols.
 	 * 
 	 * @param list of score which reads by filter symbol's type.
-	 * @throws by the FileInputStream, FileOutputStream, and RandomAccessFile constructors when a file with the specified pathname does not exist.
-	 * */
+	 * @throws by the FileInputStream, FileOutputStream, and RandomAccessFile
+	 *             constructors when a file with the specified pathname does not
+	 *             exist.
+	 */
 	@SuppressWarnings("resource")
 	public List<Score> readScore() throws FileNotFoundException {
 		try {
-		String path = System.getProperty("user.dir");
-		String filename = path + "score.md";
-		InputStream in = new FileInputStream(filename);
-		Scanner readText;
-		readText = new Scanner(in);
-		Score save;
-		while (readText.hasNextLine()) {
-			String score = readText.nextLine();
+			String path = System.getProperty("user.dir");
+			String filename = path + "score.md";
+			InputStream in = new FileInputStream(filename);
+			Scanner readText;
+			readText = new Scanner(in);
+			Score save = null;
+			while (readText.hasNextLine()) {
+				String score = readText.nextLine();
 				if (score.startsWith(symbol)) {
 					String name = score.split(",")[0].trim();
 					String time = score.split(",")[1].trim();
 					save = new Score(name, time);
+					listScore.add(save);
 				}
-				else {
-					continue;
-				}
-				listScore.add(save);
-
-		}
-		if (in != null)
-			try {
-				in.close();
-			} catch (IOException ioe) {
 			}
-		}catch(FileNotFoundException e) {
+			if (in != null)
+				try {
+					in.close();
+				} catch (IOException ioe) {
+				}
+		} catch (FileNotFoundException e) {
 			System.out.println("Didn't have any score.");
 			System.out.println("Finish the game first");
 		}
@@ -135,9 +138,11 @@ public class ScoreManager {
 	/**
 	 * Write scores with adding symbols to the text.
 	 * 
-	 * @param name - name of user to record.
-	 * @param time - time which user uses to solve the puzzle in game.
-	 * */
+	 * @param name
+	 *            - name of user to record.
+	 * @param time
+	 *            - time which user uses to solve the puzzle in game.
+	 */
 	public void recordScore(String name, String time) {
 		String path = System.getProperty("user.dir");
 		String outputfile = path + "score.md";
@@ -176,5 +181,5 @@ public class ScoreManager {
 		printOut.close();
 
 	}
-	
+
 }
